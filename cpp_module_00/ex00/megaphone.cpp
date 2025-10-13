@@ -6,11 +6,12 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 11:26:04 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/09 13:55:43 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:49:50 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <ctype.h>
 
 int	main(int ac, char** av)
 {
@@ -22,7 +23,7 @@ int	main(int ac, char** av)
 			for (int i = 0; av[j][i]; i++)
 			{
 				if (av[j][i] >= 'a' && av[j][i] <= 'z')
-					av[j][i] -= 32;
+					av[j][i] = (char)toupper(av[j][i]);
 				std::cout << av[j][i];
 			}
 		}

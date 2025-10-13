@@ -6,28 +6,25 @@
 #    By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/22 11:19:03 by yukravch          #+#    #+#              #
-#    Updated: 2025/10/13 12:47:44 by yukravch         ###   ########.fr        #
+#    Updated: 2025/10/09 14:23:42 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
 all: $(NAME)
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
-FILE = megaphone.cpp
-OBJ = $(FILE:.cpp=.o)
+FILE = phonebook.cpp
 
 %.o: %.cpp
 	c++ $(FLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
+$(NAME):
 	c++ $(FLAGS) $(FILE) -o $(NAME)
 
 clean:
-	rm -f megaphone.o
+	rm -f phonebook.o
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
-
-.PHONY: all clean fclean re
