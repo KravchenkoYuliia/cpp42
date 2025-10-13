@@ -6,17 +6,18 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:20:08 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/09 14:43:58 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/15 13:19:06 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
-#include <iostream>
+#include "include.hpp"
 
-int	main (int ac, char** av)
+int	main (void)
 {
-		
+	PhoneBook	phone;
 
+	phone.data[0].ft_set(1, 1, "TEST");
+	phone.data[0].ft_get(1);
+	
 	return 0;
 }

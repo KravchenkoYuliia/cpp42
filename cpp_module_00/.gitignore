@@ -1,7 +1,8 @@
 *.swp
+a.out
+practicing.cpp
 
-megaphone.o
 megaphone
-
-phonebook.o
 phonebook
+
+*objects
