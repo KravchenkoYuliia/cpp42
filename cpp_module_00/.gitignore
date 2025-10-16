@@ -1,8 +1,16 @@
+//general
 *.swp
 a.out
 practicing.cpp
+tests.cpp
+19920104_091532.log
+Account.hpp
 
-megaphone
-phonebook
+//ex00
+ex00/megaphone
+ex00/megaphone.o
 
-*objects
+
+//ex01
+ex01/phonebook
+ex01/objects
