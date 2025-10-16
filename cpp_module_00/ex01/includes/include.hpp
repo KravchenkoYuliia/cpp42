@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:10:51 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/16 13:55:40 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/16 15:52:06 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 #include "PhoneBook.class.hpp"
 
 
+#define SUCCESS 0
+#define EXIT 100
+
+#define INDEX 5
 #define FIRST_NAME 10
 #define LAST_NAME 20
 #define NICKNAME 30
@@ -29,11 +33,19 @@
 
 
 
-#define RESET_ALL "\033[0m"
 #define UNDERLINE "\033[4m"
 #define BLINK "\033[5m"
+#define BOLD "\033[1m"
+
+#define RESET_ALL "\033[0m"
+#define RESET_UNDERLINE "\033[4m"
+#define RESET_BLINK "\033[25m"
+#define RESET_BOLD "\033[22m"
 
 #define PROMPT_COLOR "\033[38;5;205m"
+#define PIPE_COLOR "\033[38;5;123m"
+#define HEADLINES_COLOR "\033[38;5;81m"
+#define USER_DATA_COLOR "\033[38;5;39m"
 
 #define MAGENTA_BACKGROUND "\033[45m"
 #define WHITE_BACKGROUND "\033[107m"
