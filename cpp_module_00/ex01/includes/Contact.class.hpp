@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:35:27 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/15 13:23:11 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/16 13:58:50 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,22 @@
 class Contact{
 
 public:
-	void	ft_set(int index, int type, const char* data);
-	void	ft_get(int type);
+	//void	ft_set_index(int index);
+	void	ft_set_data(int type, const char* data);
+	
+	std::string	ft_get_first_name() const;
+	std::string	ft_get_last_name() const;
+	std::string	ft_get_nickname() const;
+	std::string	ft_get_phone() const;
+	std::string	ft_get_secret() const;
 
 private:
-	int		index;
+	//int		index;
 	std::string	first_name;
 	std::string	last_name;
 	std::string	nickname;
+	std::string	phone_number;
+	std::string	darkest_secret;
 };
 
 #endif
