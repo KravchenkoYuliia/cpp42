@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:27:11 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/17 15:43:48 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:54:24 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ public:
 	int		counter;
 	void		ft_start_prompt();
 	int		ft_get_cmd();
-	void		ft_add();
+	int		ft_add();
 	void		ft_set_users_data(int i);
 	void		ft_search();
-	void		ft_horizontal_line();
+	void		ft_write_horizontal_line();
+	void		ft_write_table_headlines();
+	void		ft_write_user_data();
 	std::string	ft_format(int type, int index);
 	void		ft_exit();
 

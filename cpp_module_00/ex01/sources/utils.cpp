@@ -6,13 +6,13 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 10:24:08 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/17 15:35:52 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:30:35 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include.hpp"
 
-void	PhoneBook::ft_horizontal_line() {
+void	PhoneBook::ft_write_horizontal_line() {
 
 	std::cout << ' ' << PIPE_COLOR;
 
@@ -25,4 +25,31 @@ void	PhoneBook::ft_horizontal_line() {
 	}
 
 	std::cout << '-' << RESET_ALL << std::endl;
+}
+
+std::string	PhoneBook::ft_format(int type, int index)
+{
+	std::string	result;
+
+	if (type == FIRST_NAME)
+		result = PhoneBook::user[index].ft_get_first_name();
+	else if (type == LAST_NAME)
+		result = PhoneBook::user[index].ft_get_last_name();
+	else if (type == NICKNAME)
+		result = PhoneBook::user[index].ft_get_nickname();
+	
+	if (result == "")
+		result = "          ";
+	size_t	len = result.length();
+
+	if (len > 10)
+	{
+		result.at(9) = '.';
+		result = result.substr(0, 10);
+	}
+	else if (len < 10)
+	{
+		result = std::string(10 - len, ' ') + result;
+	}
+	return result;
 }
