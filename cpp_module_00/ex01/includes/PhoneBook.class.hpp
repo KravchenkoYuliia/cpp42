@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:27:11 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/17 16:54:24 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 18:29:44 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ public:
 	~PhoneBook();
 	
 	int		counter;
+	int		nb_of_users;
+	bool		empty;
+
 	void		ft_start_prompt();
 	int		ft_get_cmd();
 	int		ft_add();
 	void		ft_set_users_data(int i);
-	void		ft_search();
+	int		ft_search();
 	void		ft_write_horizontal_line();
 	void		ft_write_table_headlines();
-	void		ft_write_user_data();
+	void		ft_write_users_data();
+	void		ft_write_full_user_data(int index);
 	std::string	ft_format(int type, int index);
 	void		ft_exit();
 

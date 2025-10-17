@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:10:51 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/17 15:37:46 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:23:58 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <cstdlib>
 
 #include "Contact.class.hpp"
 #include "PhoneBook.class.hpp"

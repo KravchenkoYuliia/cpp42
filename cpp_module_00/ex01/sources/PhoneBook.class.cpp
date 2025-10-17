@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:27:45 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/17 16:57:43 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 18:41:50 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 PhoneBook::PhoneBook() {
 
 	PhoneBook::counter = -1;
+	PhoneBook::nb_of_users = 0;
+	PhoneBook::empty = true;
 }
 
 int	PhoneBook::ft_get_cmd() {
@@ -23,17 +25,16 @@ int	PhoneBook::ft_get_cmd() {
 	if (!std::getline(std::cin, PhoneBook::line))
 		return EXIT;
 
-	if (PhoneBook::line == "")
-		return SUCCESS;
-	else if (PhoneBook::line == "ADD") {
+	if (PhoneBook::line == "ADD") {
 		if (PhoneBook::ft_add() == EXIT)
 			return EXIT; }
-	else if (PhoneBook::line == "SEARCH")
-		PhoneBook::ft_search();
+	else if (PhoneBook::line == "SEARCH") {
+		if (PhoneBook::ft_search() == EXIT)
+			return EXIT; }
 	else if (PhoneBook::line == "EXIT")
 		return EXIT;
 	else
-		std::cout << "Command doesn't exist" << std::endl;
+		return SUCCESS;
 	
 	std::cout << "\033[0m";
 	return SUCCESS;

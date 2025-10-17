@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:14:13 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/17 16:22:18 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 18:38:38 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	PhoneBook::ft_write_table_headlines() {
 		<< RESET_ALL << std::endl;
 }
 
-void	PhoneBook::ft_write_user_data() {
+void	PhoneBook::ft_write_users_data() {
 
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < PhoneBook::nb_of_users; i++) {
 
 		std::cout << PIPE_COLOR << '|'
 			<< USER_DATA_COLOR << "         " << i + 1
@@ -62,4 +62,16 @@ void	PhoneBook::ft_write_user_data() {
 			<< RESET_ALL << std::endl;
 
 	}
+}
+
+void	PhoneBook::ft_write_full_user_data(int index) {
+
+		std::cout << USER_DATA_COLOR << "User[" << index << "]:" << std::endl
+			<< "First name: " << PhoneBook::user[index - 1].ft_get_first_name() << std::endl
+			<< "Last name: " << PhoneBook::user[index - 1].ft_get_last_name() << std::endl
+			<< "Nickname: " << PhoneBook::user[index - 1].ft_get_nickname() << std::endl
+			<< "Phone number: " << PhoneBook::user[index - 1].ft_get_phone() << std::endl
+			<< "Darkest secret: " << PhoneBook::user[index - 1].ft_get_secret() << std::endl
+			<< RESET_ALL;
+
 }
