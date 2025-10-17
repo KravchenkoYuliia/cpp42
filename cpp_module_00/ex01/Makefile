@@ -6,7 +6,7 @@
 #    By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/22 11:19:03 by yukravch          #+#    #+#              #
-#    Updated: 2025/10/15 15:29:22 by yukravch         ###   ########.fr        #
+#    Updated: 2025/10/17 10:27:39 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = phonebook
 all: $(NAME)
 
 FLAGS = -Wall -Wextra -Werror -std=c++98
-FILES = main.cpp Contact.class.cpp PhoneBook.class.cpp
+FILES = main.cpp Contact.class.cpp PhoneBook.class.cpp utils.cpp
 
 SRC_DIR = sources
 OBJ_DIR = objects

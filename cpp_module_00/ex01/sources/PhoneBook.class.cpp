@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 15:27:45 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/16 16:48:21 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 16:11:12 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 PhoneBook::PhoneBook() {
 
-	PhoneBook::counter = 0;
+	PhoneBook::counter = -1;
 }
 
 void	PhoneBook::ft_start_prompt() {
@@ -39,7 +39,6 @@ void	PhoneBook::ft_start_prompt() {
 
 void	PhoneBook::ft_set_users_data(int i)
 {
-	PhoneBook::user[PhoneBook::counter].ft_set_data(INDEX, PhoneBook::counter, "");
 	if (i == 0)
 		PhoneBook::user[PhoneBook::counter].ft_set_data(FIRST_NAME, 0, PhoneBook::input);
 	if (i == 1)
@@ -57,18 +56,19 @@ void	PhoneBook::ft_add() {
 	PhoneBook::counter++;
 	std::string	input[5] = {"first name", "last name", "nickname", "phone number", "darkest secret"};
 	
-	for (int i = 0; i < 5; i++) {
+	PhoneBook::user[PhoneBook::counter].ft_set_data(INDEX, PhoneBook::counter, "");
+	for (int data = 0; data < 5; data++) {
 
-		std::cout << PROMPT_COLOR << "Put your " << input[i] << ": ";
+		std::cout << PROMPT_COLOR << "Put your " << input[data] << ": ";
 		std::getline(std::cin, PhoneBook::input);
 		if (PhoneBook::input == "")
 		{
-			i--;
+			data--;
 			continue;
 		}
 		if (PhoneBook::counter == 8)
 			PhoneBook::counter = 0;
-		PhoneBook::ft_set_users_data(i);
+		PhoneBook::ft_set_users_data(data);
 	}
 
 	std::cout << "\033[0m";
@@ -76,8 +76,17 @@ void	PhoneBook::ft_add() {
 
 std::string	PhoneBook::ft_format(int type, int index)
 {
-	(void)type;
-	std::string result = PhoneBook::user[index].ft_get_first_name();
+	std::string	result;
+
+	if (type == FIRST_NAME)
+		result = PhoneBook::user[index].ft_get_first_name();
+	else if (type == LAST_NAME)
+		result = PhoneBook::user[index].ft_get_last_name();
+	else if (type == NICKNAME)
+		result = PhoneBook::user[index].ft_get_nickname();
+	
+	if (result == "")
+		result = "          ";
 	size_t	len = result.length();
 
 	if (len > 10)
@@ -85,23 +94,44 @@ std::string	PhoneBook::ft_format(int type, int index)
 		result.at(9) = '.';
 		result = result.substr(0, 10);
 	}
+	else if (len < 10)
+	{
+		result = std::string(10 - len, ' ') + result;
+	}
 	return result;
 }
 
 void	PhoneBook::ft_search() {
 
-	for (int i = 0; i < 44; i++){
+	PhoneBook::ft_horizontal_line();
+	std::cout << PIPE_COLOR << '|'
+		<< BOLD << HEADLINES_COLOR << "     Index"
+		<< RESET_BOLD << PIPE_COLOR << '|'
+		<< BOLD << HEADLINES_COLOR << "First name"
+		<< RESET_BOLD << PIPE_COLOR << '|'
+		<< BOLD << HEADLINES_COLOR << " Last name"
+		<< RESET_BOLD << PIPE_COLOR << '|'
+		<< BOLD << HEADLINES_COLOR << "  Nickname"
+		<< RESET_BOLD << PIPE_COLOR << '|'
+		<< RESET_ALL << std::endl;
 
-		std::cout << PIPE_COLOR << '_';
-	}
-	std::cout << std::endl << '|' << "     Index" << '|' << "First name" << '|' << " Last name" << '|' << "  Nickname" << '|' << std::endl;
+	PhoneBook::ft_horizontal_line();
 	for (int i = 0; i < 8; i++) {
 
-		std::cout << '|'<< "         " << i <<'|'<< ft_format(FIRST_NAME, i) << '|' << std::endl;
+		std::cout << PIPE_COLOR << '|'
+			<< USER_DATA_COLOR << "         " << i + 1
+			<< PIPE_COLOR << '|'
+			<< USER_DATA_COLOR << ft_format(FIRST_NAME, i)
+			<< PIPE_COLOR << '|'
+			<< USER_DATA_COLOR << ft_format(LAST_NAME, i)
+			<< PIPE_COLOR << '|'
+			<< USER_DATA_COLOR << ft_format(NICKNAME, i)
+			<< PIPE_COLOR << '|'
+			<< RESET_ALL << std::endl;
 
 	}
-	//PhoneBook::user[PhoneBook::counter].ft_get_first_name();
-	
+
+	PhoneBook::ft_horizontal_line();
 }
 
 int	PhoneBook::ft_get_cmd() {

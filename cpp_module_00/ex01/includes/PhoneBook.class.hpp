@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 14:27:11 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/16 16:35:15 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 15:43:48 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ public:
 	void		ft_add();
 	void		ft_set_users_data(int i);
 	void		ft_search();
+	void		ft_horizontal_line();
 	std::string	ft_format(int type, int index);
 	void		ft_exit();
 
 private:
 	std::string	line;
 	std::string	input;
-	Contact		user[8];
+	Contact		user[12];
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:10:51 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/16 15:52:06 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/17 15:37:46 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 
 #define PROMPT_COLOR "\033[38;5;205m"
 #define PIPE_COLOR "\033[38;5;123m"
-#define HEADLINES_COLOR "\033[38;5;81m"
+#define HEADLINES_COLOR "\033[38;5;105m"
 #define USER_DATA_COLOR "\033[38;5;39m"
 
 #define MAGENTA_BACKGROUND "\033[45m"
