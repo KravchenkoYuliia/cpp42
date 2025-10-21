@@ -14,3 +14,7 @@ ex00/megaphone.o
 //ex01
 ex01/phonebook
 ex01/objects
+
+//ex02
+ex02/job
+ex02/objects
