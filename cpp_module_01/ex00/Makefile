@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/10/22 16:45:36 by yukravch         ###   ########.fr        #
+#    Updated: 2025/10/24 15:10:58 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = zombie
 
 all: $(NAME)
 
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 -MMD -MP
 FILES = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
 SRC_DIR = sources
@@ -23,6 +23,8 @@ INC_DIR = -I includes
 
 SRC = $(addprefix $(SRC_DIR)/, $(FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
+DEPS = $(OBJ:.o=.d)
+-include $(DEPS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	@mkdir -p $(OBJ_DIR)
