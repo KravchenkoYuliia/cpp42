@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 15:19:12 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/24 15:55:02 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/24 15:57:37 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main() {
 
-	int	N = 19;
+	int	N = 100;
 	Zombie*	arrayOfZombies;
 
 	std::string	name = "arrayOfZombies";

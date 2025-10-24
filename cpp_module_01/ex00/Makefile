@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/10/24 15:10:58 by yukravch         ###   ########.fr        #
+#    Updated: 2025/10/24 16:03:46 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ $(NAME): $(OBJ)
 	c++ $(FLAGS) $(INC_DIR) $(SRC) -o $(NAME)
 
 clean:
-	rm -fr $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
+	rm -rf $(NAME).d
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
