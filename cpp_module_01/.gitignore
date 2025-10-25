@@ -1,5 +1,9 @@
+# general:
 *.swp
-*zombie
-*brain
 *zombie.d
 *objects
+
+# Program name:
+*zombie
+*brain
+*weapon
