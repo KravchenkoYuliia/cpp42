@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 16:31:34 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/25 19:47:37 by yukravch         ###   ########.fr       */
+/*   Created: 2025/10/30 11:11:15 by yukravch          #+#    #+#             */
+/*   Updated: 2025/10/30 12:23:35 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 HumanB::HumanB(std::string givenName) {
 
-	HumanB::name = givenName;
-	HumanB::weaponB = NULL;
-	std::cout << "B Constructor called with name: " << givenName << std::endl;
+	std::cout << std::endl << "Called HumanB constructor with name[" << givenName << "]" << std::endl;
+	name = givenName;
 }
 
-void	HumanB::setWeapon(Weapon* givenWeapon) {
+void	HumanB::setWeapon(Weapon& givenWeapon) {
 
-
-	std::cout << "Setting a weapon for B" << std::endl;
+	std::cout << "Setting Weapon of HumanB [" << givenWeapon.getType() << "]" << std::endl;
+	
+	HumanB::weaponB = &givenWeapon;
 }
 
 void	HumanB::attack() {
 
-	std::cout << "B attacks" << std::endl;//this->name << " attacks with their " << this->weaponA.getType() << std::endl;
+	std::cout << HumanB::name << " attacks with their weapon[" << HumanB::weaponB->getType() << "]" << std::endl;
 }
 
-HumanA::~HumanB() {
+HumanB::~HumanB() {
 
-	std::cout << "B Destructor called" << std::endl;
+	std::cout << std::endl << "Called Human B destroyer" << std::endl;
 }

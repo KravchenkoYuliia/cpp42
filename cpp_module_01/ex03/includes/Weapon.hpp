@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:32:08 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/25 18:33:54 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/30 11:37:02 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ public:
 	Weapon(std::string givenWeapon);
 	~Weapon();
 
-	std::string&	getType() const;
+	const std::string&	getType() const;
 	void		setType(const std::string givenWeapon);
 
 

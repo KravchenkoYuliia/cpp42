@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:32:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/25 19:44:54 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/10/30 12:13:32 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	~HumanB();
 
 	void		attack();
-	void		setWeapon(Weapon* givenWeapon);
+	void		setWeapon(Weapon& givenWeapon);
 
 private:
 	Weapon*		weaponB;

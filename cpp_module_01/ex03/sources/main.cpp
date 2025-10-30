@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 16:31:54 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/25 16:49:41 by yukravch         ###   ########.fr       */
+/*   Created: 2025/10/30 11:11:37 by yukravch          #+#    #+#             */
+/*   Updated: 2025/10/30 11:59:47 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-int main()
+int	main()
 {
 	{
 		Weapon club = Weapon("crude spiked club");

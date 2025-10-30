@@ -1,6 +1,6 @@
 # general:
 *.swp
-*zombie.d
+*.d
 *objects
 
 # Program name:

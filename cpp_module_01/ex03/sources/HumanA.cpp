@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 16:31:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/25 19:43:08 by yukravch         ###   ########.fr       */
+/*   Created: 2025/10/30 11:11:07 by yukravch          #+#    #+#             */
+/*   Updated: 2025/10/30 12:20:49 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 HumanA::HumanA(std::string givenName, Weapon& givenWeapon) : weaponA(givenWeapon) {
 
-	HumanA::name = givenName;
-	std::cout << "A Constructor called with name: " << givenName << std::endl;
+	std::cout << std::endl << "Called HumanA constructor with name[" << givenName << "] and Weapon Class" << std::endl;
+	name = givenName;
 }
 
 void	HumanA::attack() {
 
-	std::cout << this->name << " attacks with their " << this->weaponA.getType() << std::endl;
+	std::cout << HumanA::name << " attacks with their weapon[" << HumanA::weaponA.getType() << "]" << std::endl;
 }
 
 HumanA::~HumanA() {
 
-	std::cout << "A Destructor called" << std::endl;
+	std::cout << std::endl << "Called Human A destroyer" << std::endl;
 }
