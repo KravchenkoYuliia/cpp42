@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/10/30 13:37:02 by yukravch         ###   ########.fr        #
+#    Updated: 2025/10/30 14:48:44 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp Replace.cpp
+FILES = main.cpp Replace.cpp replaceUtils.cpp
 
 SRC_DIR = sources
 OBJ_DIR = objects
