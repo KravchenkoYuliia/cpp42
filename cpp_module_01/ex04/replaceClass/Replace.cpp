@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:27:27 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/30 17:20:44 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:22:31 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,12 @@ Replace::Replace(std::string fileName, std::string oldText, std::string newText)
 
 void	Replace::Process() {
 
-	try {
-		Replace::checkInput();
+	Replace::checkInput();
 
-		std::string	allText    = Replace::readFile();
-		std::string	replacedText = Replace::findAndReplace(allText);
+	std::string	allText    = Replace::readFile();
+	std::string	replacedText = Replace::findAndReplace(allText);
 
-		Replace::writeToNewFile(replacedText);
-	}
-	catch (...) {
-		throw; }
+	Replace::writeToNewFile(replacedText);
 }
 
 std::string	Replace::findAndReplace(std::string allText) {
