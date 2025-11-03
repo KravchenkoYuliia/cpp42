@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/11/03 10:48:44 by yukravch         ###   ########.fr        #
+#    Updated: 2025/11/03 11:41:10 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp Harl/Harl.cpp
+FILES = main.cpp harlClass/Harl.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I Harl
+INC_DIR = -I harlClass
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))
