@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 11:11:37 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/30 11:59:47 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:12:08 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 int	main()
 {
+	
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
