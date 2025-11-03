@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 12:37:23 by yukravch          #+#    #+#             */
-/*   Updated: 2025/10/30 13:48:00 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:29:19 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	main(int ac, char** av) {
 	Replace	Process = Replace(av[1], av[2], av[3]);
 	try {
 		Process.Process(); }
-	catch (...) {
+	catch (std::runtime_error e) {
+		std::cout << e.what() << std::endl;
 		return 1;
 	}
 
