@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:50:45 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/03 10:56:37 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:03:13 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 class Harl {
 
 public:
-	void complain( std::string level );
+	void 	complain( std::string level );
+	void	switchcase( int i );
 
 private:
 	void debug( void );

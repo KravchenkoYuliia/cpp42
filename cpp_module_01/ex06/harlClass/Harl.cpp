@@ -6,30 +6,55 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:50:36 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/03 12:13:04 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:08:43 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-void Harl::complain( std::string level ) {
+void	Harl::switchcase(int i) {
 
+	switch (i) {
+
+	case 0:
+		Harl::debug();
+		break ;
+	case 1:
+		Harl::info();
+		break ;
+	case 2:
+		Harl::warning();
+		break ;
+	case 3:
+		Harl::error();
+		break ;
+	case 4:
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+		break ;
+	}
+	
+}
+
+void	Harl::complain( std::string level ) {
+
+	bool		alreadyComplained = false;
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void		(Harl::*ptrToMemberFunction[4])( void ) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
 	for (int i = 0; i < 4; i++) {
 
 		if (level == levels[i]) {
+			alreadyComplained = true;
 			while (i < 4) {
 				std::cout << "[" << levels[i] << "]" << std::endl;
-				(this->*ptrToMemberFunction[i])();
+				Harl::switchcase(i);
 				std::cout << std::endl;
 				i++;
 			}
 			break ;
 		}
-
 	}
+	if (alreadyComplained == false)
+		Harl::switchcase(4);
 }
 
 void	Harl::debug() {
