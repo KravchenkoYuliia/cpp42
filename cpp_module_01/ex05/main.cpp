@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:39:13 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/03 11:36:28 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:48:44 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(){
 
 	Harl	Harl;
 
-	std::string	levels[6] = {"debug", "random stuff", "info", "warning", "do you know this?", "error"};
+	std::string	levels[6] = {"DEBUG", "random stuff", "INFO", "WARNING", "do you know this?", "ERROR"};
 
 	for (int i = 0; i < 6; i++) {
 

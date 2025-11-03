@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 10:50:36 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/03 11:31:09 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:49:12 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void Harl::complain( std::string level ) {
 
 	bool		know = false;
-	std::string	levels[4] = {"debug", "info", "warning", "error"};
+	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void		(Harl::*ptrToMemberFunction[4])( void ) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
 	for (int i = 0; i < 4; i++) {
