@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:45:03 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/05 14:14:54 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:16:20 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,19 @@ public:
 	Fixed(const int nb);
 	Fixed(const float nb);
 	Fixed(const Fixed& other);
+	~Fixed();
+
+	void	setRawBits( int const raw );
+	int	getRawBits( void ) const;
+
+	float		toFloat( void ) const;
+	int		toInt( void ) const;
+	static		Fixed&	min(Fixed& one, Fixed& two);
+	static		Fixed&	max(Fixed& one, Fixed& two);
+	static const	Fixed&	min(const Fixed& one, const Fixed& two);
+	static const	Fixed&	max(const Fixed& one, const Fixed& two);
+	
+	
 	Fixed&	operator = (const Fixed& other);
 
 	bool	operator > (const Fixed& other) const;
@@ -41,21 +54,12 @@ public:
 	Fixed	operator*(Fixed const &other) const;
 	Fixed	operator/(Fixed const &other) const;
 	
-	Fixed&	operator++(); //pre-increment (++i)
-	Fixed&	operator--(); //pre-decrement (--i) changes the object and returns its reference immediatly
+	Fixed&	operator++(); 		//pre-increment (++i)
+	Fixed&	operator--(); 		//pre-decrement (--i) changes the object and returns its reference immediatly
+	Fixed	operator++( int ); 	//post-increment (++i)
+	Fixed	operator--( int ); 	//post-decrement (--i) returns a copy of the old object and changes it after
+			   		//int is not used, write it just to make a difference between pre- and post-decrement
 	
-	Fixed	operator++( int ); //post-increment (++i)
-	Fixed	operator--( int ); //post-decrement (--i) returns a copy of the old object and changes it after
-				   //int is not used, write it just to make a difference between pre- and post-decrement
-
-	float	toFloat( void ) const;
-	int	toInt( void ) const;
-	
-	void	setRawBits( int const raw );
-	int	getRawBits( void ) const;
-	
-	~Fixed();
-
 	friend std::ostream& operator<<(std::ostream& out, const Fixed& c);
 };
 

@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 17:23:46 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/05 14:28:54 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:11:49 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,37 @@ int	Fixed::getRawBits( void ) const { //GETTER OF VALUE
 	return this->_value;
 }
 
+Fixed&	Fixed::min(Fixed& one, Fixed& two) {
+
+	if (one.getRawBits() > two.getRawBits())
+		return two;
+	else
+		return one;
+}
+
+const Fixed&	Fixed::min(const Fixed& one, const Fixed& two) {
+
+	if (one.getRawBits() > two.getRawBits())
+		return two;
+	else
+		return one;
+}
+
+Fixed&	Fixed::max(Fixed& one, Fixed& two) {
+
+	if (one.getRawBits() < two.getRawBits())
+		return two;
+	else
+		return one;
+}
+
+const Fixed&	Fixed::max(const Fixed& one, const Fixed& two) {
+
+	if (one.getRawBits() < two.getRawBits())
+		return two;
+	else
+		return one;
+}
 //**********************************************************************************************
 
 //OPERATORS
