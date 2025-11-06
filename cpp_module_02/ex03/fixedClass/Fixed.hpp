@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:45:03 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/05 16:35:10 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/06 10:38:51 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,5 @@ public:
 			   		//int is not used, write it just to make a difference between pre- and post-decrement
 	
 };
-/*
-std::ostream& operator<<(std::ostream &out, const Fixed& c) { //"<<" STREAM INSERTION OPEATOR
-
-	out << c.toFloat();
-	return out;
-}*/
-
 
 #endif
