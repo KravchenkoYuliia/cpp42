@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 11:56:03 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/06 11:56:39 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/07 17:00:46 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ float	getArea (Point const a, Point const b, Point const c ) {
 	float	area = a.getX()*(b.getY() - c.getY()) + b.getX()*(c.getY() - a.getY()) + c.getX()*(a.getY() - b.getY());
 
 	if (area < 0)
-		area += -1;
+		area *= -1;
 	return area / 2;
 }
 
