@@ -1,0 +1,7 @@
+# general:
+*.swp
+*.d
+*objects
+
+# Program name:
+*clap
