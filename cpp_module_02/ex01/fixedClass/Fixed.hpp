@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:45:03 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/04 12:21:16 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:58:05 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ public:
 	void	setRawBits( int const raw );
 	int	getRawBits( void ) const;
 	
-	friend std::ostream& operator<<(std::ostream& out, const Fixed& c);
 	~Fixed();
 
 };
 
+std::ostream& operator<<(std::ostream& out, const Fixed& c);
 #endif

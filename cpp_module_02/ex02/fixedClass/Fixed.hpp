@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:45:03 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/05 15:16:20 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/07 16:59:05 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ public:
 	Fixed	operator--( int ); 	//post-decrement (--i) returns a copy of the old object and changes it after
 			   		//int is not used, write it just to make a difference between pre- and post-decrement
 	
-	friend std::ostream& operator<<(std::ostream& out, const Fixed& c);
 };
+
+std::ostream& operator<<(std::ostream& out, const Fixed& c);
 
 #endif
