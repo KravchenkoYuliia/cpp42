@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/11/10 15:43:05 by yukravch         ###   ########.fr        #
+#    Updated: 2025/11/10 16:04:33 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,10 @@ all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp ClapTrap/ClapTrap.cpp ScavTrap/ScavTrap.cpp
+FILES = main.cpp ClapTrap/ClapTrap.cpp ScavTrap/ScavTrap.cpp FragTrap/FragTrap.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I ClapTrap -I ScavTrap
+INC_DIR = -I ClapTrap -I ScavTrap -I FragTrap
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))

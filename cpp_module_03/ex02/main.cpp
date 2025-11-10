@@ -6,27 +6,28 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 15:42:36 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:17:15 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int	main() {
 	
-	ScavTrap	Harry("Harry");
-	ScavTrap	Voldemort("Voldemort");
-	ScavTrap	Hermione("Hermione");
+	FragTrap	Harry("Harry");
+	FragTrap	Voldemort("Voldemort");
+	FragTrap	Hermione("Hermione");
 	
 	std::cout << std::endl;
 	Harry.attack("Voldemort");
 	Voldemort.takeDamage(4);
 	Voldemort.beRepaired(4);
-	Harry.guardGate();
 	std::cout << std::endl;
 
 	
+	Voldemort.highFivesGuys();
 	Voldemort.attack("Harry");
 	Harry.takeDamage(4);
 	Harry.beRepaired(4);
@@ -37,15 +38,15 @@ int	main() {
 	Voldemort.beRepaired(4);
 	std::cout << std::endl;
 
+	Voldemort.highFivesGuys();
 	Voldemort.attack("Hermione");
 	Hermione.takeDamage(6);
 	Hermione.beRepaired(6);
-	Hermione.guardGate();
 	std::cout << std::endl;
 
 	Harry.attack("Voldemort");
-	Voldemort.takeDamage(4);
-	Voldemort.beRepaired(4);
+	Voldemort.takeDamage(400);
+	Voldemort.beRepaired(400);
 	std::cout << std::endl;
 	
 

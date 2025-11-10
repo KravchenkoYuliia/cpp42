@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 13:31:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 15:44:03 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:56:38 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap() {
 
-	std::cout << "Default scav constructor called" << std::endl;
+	std::cout << "Default Scav constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string input) : ClapTrap(input, 100, 50, 20) {
