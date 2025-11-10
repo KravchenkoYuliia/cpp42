@@ -1,45 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scavTrap.cpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 13:31:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 15:20:53 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:44:03 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scavTrap.hpp"
+#include "ScavTrap.hpp"
 
-scavTrap::scavTrap() {
+ScavTrap::ScavTrap() {
 
 	std::cout << "Default scav constructor called" << std::endl;
 }
 
-scavTrap::scavTrap(std::string input) : clapTrap(input, 100, 50, 20) {
+ScavTrap::ScavTrap(std::string input) : ClapTrap(input, 100, 50, 20) {
 
 	std::cout << "Scav constructor for [" << input << "] called" << std::endl;
 }
 
-scavTrap::scavTrap (const scavTrap& other) : clapTrap(other){
+ScavTrap::ScavTrap (const ScavTrap& other) : ClapTrap(other){
 
 	std::cout << "Copy Scav constructor called" << std::endl;
 }
 
-scavTrap& scavTrap::operator = (const scavTrap& other) {
+ScavTrap& ScavTrap::operator = (const ScavTrap& other) {
 
 	if (this != &other)
-		clapTrap::operator = (other);
+		ClapTrap::operator = (other);
 	return *this;
 }
 
-void	scavTrap::guardGate() {
+void	ScavTrap::guardGate() {
 
-	std::cout << "ScavTrap [" << clapTrap::getName() << "] is now in Gate keeper mode" << std::endl;
+	std::cout << "ScavTrap [" << ClapTrap::getName() << "] is now in Gate keeper mode" << std::endl;
 }
 
-scavTrap::~scavTrap() {
+ScavTrap::~ScavTrap() {
 
 	std::cout << "Scav destructor called" << std::endl;
 }

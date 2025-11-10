@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:09 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 14:56:15 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:39:51 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 
 #include <iostream>
 
-class clapTrap {
+class ClapTrap {
 
 public:
-	clapTrap();
-	clapTrap(std::string inputName);
-	clapTrap(std::string inputName, unsigned int inputHealth, unsigned int inputEnergy, unsigned int inputDamage);
-	clapTrap(const clapTrap& other);
-	clapTrap& operator = (const clapTrap& other);
+	ClapTrap();
+	ClapTrap(std::string inputName);
+	ClapTrap(std::string inputName, unsigned int inputHealth, unsigned int inputEnergy, unsigned int inputDamage);
+	ClapTrap(const ClapTrap& other);
+	ClapTrap& operator = (const ClapTrap& other);
 
-	~clapTrap();
+	~ClapTrap();
 
 	std::string	getName() const;
 
