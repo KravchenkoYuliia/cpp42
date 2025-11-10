@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:09 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/07 12:51:10 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:47:03 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class clapTrap {
 
 public:
+	clapTrap();
 	clapTrap(std::string inputName);
 	clapTrap(const clapTrap& other);
 	clapTrap& operator = (const clapTrap& other);

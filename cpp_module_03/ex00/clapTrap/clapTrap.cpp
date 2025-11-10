@@ -6,11 +6,16 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/07 13:19:11 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:46:46 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "clapTrap.hpp"
+
+clapTrap::clapTrap() {
+
+        std::cout << "Default constructor called" << std::endl;
+}
 
 clapTrap::clapTrap( std::string inputName ) : _name(inputName) {
 
