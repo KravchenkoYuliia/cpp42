@@ -2,6 +2,8 @@
 *.swp
 *.d
 *objects
+*a.out
 
 # Program name:
 *trap
+
