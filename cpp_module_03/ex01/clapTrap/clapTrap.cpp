@@ -6,11 +6,16 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/07 13:19:11 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:26:17 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "clapTrap.hpp"
+
+clapTrap::clapTrap() {
+
+	std::cout << "Default Clap constructor called" << std::endl;
+}
 
 clapTrap::clapTrap( std::string inputName ) : _name(inputName) {
 
@@ -18,18 +23,19 @@ clapTrap::clapTrap( std::string inputName ) : _name(inputName) {
 	_energy = 10;
 	_damage = 0;
 
-	std::cout << "Constructor for " << _name << " called" << std::endl;
+	std::cout << "Clap constructor for [" << _name << "] called" << std::endl;
+}
+
+clapTrap::clapTrap( std::string inputName, unsigned int inputHealth, unsigned int inputEnergy, unsigned int inputDamage ) : _name(inputName), _health(inputHealth), _energy(inputEnergy), _damage(inputDamage) {
+	
+	std::cout << "Clap constructor for [" << _name << "] and other data called" << std::endl;
 }
 
 clapTrap::clapTrap( const clapTrap& other ) {
 
 	*this = other;
 	
-	_health = 10;
-	_energy = 10;
-	_damage = 0;
-	
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Copy Clap constructor called" << std::endl;
 }
 
 clapTrap&	clapTrap::operator = ( const clapTrap& other ) {
@@ -47,12 +53,12 @@ std::string	clapTrap::getName() const{
 
 void	clapTrap::attack( const std::string& target) {
 
-	std::cout << "ClapTrap [" << _name << "] attacks [" << target << "]";
+	std::cout << "ClapTrap [" << _name << "] attacks [" << target << "], ";
 }
 
 void	clapTrap::takeDamage( unsigned int amount )  {
 
-	std::cout << ", causing " << amount << " points of damage!" << std::endl;
+	std::cout << "causing " << amount << " points of damage!" << std::endl;
 	if (_health > amount)
 		_health -= amount;
 	else {
@@ -85,5 +91,8 @@ void	clapTrap::printPoints() {
 
 clapTrap::~clapTrap() {
 	
-	std::cout << "Destructor for " << _name << " called" << std::endl;
+	if (_name != "")
+		std::cout << "Clap destructor for " << _name << " called" << std::endl;
+	else
+		std::cout << "Clap destructor called" << std::endl;
 }
