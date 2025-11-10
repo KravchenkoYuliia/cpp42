@@ -6,17 +6,17 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/07 13:19:38 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:33:21 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "clapTrap.hpp"
+#include "ClapTrap.hpp"
 
 int	main() {
 
-	clapTrap	Harry("Harry");
-	clapTrap	Voldemort("Voldemort");
-	clapTrap	Hermione("Hermione");
+	ClapTrap	Harry("Harry");
+	ClapTrap	Voldemort("Voldemort");
+	ClapTrap	Hermione("Hermione");
 	
 	std::cout << std::endl;
 	Harry.attack("Voldemort");

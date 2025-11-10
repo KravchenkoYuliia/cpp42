@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clapTrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 11:46:46 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/10 15:35:37 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "clapTrap.hpp"
+#include "ClapTrap.hpp"
 
-clapTrap::clapTrap() {
+ClapTrap::ClapTrap() {
 
         std::cout << "Default constructor called" << std::endl;
 }
 
-clapTrap::clapTrap( std::string inputName ) : _name(inputName) {
+ClapTrap::ClapTrap( std::string inputName ) : _name(inputName) {
 
 	_health = 10;
 	_energy = 10;
@@ -26,7 +26,7 @@ clapTrap::clapTrap( std::string inputName ) : _name(inputName) {
 	std::cout << "Constructor for " << _name << " called" << std::endl;
 }
 
-clapTrap::clapTrap( const clapTrap& other ) {
+ClapTrap::ClapTrap( const ClapTrap& other ) {
 
 	*this = other;
 	
@@ -37,7 +37,7 @@ clapTrap::clapTrap( const clapTrap& other ) {
 	std::cout << "Copy constructor called" << std::endl;
 }
 
-clapTrap&	clapTrap::operator = ( const clapTrap& other ) {
+ClapTrap&	ClapTrap::operator = ( const ClapTrap& other ) {
 
 	if (this != &other)
 		this->_name = other.getName();
@@ -45,17 +45,17 @@ clapTrap&	clapTrap::operator = ( const clapTrap& other ) {
 }
 
 
-std::string	clapTrap::getName() const{
+std::string	ClapTrap::getName() const{
 
 	return _name;
 }
 
-void	clapTrap::attack( const std::string& target) {
+void	ClapTrap::attack( const std::string& target) {
 
 	std::cout << "ClapTrap [" << _name << "] attacks [" << target << "]";
 }
 
-void	clapTrap::takeDamage( unsigned int amount )  {
+void	ClapTrap::takeDamage( unsigned int amount )  {
 
 	std::cout << ", causing " << amount << " points of damage!" << std::endl;
 	if (_health > amount)
@@ -68,7 +68,7 @@ void	clapTrap::takeDamage( unsigned int amount )  {
 
 }
 
-void	clapTrap::beRepaired( unsigned int amount ) {
+void	ClapTrap::beRepaired( unsigned int amount ) {
 	
 	if (amount > 10)
 		return ;
@@ -83,12 +83,12 @@ void	clapTrap::beRepaired( unsigned int amount ) {
 	}
 }
 
-void	clapTrap::printPoints() {
+void	ClapTrap::printPoints() {
 
 	std::cout << _name << "'s health: [" << _health << "], _energy: [" << _energy << "] and damage: [" << _damage << "]" << std::endl;
 }
 
-clapTrap::~clapTrap() {
+ClapTrap::~ClapTrap() {
 	
 	std::cout << "Destructor for " << _name << " called" << std::endl;
 }
