@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 16:22:56 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 16:32:02 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:27:58 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap {
+class DiamondTrap: public ScavTrap, public FragTrap {
 
 public:
 	DiamondTrap();

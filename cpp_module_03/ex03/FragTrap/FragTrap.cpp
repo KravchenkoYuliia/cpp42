@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 15:48:52 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 16:15:37 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 10:35:45 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 FragTrap::FragTrap() {
 
-	std::cout << "Default Flag constructor called" << std::endl;
+	std::cout << "Default Frag constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other) {
 	
-	std::cout << "Copy Flag constructor called" << std::endl;
+	std::cout << "Copy Frag constructor called" << std::endl;
 }
 
 FragTrap& 	FragTrap::operator = (const FragTrap& other) {
@@ -41,5 +41,5 @@ void	FragTrap::highFivesGuys( void ) {
 
 FragTrap::~FragTrap() {
 
-	std::cout << "Flag destructor called" << std::endl;
+	std::cout << "Frag destructor called" << std::endl;
 }

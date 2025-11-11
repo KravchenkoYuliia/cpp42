@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/11/10 16:21:34 by yukravch         ###   ########.fr        #
+#    Updated: 2025/11/11 11:03:39 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = trap
 all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
-FLAGS = -Wall -Wextra -Werror -std=c++98 $(HEADER_DEPS)
+FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
 FILES = main.cpp ClapTrap/ClapTrap.cpp ScavTrap/ScavTrap.cpp FragTrap/FragTrap.cpp \
 	DiamondTrap/DiamondTrap.cpp
 
