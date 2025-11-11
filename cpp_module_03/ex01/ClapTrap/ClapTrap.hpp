@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:09 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 15:39:51 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 11:15:17 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ class ClapTrap {
 
 public:
 	ClapTrap();
-	ClapTrap(std::string inputName);
-	ClapTrap(std::string inputName, unsigned int inputHealth, unsigned int inputEnergy, unsigned int inputDamage);
-	ClapTrap(const ClapTrap& other);
-	ClapTrap& operator = (const ClapTrap& other);
+	ClapTrap( std::string inputName );
+	ClapTrap( std::string inputName, unsigned int inputHealth, unsigned int inputEnergy, unsigned int inputDamage );
+	ClapTrap( const ClapTrap& other);
+	ClapTrap& operator = ( const ClapTrap& other );
 
 	~ClapTrap();
 
@@ -40,6 +40,5 @@ private:
 	unsigned int		_damage;
 
 };
-
 
 #endif

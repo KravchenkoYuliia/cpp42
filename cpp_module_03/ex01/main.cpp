@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 15:42:36 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 11:16:51 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	main() {
 	
-	ScavTrap	Harry("Harry");
+	ClapTrap	Harry("Harry");
 	ScavTrap	Voldemort("Voldemort");
 	ScavTrap	Hermione("Hermione");
 	
@@ -23,10 +23,10 @@ int	main() {
 	Harry.attack("Voldemort");
 	Voldemort.takeDamage(4);
 	Voldemort.beRepaired(4);
-	Harry.guardGate();
 	std::cout << std::endl;
 
 	
+	Voldemort.guardGate();
 	Voldemort.attack("Harry");
 	Harry.takeDamage(4);
 	Harry.beRepaired(4);
