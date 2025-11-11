@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clapTrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/10 15:39:23 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:54:58 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 ClapTrap::ClapTrap() {
 
+	_health = 10;
+	_energy = 10;
+	_damage = 0;
 	std::cout << "Default Clap constructor called" << std::endl;
 }
 
@@ -38,17 +41,38 @@ ClapTrap::ClapTrap( const ClapTrap& other ) {
 	std::cout << "Copy Clap constructor called" << std::endl;
 }
 
-ClapTrap&	ClapTrap::operator = ( const ClapTrap& other ) {
+ClapTrap&       ClapTrap::operator = ( const ClapTrap& other ) {
 
-	if (this != &other)
-		this->_name = other.getName();
-	return *this;
+        if ( this != &other ) {
+
+                this->_name = other.getName();
+                this->_health = other.getHealth();
+                this->_energy = other.getEnergy();
+                this->_damage = other.getDamage();
+
+        }
+        return *this;
 }
 
 
-std::string	ClapTrap::getName() const{
+std::string     ClapTrap::getName() const{
 
-	return _name;
+        return _name;
+}
+
+unsigned int    ClapTrap::getHealth() const {
+
+        return _health;
+}
+
+unsigned int    ClapTrap::getEnergy() const {
+
+        return _energy;
+}
+
+unsigned int    ClapTrap::getDamage() const {
+
+        return _damage;
 }
 
 void	ClapTrap::attack( const std::string& target) {

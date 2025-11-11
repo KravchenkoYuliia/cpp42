@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:09 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 11:15:17 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:53:42 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ public:
 	~ClapTrap();
 
 	std::string	getName() const;
+	unsigned int    getHealth() const;
+	unsigned int    getEnergy() const;
+	unsigned int    getDamage() const;
 
 	void	attack( const std::string& target );
 	void	takeDamage( unsigned int amount );
