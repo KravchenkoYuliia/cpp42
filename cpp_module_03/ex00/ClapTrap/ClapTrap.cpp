@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 11:11:20 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/11 15:44:15 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 ClapTrap::ClapTrap() {
 
-        std::cout << "Clap default constructor called" << std::endl;
+	_health = 10;
+	_energy = 10;
+	_damage = 0;
+
+	std::cout << "Clap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string inputName ) : _name( inputName ) {
@@ -29,18 +33,19 @@ ClapTrap::ClapTrap( std::string inputName ) : _name( inputName ) {
 ClapTrap::ClapTrap( const ClapTrap& other ) {
 
 	*this = other;
-	
-	_health = 10;
-	_energy = 10;
-	_damage = 0;
-	
 	std::cout << "Clap copy constructor called" << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator = ( const ClapTrap& other ) {
 
-	if ( this != &other )
+	if ( this != &other ) {
+
 		this->_name = other.getName();
+		this->_health = other.getHealth();
+        	this->_energy = other.getEnergy();
+        	this->_damage = other.getDamage();
+
+	}
 	return *this;
 }
 
@@ -48,6 +53,21 @@ ClapTrap&	ClapTrap::operator = ( const ClapTrap& other ) {
 std::string	ClapTrap::getName() const{
 
 	return _name;
+}
+
+unsigned int	ClapTrap::getHealth() const {
+
+	return _health;
+}
+
+unsigned int	ClapTrap::getEnergy() const {
+
+	return _energy;
+}
+
+unsigned int	ClapTrap::getDamage() const {
+
+	return _damage;
 }
 
 void	ClapTrap::attack( const std::string& target ) {
