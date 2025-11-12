@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 16:22:52 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 16:09:11 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:57:45 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap() {
 DiamondTrap::DiamondTrap(std::string inputName) : ClapTrap(inputName + "_clap_name"), ScavTrap(inputName), FragTrap(inputName) {
 
 	this->_name = inputName;
-	ClapTrap::_health = 100;
+	ClapTrap::_hit = 100;
 	ClapTrap::_energy = 50;
 	ClapTrap::_damage = 30;
 	

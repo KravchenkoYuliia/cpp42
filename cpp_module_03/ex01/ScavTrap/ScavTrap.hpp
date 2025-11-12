@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 13:31:37 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 11:14:35 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:48:34 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	ScavTrap& operator = ( const ScavTrap& other );
 	~ScavTrap();
 
-
+	void	attack(const std::string& target);
 	void	guardGate();
 
 };

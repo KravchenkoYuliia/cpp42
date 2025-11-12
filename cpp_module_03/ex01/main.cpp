@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 15:54:31 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:47:10 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	main() {
 	
-	ClapTrap	Harry("Harry");
+	ScavTrap	Harry("Harry");
 	ScavTrap	Voldemort("Voldemort");
 	ScavTrap	Hermione("Hermione");
 	

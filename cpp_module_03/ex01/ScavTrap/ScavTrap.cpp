@@ -6,13 +6,13 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 13:31:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 11:16:03 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:50:00 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() {
+ScavTrap::ScavTrap() : ClapTrap( "", 100, 50, 20 ) {
 
 	std::cout << "Scav default constructor called" << std::endl;
 }
@@ -32,6 +32,11 @@ ScavTrap& ScavTrap::operator = ( const ScavTrap& other ) {
 	if (this != &other)
 		ClapTrap::operator = (other);
 	return *this;
+}
+
+void	ScavTrap::attack(const std::string& target) {
+
+	std::cout << "ScavTrap [" << _name << "] attacks [" << target << "], ";
 }
 
 void	ScavTrap::guardGate() {
