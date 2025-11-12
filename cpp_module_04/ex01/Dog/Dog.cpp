@@ -6,17 +6,19 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:24:04 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 18:18:09 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:11:16 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
+#include "Brain.hpp"
 
 Dog::Dog() {
 
-	Animal::_type = "Dog";
 	std::cout << "Dog default constructor called" << std::endl;
+	Animal::_type = "Dog";
+	_brain = new Brain;
 }
 
 Dog::Dog( const Dog& other ) : Animal(other) {
@@ -38,5 +40,6 @@ void	Dog::makeSound() const {
 
 Dog::~Dog() {
 
+	delete	_brain;
 	std::cout << "Dog destructor called" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:24:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 18:14:44 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 13:07:53 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define	CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : virtual public Animal {
 
@@ -24,6 +25,10 @@ public:
 	
 	void	makeSound() const;
 	~Cat();
+
+private:
+	Brain*	_brain;
+
 };
 
 #endif

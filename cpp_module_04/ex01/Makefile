@@ -6,7 +6,7 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/11/11 18:28:29 by yukravch         ###   ########.fr        #
+#    Updated: 2025/11/12 11:44:23 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ all: $(NAME)
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
 FILES = main.cpp Animal/Animal.cpp Cat/Cat.cpp Dog/Dog.cpp WrongAnimal/WrongAnimal.cpp \
-	WrongCat/WrongCat.cpp
+	WrongCat/WrongCat.cpp Brain/Brain.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I Animal -I Cat -I Dog -I WrongAnimal -I WrongCat
+INC_DIR = -I Animal -I Cat -I Dog -I WrongAnimal -I WrongCat -I Brain
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))

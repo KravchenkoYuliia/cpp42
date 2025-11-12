@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:23:57 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 13:11:04 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 12:18:33 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
-#include "Cat.hpp"
 #include "Brain.hpp"
 
-Cat::Cat() {
+Brain::Brain() {
 
-	std::cout << "Cat default constructor called" << std::endl;
-	Animal::_type = "Cat";
-	_brain = new Brain();
+	std::cout << "Brain default constructor called" << std::endl;
 }
 
-Cat::Cat( const Cat& other ) : Animal(other) {
+Brain::Brain( const Brain& other ) {
 
-	std::cout << "Cat copy constructor called" << std::endl;
+	*this = other;
+	std::cout << "Brain copy constructor called" << std::endl;
 }
 
-Cat&	Cat::operator = ( const Cat& other ) {
+Brain&	Brain::operator = ( const Brain& other ) {
 
-	if (this != &other)
-		Animal::operator = (other);
+	if (this != &other) {
+
+		for (int i = 0; i < 100; i++) {
+			this->_ideas[i] = other.getIdeas(i);
+		}
+	}
 	return *this;
 }
 
-void	Cat::makeSound() const {
+std::string	Brain::getIdeas(int i) const {
 
-	std::cout << "******* Meow *******" << std::endl;
+	return _ideas[i];	
 }
 
-Cat::~Cat() {
+Brain::~Brain() {
 
-	delete	_brain;
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Brain destructor called" << std::endl;
 }
 
 
