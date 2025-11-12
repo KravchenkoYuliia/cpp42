@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:22:41 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 18:51:04 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:15:15 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int	main() {
 	i->makeSound();
 	meta->makeSound();
 	std::cout << std::endl;
+
+	delete i;
+	delete meta;
 
 	return 0;
 }

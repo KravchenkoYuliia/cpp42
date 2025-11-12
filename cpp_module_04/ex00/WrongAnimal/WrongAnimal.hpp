@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:31:51 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 18:39:41 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/12 10:19:18 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
 	WrongAnimal( const WrongAnimal& other );
 	WrongAnimal&	operator = ( const WrongAnimal& other );
 
-	~WrongAnimal();
+	virtual ~WrongAnimal();
 
 	std::string	getType() const;
 	void		makeSound() const;
