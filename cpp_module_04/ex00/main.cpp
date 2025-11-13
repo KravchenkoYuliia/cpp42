@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:22:41 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 10:15:15 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 11:32:37 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	main() {
 	Cat	cat;
 	std::cout << "Type [" << cat.getType() << "] :" << std::endl;
 	cat.makeSound();
+	std::cout << std::endl;
+
+	Cat	copyCat = cat;
 	std::cout << std::endl;
 
 	Dog	dog;

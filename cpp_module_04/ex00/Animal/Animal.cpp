@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:23:49 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/13 10:53:24 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 11:18:31 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Animal::Animal() {
 
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << "Animal default constructor called" << std::endl;
 	_type = "general";
 }
 
