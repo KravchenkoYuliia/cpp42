@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:23:57 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/11 18:14:53 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:53:44 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 Cat::Cat() {
 
-	Animal::_type = "Cat";
 	std::cout << "Cat default constructor called" << std::endl;
+	Animal::_type = "Cat";
 }
 
 Cat::Cat( const Cat& other ) : Animal(other) {
@@ -26,6 +26,8 @@ Cat::Cat( const Cat& other ) : Animal(other) {
 
 Cat&	Cat::operator = ( const Cat& other ) {
 
+	std::cout << "Cat copy assignment operator called" << std::endl;
+	
 	if (this != &other)
 		Animal::operator = (other);
 	return *this;
@@ -40,5 +42,3 @@ Cat::~Cat() {
 
 	std::cout << "Cat destructor called" << std::endl;
 }
-
-
