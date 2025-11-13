@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 13:31:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 14:02:46 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:47:56 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ ScavTrap::ScavTrap ( const ScavTrap& other ) : ClapTrap(other){
 }
 
 ScavTrap& ScavTrap::operator = ( const ScavTrap& other ) {
+
+	std::cout << "Scav copy assignement operator called" << std::endl;
 
 	if (this != &other)
 		ClapTrap::operator = (other);

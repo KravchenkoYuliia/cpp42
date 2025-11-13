@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:19:05 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 13:41:49 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:42:30 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,33 @@
 
 ClapTrap::ClapTrap() {
 
+	std::cout << "Clap default constructor called" << std::endl;
+	
 	_hit = 10;
 	_energy = 10;
 	_damage = 0;
 
-	std::cout << "Clap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap( std::string inputName ) : _name( inputName ) {
 
+	std::cout << "Clap constructor for " << _name << " called" << std::endl;
+	
 	_hit = 10;
 	_energy = 10;
 	_damage = 0;
 
-	std::cout << "Clap constructor for " << _name << " called" << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap& other ) {
 
-	*this = other;
 	std::cout << "Clap copy constructor called" << std::endl;
+	*this = other;
 }
 
 ClapTrap&	ClapTrap::operator = ( const ClapTrap& other ) {
 
+	std::cout << "Clap copy assignement operator called" << std::endl;
 	if ( this != &other ) {
 
 		this->_name = other.getName();
