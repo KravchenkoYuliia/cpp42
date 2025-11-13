@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:23:54 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 13:08:56 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 10:33:13 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ public:
 	virtual void	makeSound() const {
 		return ;
 	};
-
-	virtual Brain*	getBrain() const {
-
-		return NULL;
-	}
 
 
 protected:

@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:24:01 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 13:07:53 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 11:42:41 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ public:
 	Cat&	operator = (const Cat& other);
 	
 	void	makeSound() const;
+	Brain&	getBrain() const;
+
 	~Cat();
 
 private:

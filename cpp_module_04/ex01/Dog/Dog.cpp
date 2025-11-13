@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:24:04 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 13:11:16 by yukravch         ###   ########.fr       */
+/*   Created: 2025/11/11 17:23:57 by yukravch          #+#    #+#             */
+/*   Updated: 2025/11/13 11:54:59 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,29 @@ Dog::Dog() {
 
 	std::cout << "Dog default constructor called" << std::endl;
 	Animal::_type = "Dog";
-	_brain = new Brain;
+	_brain = new Brain();
 }
 
-Dog::Dog( const Dog& other ) : Animal(other) {
+Dog::Dog( const Dog& other ) : Animal(other){
 
 	std::cout << "Dog copy constructor called" << std::endl;
+	*this = other;
 }
 
 Dog&	Dog::operator = ( const Dog& other ) {
 
+	std::cout << "Dog copy assignment operator called" << std::endl;
+	
 	if (this != &other)
-		Animal::operator = (other);
+		this->_brain = new Brain(other.getBrain());
 	return *this;
 }
-	
+
+Brain&	Dog::getBrain() const {
+
+	return *_brain;
+}
+
 void	Dog::makeSound() const {
 
 	std::cout << "******* Woof *******" << std::endl;
@@ -40,6 +48,8 @@ void	Dog::makeSound() const {
 
 Dog::~Dog() {
 
-	delete	_brain;
 	std::cout << "Dog destructor called" << std::endl;
+	delete	_brain;
 }
+
+

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/11 17:24:06 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/12 10:26:35 by yukravch         ###   ########.fr       */
+/*   Created: 2025/11/11 17:24:01 by yukravch          #+#    #+#             */
+/*   Updated: 2025/11/13 11:55:36 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ public:
 	Dog&	operator = (const Dog& other);
 	
 	void	makeSound() const;
+	Brain&	getBrain() const;
+
 	~Dog();
 
 private:
-	Brain*	_brain;	
+	Brain*	_brain;
 
 };
 
 #endif
+
