@@ -6,7 +6,7 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:22:41 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/13 12:26:37 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/13 12:30:59 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 #include "Dog.hpp"
 #include "Brain.hpp"
 
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
-
 #define N 6
-
-
 
 void	testArrayOfAnimal() {
 
@@ -50,17 +45,6 @@ void	testArrayOfAnimal() {
 		delete animals[i];
 		std::cout << std::endl;
 	}
-}
-
-
-void	testFromSubject() {
-
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-
-	delete j;
-	delete i;
-
 }
 
 void	testDeepCopy() {
