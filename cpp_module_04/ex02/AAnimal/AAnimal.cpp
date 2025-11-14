@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,34 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal() {
+AAnimal::AAnimal() {
 
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << "AAnimal constructor called" << std::endl;
 	_type = "general";
 }
 
-Animal::Animal( const Animal& other ) {
+AAnimal::AAnimal( const AAnimal& other ) {
 
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "AAnimal copy constructor called" << std::endl;
 	*this = other;
 }
 
-Animal&		Animal::operator = ( const Animal& other ) {
+AAnimal&		AAnimal::operator = ( const AAnimal& other ) {
 
-	std::cout << "Animal copy assignment operator called" << std::endl;
+	std::cout << "AAnimal copy assignment operator called" << std::endl;
 	if (this != &other)
 		this->_type = other.getType();
 	return *this;
 }
 
-std::string	Animal::getType() const {
+std::string	AAnimal::getType() const {
 
 	return _type;
 }
 
-Animal::~Animal() {
+AAnimal::~AAnimal() {
 
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "AAnimal destructor called" << std::endl;
 }

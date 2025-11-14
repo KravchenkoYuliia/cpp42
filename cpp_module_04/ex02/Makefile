@@ -16,10 +16,10 @@ all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp Animal/Animal.cpp Cat/Cat.cpp Dog/Dog.cpp Brain/Brain.cpp
+FILES = main.cpp AAnimal/AAnimal.cpp Cat/Cat.cpp Dog/Dog.cpp Brain/Brain.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I Animal -I Cat -I Dog -I WrongAnimal -I WrongCat -I Brain
+INC_DIR = -I AAnimal -I Cat -I Dog -I WrongAnimal -I WrongCat -I Brain
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))

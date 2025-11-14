@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef AANIMAL_HPP
+#define AANIMAL_HPP
 
 #include <iostream>
 #include "Brain.hpp"
 
-class Animal {
+class AAnimal {
 
 public:
-	Animal();
-	Animal( const Animal& other );
-	Animal&	operator = ( const Animal& other );
+	AAnimal();
+	AAnimal( const AAnimal& other );
+	AAnimal&	operator = ( const AAnimal& other );
 
-	virtual ~Animal();
+	virtual ~AAnimal();
 
 	std::string	getType() const;
 	virtual void	makeSound() const = 0;

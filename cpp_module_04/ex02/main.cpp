@@ -6,23 +6,23 @@
 /*   By: yukravch <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 17:22:41 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/13 12:41:34 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/14 10:42:37 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
 
 #define N 2
 
-void	testArrayOfAnimal() {
+void	testArrayOfAAnimal() {
 
 	if (N % 2 != 0)
-		throw std::runtime_error("Odd number of Animals");
+		throw std::runtime_error("Odd number of AAnimals");
 
-	const Animal*	animals[N];
+	const AAnimal*	animals[N];
 	for (int i = 0; i < N / 2; i++) {
 
 		animals[i] = new Dog();
@@ -71,8 +71,8 @@ int	main() {
 
 	try {
 		std::cout << std::endl;
-		std::cout << "|||||||||||||||||||| TEST 1 ||||||||||||||||||||||" << std::endl << "Create [" << N << "] Animals: half Dogs, half Cats" << std::endl << std::endl;
-		testArrayOfAnimal();
+		std::cout << "|||||||||||||||||||| TEST 1 ||||||||||||||||||||||" << std::endl << "Create [" << N << "] AAnimals: half Dogs, half Cats" << std::endl << std::endl;
+		testArrayOfAAnimal();
 		std::cout << std::endl;
 		
 		std::cout << "||||||||||||||||||| TEST 2 |||||||||||||||||||||||" << std::endl << "Copy of Cat or Dog must be a deep copy" << std::endl << std::endl;

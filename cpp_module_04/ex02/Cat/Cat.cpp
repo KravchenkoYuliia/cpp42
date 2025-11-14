@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Cat.hpp"
 #include "Brain.hpp"
 
 Cat::Cat() {
 
 	std::cout << "Cat default constructor called" << std::endl;
-	Animal::_type = "Cat";
+	AAnimal::_type = "Cat";
 	_brain = new Brain();
 }
 
-Cat::Cat( const Cat& other ) : Animal(other){
+Cat::Cat( const Cat& other ) : AAnimal(other){
 
 	std::cout << "Cat copy constructor called" << std::endl;
 	*this = other;
