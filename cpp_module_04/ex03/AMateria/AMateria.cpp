@@ -17,10 +17,9 @@ AMateria::AMateria() {
 	std::cout << "AMateria default constructor called" << std::endl;
 }
 
-AMateria(std::string const& type) {
+AMateria::AMateria(const std::string& type) : _type(type) {
 
 	std::cout << "AMateria constructor with type [" << type << "] called" << std::endl;
-	_type = type;
 }
 
 AMateria::AMateria(const AMateria &other) {
@@ -34,18 +33,28 @@ AMateria&	AMateria::operator=(const AMateria &other) {
 	std::cout << "AMateria assignment operator called" << std::endl;
 
 	if (this != &other) {
-		
-		this->_type = other.getType();
+			
 	}
 	return *this;
 }
 
-std::string const&	getType() const {
+const std::string&	AMateria::getType() const {
 
 	return _type;
 }
 
+void	AMateria::use(ICharacter& target) {
+
+	if (_type == "ice")
+		std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+	else if (_type == "cure")
+		std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+	else
+		std::cout << "Wrong type" << std::endl;
+}
+
 AMateria::~AMateria() {
+
 
 	std::cout << "AMateria default constructor called" << std::endl;
 }

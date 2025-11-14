@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
+#ifndef IMATERIASOURCE_HPP
+#define IMATERIASOURCE_HPP
 
-Ice::Ice() : AMateria("ice") {
+#include <iostream>
 
-	std::cout << "Ice default constructor called" << std::endl;
-}
+class IMateriaSource {
 
-Ice::Ice(const Ice& other) : AMateria(other) {
-	
-	std::cout << "Ice copy constructor called" << std::endl;
-	*this = other;
-}
+public:
+	virtual void		learnMateria(AMateria*) = 0;
+	virtual AMateria*	createMateria(std::string const & type) = 0;
 
-Ice&	Ice::operator = (const Ice& other) {
+	virtual ~IMateriaSource() {}
+};
 
-	std::cout << "Ice assignment operator called" << std::endl;
-	
-	if (this != &other) {
-	
-	}
-	return *this;
-}
-
-Ice::~Ice() {
-	
-	std::cout << "Ice destructor called" << std::endl;
-}
+#endif

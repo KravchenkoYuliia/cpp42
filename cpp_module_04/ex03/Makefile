@@ -10,16 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 
+NAME = character
 
 all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp
+FILES = main.cpp AMateria/AMateria.cpp Character/Character.cpp Cure/Cure.cpp Ice/Ice.cpp MateriaSource/MateriaSource.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I
+INC_DIR = -I AMateria -I Character -I Cure -I Ice -I MateriaSource
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))

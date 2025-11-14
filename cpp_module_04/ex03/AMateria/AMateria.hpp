@@ -14,7 +14,7 @@
 #define AMATERIA_HPP
 
 #include <iostream>
-
+#include "ICharacter.hpp"
 class AMateria {
     
 public:
@@ -31,7 +31,7 @@ public:
 
 
 protected:
-	std::string const&	_type;
+	const std::string	_type;
 
 };
 

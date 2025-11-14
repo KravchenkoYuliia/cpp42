@@ -12,19 +12,28 @@
 
 #include "Cure.hpp"
 
-Cure::Cure() {
+Cure::Cure() : AMateria("cure") {
+
+	std::cout << "Cure default constructor called" << std::endl;
 }
 
-Cure::Cure(const Cure &other) {
-    *this = other;
+Cure::Cure(const Cure &other) : AMateria(other) {
+
+	std::cout << "Cure copy constructor called" << std::endl;
+	*this = other;
 }
 
-Cure & Cure::operator=(const Cure &other) {
-    if (this != &other) {
-        // copy members
-    }
-    return *this;
+Cure&	Cure::operator = (const Cure& other) {
+
+	std::cout << "Cure assignment operator called" << std::endl;
+
+	if (this != &other) {
+
+	}
+	return *this;
 }
 
 Cure::~Cure() {
+
+	std::cout << "Cure destructor called" << std::endl;
 }

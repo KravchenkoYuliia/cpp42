@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/14 10:56:10 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/14 10:56:10 by yukravch         ###   ########.fr       */
+/*   Created: 2025/11/14 13:08:56 by yukravch          #+#    #+#             */
+/*   Updated: 2025/11/14 13:08:56 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-#define CURE_HPP
+#ifndef ICHARACTER_HPP
+#define ICHARACTER_HPP
 
 #include <iostream>
-#include "AMateria.hpp"
 
-class Cure : public virtual AMateria {
+class AMateria;
+class ICharacter {
 
 public:
-	Cure();
-	Cure(const Cure& other);
-	Cure&	operator = (const Cure& other);
+	virtual std::string const&	getName() const = 0;
+	virtual void			equip(AMateria* m) = 0;
+	virtual void			unequip(int idx) = 0;
+	virtual void			use(int idx, ICharacter& target) = 0;
+	
+	virtual	~ICharacter() {}
 
-	~Cure();
 };
 
 #endif
