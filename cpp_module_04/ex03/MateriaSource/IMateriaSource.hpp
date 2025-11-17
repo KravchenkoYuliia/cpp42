@@ -15,6 +15,7 @@
 
 #include <iostream>
 
+class AMateria;
 class IMateriaSource {
 
 public:
@@ -22,6 +23,7 @@ public:
 	virtual AMateria*	createMateria(std::string const & type) = 0;
 
 	virtual ~IMateriaSource() {}
+
 };
 
 #endif

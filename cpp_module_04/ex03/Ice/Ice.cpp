@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/*************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
@@ -31,6 +31,13 @@ Ice&	Ice::operator = (const Ice& other) {
 	
 	}
 	return *this;
+}
+
+AMateria*	Ice::clone() const {
+
+	AMateria*	clonedIce = new Ice(*this);
+
+	return clonedIce;
 }
 
 Ice::~Ice() {

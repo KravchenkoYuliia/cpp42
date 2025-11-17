@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 13:19:18 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/14 13:19:18 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/11/17 10:23:56 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
-class Character {
+class Character: public ICharacter {
 
 public:
 	Character();
+	Character(std::string inputName);
 	Character(const Character& other);
 	Character&	operator = (const Character& other);
 
@@ -32,8 +33,9 @@ public:
 	~Character();
 
 private:
-	std::string const	_name;
-	AMateria*		_slot[4];
+	std::string	_name;
+	AMateria*	_slot[4];
+	AMateria*	_leftOnTheFloor[1000];
 };
 
 #endif

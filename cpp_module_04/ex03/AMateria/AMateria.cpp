@@ -55,6 +55,5 @@ void	AMateria::use(ICharacter& target) {
 
 AMateria::~AMateria() {
 
-
 	std::cout << "AMateria default constructor called" << std::endl;
 }

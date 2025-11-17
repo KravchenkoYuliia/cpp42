@@ -24,6 +24,8 @@ public:
 	Cure&	operator = (const Cure& other);
 
 	~Cure();
+	
+	AMateria*	clone() const;
 };
 
 #endif

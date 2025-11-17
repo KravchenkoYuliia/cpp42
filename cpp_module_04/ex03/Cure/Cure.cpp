@@ -33,6 +33,13 @@ Cure&	Cure::operator = (const Cure& other) {
 	return *this;
 }
 
+AMateria*	Cure::clone() const {
+
+	AMateria*	clonedCure = new Cure(*this);
+
+	return clonedCure;
+}
+
 Cure::~Cure() {
 
 	std::cout << "Cure destructor called" << std::endl;
