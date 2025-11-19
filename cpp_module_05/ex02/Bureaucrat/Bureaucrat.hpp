@@ -16,6 +16,7 @@
 #include <iostream>
 #include "AForm.hpp" 
 
+class AForm;
 class Bureaucrat {
 
 private:
@@ -39,20 +40,14 @@ public:
 		void	upgradeGrade(int subtract);
 		void	downgradeGrade(int add);
 
-		
+	//try to sign/execute
+		void    signForm(AForm& f);
+		void    execForm(AForm& f);
+
+
 	//exception
-		class	gradeTooHighException : public std::exception {
-			
-			const char* what() const throw() {
-				return "Error: grade is too high";
-			}
-		};
-		class	gradeTooLowException : public std::exception {
-		
-			const char* what() const throw() {
-				return "Error: grade is too low";
-			}
-		};
+		class	gradeTooHighException : public std::exception { const char* what() const throw() { return "Error: grade is too high"; } };
+		class	gradeTooLowException : public std::exception { const char* what() const throw() { return "Error: grade is too low"; } };
 };
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& c);
