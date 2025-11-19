@@ -14,13 +14,13 @@
 
 Bureaucrat::Bureaucrat() : _name("") {
 
-	std::cout << "_____Bureaucrat default constructor" << std::endl;
+	std::cout << "       Bureaucrat default constructor" << std::endl;
 	_grade = 1;
 }
 
 Bureaucrat::Bureaucrat(const std::string inputName, int inputGrade) : _name(inputName), _grade(inputGrade) {
 
-	std::cout << "_____Bureaucrat constructor with name [" << inputName << "] and grade[" << inputGrade << "]" << std::endl;
+	std::cout << "       Bureaucrat constructor with name [" << inputName << "] and grade[" << inputGrade << "]" << std::endl;
 	if (_grade < 1)
 		throw Bureaucrat::gradeTooHighException();
 	else if (_grade > 150)
@@ -29,13 +29,13 @@ Bureaucrat::Bureaucrat(const std::string inputName, int inputGrade) : _name(inpu
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name){
 
-	std::cout << "_____Bureaucrat copy constructor" << std::endl;
+	std::cout << "       Bureaucrat copy constructor" << std::endl;
 	*this = other;
 }
 
 Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& other) {
 	
-	std::cout << "_____Bureaucrat operator assignment" << std::endl;
+	std::cout << "       Bureaucrat operator assignment" << std::endl;
 
 	if (this != &other) {
 	
@@ -70,12 +70,25 @@ void	Bureaucrat::upgradeGrade(int subtract) {
 
 void	Bureaucrat::signForm(Form& f){
 
-	f.tryToSign(*this);
+	try{
+		f.beSigned(*this);
+	}
+
+	catch (std::exception& e) {
+	
+		std::cout << "! " << _name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 void	Bureaucrat::execForm(Form& f) {
 
-	f.tryToExec(*this);
+	try {
+		f.beExecuted(*this);
+	}
+	catch (std::exception& e) {
+	
+		std::cout << "! " << _name << " couldn't execute " << f.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 std::ostream& operator<<(std::ostream &out, const Bureaucrat& c) {
@@ -90,5 +103,5 @@ std::ostream& operator<<(std::ostream &out, const Bureaucrat& c) {
 
 Bureaucrat::~Bureaucrat() {
 
-	std::cout << "_____Bureaucrat destructor" << std::endl;
+	std::cout << "       Bureaucrat destructor" << std::endl;
 }

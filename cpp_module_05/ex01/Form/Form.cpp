@@ -40,28 +40,51 @@ Form&	Form::operator=(const Form& other) {
 	return *this;
 }
 
+//getters
+const std::string	Form::getName() const {
 
-void	Form::tryToSign(Bureaucrat& b) {
+	return _name;
+}
 
-	if (_gradeToSign < b._grade) {
-		std::cout << b.getName << " couldn't sign " << _name << "because " << std::endl;
+int	Form::getGradeToSign() const {
+
+	return _gradeToSign;
+}
+
+int	Form::getGradeToExecute() const {
+
+	return _gradeToExecute;
+}
+//
+
+
+void	Form::beSigned(Bureaucrat& b) {
+
+	if (_gradeToSign < b.getGrade()) {
 		throw Form::GradeTooLowException();
 	}
 
-	std::cout << b.getName << " signed " << _name << std::endl;
+	std::cout << "! " << b.getName() << " signed " << _name << std::endl;
 	_isSigned = true;
 }
 
-void	Form::tryToExec(Bureaucrat& b) {
+void	Form::beExecuted(Bureaucrat& b) {
 
-	if (_gradeToExecute < b._grade) {
-		std::cout << b.getName << " couldn't execute " << _name << "because " << std::endl;
+	if (_gradeToExecute < b.getGrade()) {
 		throw Form::GradeTooLowException();
 	}
 	if (_isSigned == false) {
-		std::cout << b.getName << " couldn't execute " << _name << "because " << std::endl;
 		throw Form::notSigned();
 	}
+	std::cout << "! " << b.getName() << " executed " << _name << std::endl;
+}
+
+std::ostream&	operator << (std::ostream &out, const Form& c) {
+
+	
+	out << "+ " << "Form: name[" << c.getName() << "], grade to be signed[" << c.getGradeToSign() << "]" << " grade to be executed[" << c.getGradeToExecute() << "]";
+
+	return out;
 }
 
 Form::~Form() {

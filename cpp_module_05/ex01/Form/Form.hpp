@@ -14,9 +14,16 @@
 #define FORM_HPP
 
 #include <iostream>
+#include "Bureaucrat.hpp" 
 
 class Bureaucrat;
 class Form {
+
+private:
+	const std::string	_name;
+	bool			_isSigned;
+	const int		_gradeToSign;
+	const int		_gradeToExecute;
 
 public:
 	Form();
@@ -27,9 +34,14 @@ public:
 	Form&	operator = (const Form& other);
 
 
-	void	tryToSign(Bureaucrat& b);
-	void	tryToExec(Bureaucrat& b);
+	void	beSigned(Bureaucrat& b);
+	void	beExecuted(Bureaucrat& b);
 
+
+	//getters
+	const std::string	getName() const;
+	int		getGradeToSign() const;
+	int		getGradeToExecute() const;
 
 	class GradeTooHighException : public std::exception {
 	
@@ -54,13 +66,8 @@ public:
 			return "it hasn't been signed";
 		}
 	};
-
-private:
-	const std::string	_name;
-	bool			_isSigned;
-	const int		_gradeToSign;
-	const int		_gradeToExecute;
-
 };
+
+std::ostream&	operator << (std::ostream &out, const Form& c);
 
 #endif

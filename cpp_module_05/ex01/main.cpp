@@ -16,5 +16,12 @@
 
 int	main() {
 
+	Bureaucrat	b("STEVE", 8);
+	std::cout << b << std::endl << std::endl;
 
+	Form		f("DECLARATION D'IMPOT", 10, 1);
+	std::cout << f << std::endl << std::endl;
+	b.signForm(f);
+	b.execForm(f);
+	std::cout << std::endl;
 }

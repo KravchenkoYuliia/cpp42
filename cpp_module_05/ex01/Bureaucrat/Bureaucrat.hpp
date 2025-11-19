@@ -14,8 +14,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Form.hpp"
+#include "Form.hpp" 
 
+class Form;
 class Bureaucrat {
 
 private:
