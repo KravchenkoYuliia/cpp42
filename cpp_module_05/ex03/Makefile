@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = specialForm
+NAME = intern
 
 all: $(NAME)
 
@@ -19,13 +19,15 @@ FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
 FILES = main.cpp Bureaucrat/Bureaucrat.cpp Form/AForm.cpp   \
 	Form/ShrubberyCreationForm/ShrubberyCreationForm.cpp \
 	Form/RobotomyRequestForm/RobotomyRequestForm.cpp      \
-	Form/PresidentialPardonForm/PresidentialPardonForm.cpp
+	Form/PresidentialPardonForm/PresidentialPardonForm.cpp \
+	Intern/Intern.cpp
 
 OBJ_DIR = objects
 INC_DIR = -I Bureaucrat -I Form        \
 	  -I Form/ShrubberyCreationForm \
 	  -I Form/RobotomyRequestForm    \
-	  -I Form/PresidentialPardonForm
+	  -I Form/PresidentialPardonForm  \
+	  -I Intern
 
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
@@ -46,7 +48,7 @@ $(O_DIRS):
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR) $(NAME).d home_shrubbery
+	rm -rf $(OBJ_DIR) $(NAME).d "Bender_shrubbery"
 fclean: clean
 	rm -f $(NAME)
 re: fclean all
