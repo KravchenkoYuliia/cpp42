@@ -18,6 +18,9 @@
 
 class RobotomyRequestForm : public virtual AForm {
 
+private:
+	bool	_isSigned;
+
 public:
 	RobotomyRequestForm();
 	RobotomyRequestForm(const std::string target);
@@ -26,6 +29,8 @@ public:
 
 	~RobotomyRequestForm();
 
+	void	beSigned(const Bureaucrat& b);
+	void	execute(const Bureaucrat& b) const;
 };
 
 #endif

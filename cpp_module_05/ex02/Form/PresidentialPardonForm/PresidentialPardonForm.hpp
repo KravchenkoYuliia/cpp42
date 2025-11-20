@@ -18,6 +18,9 @@
 
 class PresidentialPardonForm : public virtual AForm {
 
+private:
+	bool	_isSigned;
+
 public:
 	PresidentialPardonForm();
 	PresidentialPardonForm(const std::string target);
@@ -26,6 +29,8 @@ public:
 
 	~PresidentialPardonForm();
 
+	void	beSigned(const Bureaucrat& b);
+	void	execute(const Bureaucrat& b) const;
 };
 
 #endif

@@ -22,7 +22,6 @@ class AForm {
 private:
 	const std::string	_target;
 	const std::string	_name;
-	bool			_isSigned;
 	const int		_gradeToSign;
 	const int		_gradeToExecute;
 
@@ -36,9 +35,8 @@ public:
 	AForm&	operator = (const AForm& other);
 
 
-	void	beSigned(Bureaucrat& b);
-	void	beExecuted(Bureaucrat& b);
-
+	virtual void	beSigned(const Bureaucrat& b) = 0;
+	virtual void	execute(const Bureaucrat& executor) const = 0;
 
 	//getters
 	const std::string	getTarget() const;
@@ -51,8 +49,8 @@ public:
 	class	GradeTooHighException : public std::exception { const char* what() const throw() { return "grade is too high"; } };
 	class	GradeTooLowException : public std::exception { const char* what() const throw() { return "grade is too low"; } };
 	class	notSigned : public std::exception { const char* what() const throw() { return "it hasn't been signed"; } };
+	class	systemError : public std::exception { const char* what() const throw() { return "of the system error"; } };
 
-	virtual void	execute(const Bureaucrat& executor) const = 0;
 };
 
 std::ostream&	operator << (std::ostream &out, const AForm& c);

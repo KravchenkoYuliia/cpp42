@@ -14,9 +14,14 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include <iostream>
+#include <fstream>
 #include "AForm.hpp" 
 
-class ShrubberyCreationForm : public virtual AForm{
+class	Bureaucrat;
+class	ShrubberyCreationForm : public virtual AForm{
+
+private:
+	bool	_isSigned;
 
 public:
 	ShrubberyCreationForm();
@@ -26,7 +31,8 @@ public:
 
 	~ShrubberyCreationForm();
 
-	void	execute(const Bureaucrat& executor) const;
+	void	beSigned(const Bureaucrat& b);
+	void	execute(const Bureaucrat& b) const;
 };
 
 #endif

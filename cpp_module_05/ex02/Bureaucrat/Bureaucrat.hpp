@@ -42,7 +42,7 @@ public:
 
 	//try to sign/execute
 		void    signForm(AForm& f);
-		void    execForm(AForm& f);
+		void    executeForm(const AForm& f) const;
 
 
 	//exception
