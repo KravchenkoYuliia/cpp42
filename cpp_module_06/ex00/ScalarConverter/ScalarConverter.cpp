@@ -64,6 +64,17 @@ int	ScalarConverter::getType(std::string input) {
 
 	if (input.length() == 1 && !std::isdigit(input[0]))
 		return CHAR;
+	else if (input[0] == '+' || input[0] == '-' || std::isdigit(input[0])) {
+
+		if ((input[0] == '+' || input[0] == '-') && !std::isdigit(input[1]))
+			return ERROR;
+		if (ScalarConverter::isInt(input))
+			return INT;
+		if (ScalarConverter::isFloat(input))
+			return FLOAT;
+		if (ScalarConverter::isDouble(input))
+			return DOUBLE;
+	}
 
 	return ERROR;
 }
@@ -90,4 +101,71 @@ void	ScalarConverter::convertToDouble(std::string input) {
 
 	(void)input;
 	std::cout << "Convert input to double and other types" << std::endl;
+}
+
+//bool methods
+//
+bool	ScalarConverter::isInt(std::string input) {
+
+	int	start = 0;
+	
+	if (input[0] == '+' || input[0] == '-')
+		start++;
+	if (stringIsDigit(input, start))
+		return true;
+	return false;
+}
+
+bool	ScalarConverter::stringIsDigit(std::string input, int start) {
+
+	for (size_t i = start; i < input.length(); i++) {
+		if (!std::isdigit(input[i]))
+			return false;
+	}
+	return true;
+}
+
+bool	ScalarConverter::isFloat(std::string input) {
+
+	int	dot = 0;
+	int	len = input.length();
+
+	if (input[len - 1] != 'f')
+		return false;
+
+	for (int i = 0; i < len; i++) {
+	
+		if (!std::isdigit(input[i])) {
+			if (input[i] == '.')
+				dot++;
+			if (input[i] == 'f' && input[i + 1])
+				return false;
+			if (input[i] != '.' && input[i] != 'f')
+				return false;
+		}
+	}
+	if (dot != 1)
+		return false;
+	return true;
+}
+
+bool	ScalarConverter::isDouble(std::string input) {
+
+	int dot = 0;
+
+	for (size_t i = 0; i < input.length(); i++) {
+	
+		if (!std::isdigit(input[i])) {
+
+			if (input[i] == '.')
+				dot++;
+			else
+				return false;
+		}
+	}
+
+	if (dot != 1)
+		return false;
+
+	return true;
 }

@@ -13,7 +13,7 @@ Key points:
 	
 char:  
 	- length of the input is 1  
-	- is printable  
+	- if not printable -> it's not an error just print "Non displayable" for char and do all other cast
 	- is not digit    
 
 int:  

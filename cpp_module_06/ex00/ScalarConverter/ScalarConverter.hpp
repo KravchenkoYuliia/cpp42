@@ -19,11 +19,6 @@ class ScalarConverter {
 
 public:
 	static void	convert(std::string input);
-	static int	getType(std::string input);
-	static void	convertToChar(std::string input);
-	static void	convertToInt(std::string input);
-	static void	convertToFloat(std::string input);
-	static void	convertToDouble(std::string input);
 
 private:
 	ScalarConverter();
@@ -31,6 +26,15 @@ private:
 	ScalarConverter&	operator = (const ScalarConverter& other);
 	~ScalarConverter();
 
+	static int	getType(std::string input);
+	static void	convertToChar(std::string input);
+	static void	convertToInt(std::string input);
+	static void	convertToFloat(std::string input);
+	static void	convertToDouble(std::string input);
+	static bool	isInt(std::string input);
+	static bool	isFloat(std::string input);
+	static bool	isDouble(std::string input);
+	static bool	stringIsDigit(std::string input, int start);
 };
 
 #endif
