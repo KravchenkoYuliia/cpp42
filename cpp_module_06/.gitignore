@@ -3,6 +3,7 @@
 *.d
 *objects
 *a.out
+*test*
 
 # Program name:
 *converter
