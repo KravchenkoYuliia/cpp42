@@ -14,6 +14,10 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <sstream>
+#include <limits>
+#include <string>
+#include <iomanip> 
 
 class ScalarConverter {
 
@@ -31,6 +35,14 @@ private:
 	static void	convertToInt(std::string input);
 	static void	convertToFloat(std::string input);
 	static void	convertToDouble(std::string input);
+
+	static void	printChar(int c);
+	static void	printInt(std::string input);
+	static void	printFloat(std::string input);
+	static void	printDouble(std::string input);
+
+
+	static bool	isChar(std::string input);
 	static bool	isInt(std::string input);
 	static bool	isFloat(std::string input);
 	static bool	isDouble(std::string input);
