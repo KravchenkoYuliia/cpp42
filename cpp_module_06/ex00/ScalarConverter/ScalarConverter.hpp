@@ -35,6 +35,7 @@ private:
 	static void	convertToInt(std::string input);
 	static void	convertToFloat(std::string input);
 	static void	convertToDouble(std::string input);
+	static void	convertToPseudo(std::string input);
 
 	static void	printChar(int c);
 	static void	printInt(std::string input);
@@ -46,6 +47,7 @@ private:
 	static bool	isInt(std::string input);
 	static bool	isFloat(std::string input);
 	static bool	isDouble(std::string input);
+	static bool	isPseudoLiteral(std::string input);
 	static bool	stringIsDigit(std::string input, int start);
 };
 

@@ -16,6 +16,7 @@
 #define INT 4
 #define FLOAT 5
 #define DOUBLE 6
+#define PSEUDO 7
 #define ERROR -1
 #define OUT_OF_LIM -2147483649
 
@@ -49,6 +50,9 @@ void	ScalarConverter::convert(std::string input) {
 		case INT:
 			convertToInt(input);
 			break;
+		case PSEUDO:
+			convertToPseudo(input);
+			break;
 		case FLOAT:
 			convertToFloat(input);
 			break;
@@ -66,8 +70,10 @@ int	ScalarConverter::getType(std::string input) {
 	if (ScalarConverter::isChar(input))
 		return CHAR;
 	
-	else if (input[0] == '+' || input[0] == '-' || std::isdigit(input[0])
-			|| input[0] == 'i' || input[0] == 'n') {
+	if (ScalarConverter::isPseudoLiteral(input))
+		return PSEUDO;
+	else if (input[0] == '+' || input[0] == '-' || std::isdigit(input[0])) {
+
 
 		if (ScalarConverter::isFloat(input))
 			return FLOAT;
@@ -86,6 +92,30 @@ int	ScalarConverter::getType(std::string input) {
 
 //CONVERT TO <TYPE>
 //
+//
+
+void	ScalarConverter::convertToPseudo(std::string input) {
+
+	if (input == "-inff" || input == "+inff"
+	  || input == "inff" || input == "nanf") {
+
+		std::cout << "char: impossible" << std::endl
+			 << "int: impossible" << std::endl
+			 << "float: " << input << std::endl
+			 << "double: " << input.substr(0, input.length() - 1) << std::endl;
+	}
+	
+	else if (input == "-inf" || input == "+inf"
+	  || input == "inf" || input == "nan") {
+
+		std::cout << "char: impossible" << std::endl
+			 << "int: impossible" << std::endl
+			 << "float: " << input << "f" << std::endl
+			 << "double: " << input << std::endl;
+	
+	}
+}
+
 void	ScalarConverter::convertToChar(std::string input) {
 
 	char	c = '\0';
@@ -242,6 +272,17 @@ bool	ScalarConverter::stringIsDigit(std::string input, int start) {
 	return true;
 }
 
+bool	ScalarConverter::isPseudoLiteral(std::string input) {
+
+	if (input == "-inff" || input == "+inff"
+	  || input == "inff" || input == "nanf") { return true; }
+	
+	if (input == "-inf" || input == "+inf"
+	  || input == "inf" || input == "nan") { return true; }
+	
+	return false;
+}
+
 bool	ScalarConverter::isFloat(std::string input) {
 
 	int	dot = 0;
@@ -250,9 +291,6 @@ bool	ScalarConverter::isFloat(std::string input) {
 	if (input[len - 1] != 'f')
 		return false;
 
-	if (input == "-inff" || input == "+inff"
-	  || input == "inff" || input == "nanf") { return true; }
-	
 	int	start = 0;
 
 	if (input[0] == '+' || input[0] == '-')
@@ -275,8 +313,6 @@ bool	ScalarConverter::isFloat(std::string input) {
 
 bool	ScalarConverter::isDouble(std::string input) {
 
-	if (input == "-inf" || input == "+inf"
-	  || input == "inf" || input == "nan") { return true; }
 	
 	int	dot = 0;
 	int	start = 0;
