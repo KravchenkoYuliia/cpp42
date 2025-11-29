@@ -6,31 +6,33 @@
 #    By: yukravch <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/22 16:44:22 by yukravch          #+#    #+#              #
-#    Updated: 2025/11/13 12:30:13 by yukravch         ###   ########.fr        #
+#    Updated: 2025/11/29 14:28:32 by yukravch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = converter
+NAME = serialization
 
 all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp ScalarConverter/ScalarConverter.cpp
+FILES = main.cpp Serializer/Serializer.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I ScalarConverter
+INC_DIR = -I Serializer
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))
+
+
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(OBJ_DIR)
+	c++ $(FLAGS) $(INC_DIR) -c $< -o $@
 
 #Dependencies on the header files
 DEPS = $(OBJ:.o=.d)
 -include $(DEPS)
 
-$(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(OBJ_DIR)
-	c++ $(FLAGS) $(INC_DIR) -c $< -o $@
 
 $(NAME): $(O_DIRS) $(OBJ)
 	c++ $(FLAGS) $(INC_DIR) $(FILES) -o $(NAME)

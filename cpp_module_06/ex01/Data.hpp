@@ -1,35 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 16:23:02 by yukravch          #+#    #+#             */
-/*   Updated: 2025/11/24 16:23:02 by yukravch         ###   ########.fr       */
+/*   Created: 2025/11/29 15:00:35 by yukravch          #+#    #+#             */
+/*   Updated: 2025/11/29 15:00:35 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
+typedef struct Data {
 
-#include <iostream>
-#include <stdint.h> 
-#include "../Data.hpp" 
+	std::string something;
 
-class Serializer {
-
-public:
-	static uintptr_t	serialize(Data* ptr);
-	static Data*		deserialize(uintptr_t raw);
-
-private:	
-	Serializer();
-	Serializer(const Serializer& other);
-	Serializer&	operator = (const Serializer& other);
-
-	~Serializer();
-
-};
-
-#endif
+} Data;

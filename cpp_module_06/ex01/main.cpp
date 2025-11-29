@@ -10,14 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#include "Serializer.hpp"
 
-int	main(int ac, char** av) {
-
-	if (ac != 2) {
-		std::cout << "./converter yourLitteral" << std::endl;
-		return 1; }
-
-	ScalarConverter::convert(av[1]);
+int	main() {
+	
+	Data*		someData = new Data;
+	uintptr_t	resultOfSerialization = Serializer::serialize(someData);
+	Data*		resultofDeserialization = Serializer::deserialize(resultOfSerialization);
+	
+	std::cout << "the address of Data strucuture in hexa [" << someData << "]" << std::endl
+		  << "resultat of serialization: [" << resultOfSerialization << "]" << std::endl
+		  << "result of deserialization: [" << resultofDeserialization << "]" << std::endl;
+	
+	delete someData;
 	return 0;
 }
