@@ -38,7 +38,7 @@ ScalarConverter::~ScalarConverter() {}
 
 void	ScalarConverter::convert(std::string input) {
 
-	std::cout << "Your input is [" << input << "]" << std::endl;
+	std::cout << "Your input is [" << input << "]" << std::endl << std::endl;
 
 	int	type = ScalarConverter::getType(input);
 
@@ -67,23 +67,16 @@ void	ScalarConverter::convert(std::string input) {
 
 int	ScalarConverter::getType(std::string input) {
 
-	if (ScalarConverter::isChar(input))
-		return CHAR;
-	
-	if (ScalarConverter::isPseudoLiteral(input))
-		return PSEUDO;
-	else if (input[0] == '+' || input[0] == '-' || std::isdigit(input[0])) {
+	if (ScalarConverter::isChar(input)) { return CHAR; }
+	if (ScalarConverter::isPseudoLiteral(input)) { return PSEUDO; }
 
+	if (input[0] == '+' || input[0] == '-' || std::isdigit(input[0])) {
 
-		if (ScalarConverter::isFloat(input))
-			return FLOAT;
-		if (ScalarConverter::isDouble(input))
-			return DOUBLE;
+		if ((input[0] == '+' || input[0] == '-') && !std::isdigit(input[1])) { return ERROR; }
 		
-		if ((input[0] == '+' || input[0] == '-') && !std::isdigit(input[1]))
-			return ERROR;
-		if (ScalarConverter::isInt(input))
-			return INT;
+		if (ScalarConverter::isFloat(input)) { return FLOAT; }
+		if (ScalarConverter::isDouble(input)) { return DOUBLE; }
+		if (ScalarConverter::isInt(input)) { return INT; }
 	}
 
 	return ERROR;
@@ -126,7 +119,7 @@ void	ScalarConverter::convertToChar(std::string input) {
 
 	ScalarConverter::printChar(static_cast<int>(c));
 	std::cout << "int: " << static_cast<int>(c) << std::endl
-		  << "float: " << static_cast<float>(c) << ".0f" << std::endl
+		  << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl
 	          << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
 }
 
@@ -135,15 +128,14 @@ void	ScalarConverter::convertToInt(std::string input) {
 	long	l = 0;
 
 	std::istringstream	myStream(input);
+	if (myStream.fail())
+			return ;
 	if (myStream.good())
 		myStream >> l;
-	if (myStream.fail() || l > std::numeric_limits<int>::max() || l < std::numeric_limits<int>::min()) { std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl; }
-	else {
 	
-		ScalarConverter::printChar(static_cast<int>(l));
-		std::cout << "int: " << input << std::endl;
-	}
-	ScalarConverter::printFloat(input);
+	ScalarConverter::printIntAndChar(l);
+
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(l) << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(l) << std::endl;
 }
 
@@ -152,50 +144,35 @@ void	ScalarConverter::convertToFloat(std::string input) {
 	double	d = 0;
 	
 	std::istringstream	myStream(input);
+	if (myStream.fail())
+		return ;
+	
 	if (myStream.good())
 		myStream >> d;
-	long l = d;
-	if (myStream.fail() || d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min()) { std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl; }
-	else {
 	
-		ScalarConverter::printChar(static_cast<int>(d));
-		std::cout << "int: " << static_cast<int>(d) << std::endl;
-	}
-	ScalarConverter::printFloat(input);
-	if (d - l == 0)
-		std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
-	else
-		std::cout << "double: " << d << std::endl;
-
+	long l = d;
+	
+	ScalarConverter::printIntAndChar(l);
+	ScalarConverter::printFloat(d, l);
+	ScalarConverter::printDouble(d, l);
 }
 
 void	ScalarConverter::convertToDouble(std::string input) {
 
-	double	d = 0;
-
+	double			d = 0;
 	std::istringstream	myStream(input);
+	if (myStream.fail())
+		return ;
 	if (myStream.good())
 		myStream >> d;
-	long l = d;
-	if (myStream.fail() || d > std::numeric_limits<int>::max() || d < std::numeric_limits<int>::min()) { std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl << "float: impossible" << std::endl; }
-	else {
-		ScalarConverter::printChar(static_cast<int>(d));
-		std::cout << "int: " << static_cast<int>(d) << std::endl;
+	long	l = d;
 	
-		if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max()) { std::cout << "float: impossible" << std::endl; }
-		else {
-			if (d - l == 0)
-				std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
-			else
-				std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-		}
-	}
-
-	if (d - l == 0)
-		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(d) << std::endl;
-	else
-		std::cout << "double: " << input << std::endl;
-
+	ScalarConverter::printIntAndChar(l);
+	
+	if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max()) { std::cout << "float: impossible" << std::endl; }
+	else { ScalarConverter::printFloat(d, l); }
+	
+	ScalarConverter::printDouble(d, l);
 }
 
 //PRINT <TYPE>
@@ -211,35 +188,35 @@ void	ScalarConverter::printChar(int c) {
 		std::cout << "char: " <<  "'" << static_cast<char>(c) << "'" << std::endl;
 }
 
-void	ScalarConverter::printInt(std::string input) { (void)input; }
+void	ScalarConverter::printIntAndChar(long l) {
 
-void	ScalarConverter::printFloat(std::string input) {
 
-	double	d = 0;
-	long	l = 0;
-	std::istringstream	myStream(input);
-	if (myStream.good()) {
-		myStream >> d;
-		l = d; }
-	else { std::cout << "float: impossible" << std::endl; }
-	if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max()) { std::cout << "float: impossible" << std::endl; }
+	if (l > std::numeric_limits<int>::max() || l < std::numeric_limits<int>::min()) { std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl; }
 	else {
-		if (d - l == 0)	
-			std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f";
-		else
-			std::cout << "float: " << static_cast<float>(d) << "f";
-
-		std::cout << std::endl;
+		ScalarConverter::printChar(static_cast<int>(l));
+		std::cout << "int: " << static_cast<int>(l) << std::endl;	
 	}
 }
 
-void	ScalarConverter::printDouble(std::string input) { 
+void	ScalarConverter::printFloat(double d, long l) {
 
-	(void)input;
-	
-	
+	if (d - l == 0)	
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f";
+	else
+		std::cout << "float: " << static_cast<float>(d) << "f";
+
+	std::cout << std::endl;
 }
 
+void	ScalarConverter::printDouble(double d, long l) {
+
+	if (d - l == 0)
+		std::cout << "double: " << std::fixed << std::setprecision(1) << d;
+	else
+		std::cout << "double: " << d;
+
+	std::cout << std::endl;
+}
 
 //BOOL IS<TYPE>
 //
@@ -261,15 +238,6 @@ bool	ScalarConverter::isInt(std::string input) {
 	if (stringIsDigit(input, start))
 		return true;
 	return false;
-}
-
-bool	ScalarConverter::stringIsDigit(std::string input, int start) {
-
-	for (size_t i = start; i < input.length(); i++) {
-		if (!std::isdigit(input[i]))
-			return false;
-	}
-	return true;
 }
 
 bool	ScalarConverter::isPseudoLiteral(std::string input) {
@@ -330,5 +298,14 @@ bool	ScalarConverter::isDouble(std::string input) {
 
 	if (dot != 1) { return false; }
 
+	return true;
+}
+
+bool	ScalarConverter::stringIsDigit(std::string input, int start) {
+
+	for (size_t i = start; i < input.length(); i++) {
+		if (!std::isdigit(input[i]))
+			return false;
+	}
 	return true;
 }

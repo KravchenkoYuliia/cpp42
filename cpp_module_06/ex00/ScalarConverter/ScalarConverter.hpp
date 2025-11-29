@@ -38,9 +38,9 @@ private:
 	static void	convertToPseudo(std::string input);
 
 	static void	printChar(int c);
-	static void	printInt(std::string input);
-	static void	printFloat(std::string input);
-	static void	printDouble(std::string input);
+	static void	printIntAndChar(long l);
+	static void	printFloat(double d, long l);
+	static void	printDouble(double d, long l);
 
 
 	static bool	isChar(std::string input);
