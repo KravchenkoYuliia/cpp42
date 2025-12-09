@@ -13,8 +13,8 @@
 #include "iter.hpp" 
 
 void	incrementation(int& i) {  i += 1;  }
-void	stringToUpper(std::string& s) {  for (int i = 0; s[i]; i++) {  s[i] = std::toupper(s[i]);  }  }
-
+void	stringToUpper(std::string& s) {  for (int i = 0; s[i]; i++) { s[i] = std::toupper(s[i]); }  }
+void	printCharacters(const char& c) {  std::cout << c;  }
 
 int	main() {
 
@@ -38,8 +38,16 @@ int	main() {
 	::iter(arrayString, 3, stringToUpper);
 	std::cout << "STRING ARRAY AFTER: {";
 	for (int i = 0; i < 3; i++) {  std::cout << arrayString[i]; if (i != 2) { std::cout << ", "; }  }
+	std::cout << "}" << std::endl << std::endl;
+
+
+	const char	arrayChar[5] = {'h', 'e', 'l', 'l', 'o'};
+	std::cout << "CONST CHAR ARRAY: {";
+	for (int i = 0; i < 5; i++) {  std::cout << arrayChar[i];  }
 	std::cout << "}" << std::endl;
-
-
+	
+	std::cout << "PRINTING THE VALUES OF THE ARRAY BY CONST REFERENCE: ";
+	::iter(arrayChar, 5, printCharacters);
+	std::cout << std::endl;
 	return 0;
 }
