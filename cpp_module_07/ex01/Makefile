@@ -19,7 +19,7 @@ FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
 FILES = main.cpp
 
 OBJ_DIR = objects
-INC_DIR = whatever.hpp
+INC_DIR = iter.hpp
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))
