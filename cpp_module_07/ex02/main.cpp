@@ -15,9 +15,12 @@
 int	main() {
 
 	Array<int>		defaultInt;
+	
 	Array<int>		intWithSize(2);
+	intWithSize[0] = 0;
+	intWithSize[1] = 0;
+	
 	Array<int>		copyInt(intWithSize);
-	const Array<int>	constInt(3);
 	Array< int>	assignInt;
 		assignInt = copyInt;
 
@@ -48,9 +51,6 @@ int	main() {
 	for (unsigned int i = 0; i < copyInt.size(); i++) {
 		std::cout << i << ": " << array[i] << std::endl << std::endl;
 	}
-
-	std::cout << "Printing constInt's value" << std::endl << constInt[0] << std::endl << std::endl;
-
 
 	Array<std::string>	stringArray(1);
 	stringArray[0] = "Template works with strings";

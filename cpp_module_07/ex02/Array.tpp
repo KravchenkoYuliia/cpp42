@@ -10,6 +10,7 @@ template <typename T>
 Array<T>::Array( unsigned int n ): _size(n) {
 
 	_array = new T[this->_size];
+//	for (unsigned int i = 0; i < this->_size; i++) {  this->_array[i] = ;  }
 }
 
 template <typename T>
@@ -17,6 +18,9 @@ Array<T>::Array( const Array<T>& other ) {
 	
 	*this = other;
 }
+
+template <typename T>
+Array<T>::~Array() {  delete [] this->_array;  }
 
 //
 //OPERATORS
