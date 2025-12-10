@@ -49,8 +49,12 @@ int	main() {
 	array = copyInt.getArray();
 	std::cout << "copyInt:" << std::endl;
 	for (unsigned int i = 0; i < copyInt.size(); i++) {
-		std::cout << i << ": " << array[i] << std::endl << std::endl;
-	}
+		std::cout << i << ": " << array[i] << std::endl;
+	} 
+	std::cout << std::endl;
+
+	const Array<int>	constInt(1);
+	std::cout << "Printing a value of the const Array: " << std::endl << constInt[0] << std::endl << std::endl;
 
 	Array<std::string>	stringArray(1);
 	stringArray[0] = "Template works with strings";

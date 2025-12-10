@@ -9,7 +9,7 @@ Array<T>::Array(): _array(NULL), _size(0) {}
 template <typename T>
 Array<T>::Array( unsigned int n ): _size(n) {
 
-	_array = new T[this->_size];
+	_array = new T[this->_size]();
 //	for (unsigned int i = 0; i < this->_size; i++) {  this->_array[i] = ;  }
 }
 
@@ -30,7 +30,7 @@ template <typename T>
 Array<T>&	Array<T>::operator = ( const Array<T>& other ) {
 
 	if (this != &other) {
-		this->_array = new T[other._size];
+		this->_array = new T[other._size]();
 		for (unsigned int i = 0; i < other._size; i++) {  this->_array[i] = other._array[i];  }
 		this->_size = other._size;
 	}
