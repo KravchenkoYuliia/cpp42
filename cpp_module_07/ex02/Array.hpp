@@ -13,7 +13,30 @@
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
 
-template class <>
+#include <iostream>
+
+
+template <typename T>
+class Array {
+
+public:
+	Array();
+	Array( unsigned int n );
+	Array( const Array<T>& other );
+
+	Array<T>&	operator = ( const Array<T>& other );
+	T&		operator [] ( unsigned int i );
+	const T&	operator [] ( unsigned int i ) const;
+	
+	T*		getArray() const;
+	unsigned int	size() const;
+
+private:
+	T* 		_array;
+	unsigned int	_size;
+};
+
+#include "Array.tpp"
 
 #endif
 
