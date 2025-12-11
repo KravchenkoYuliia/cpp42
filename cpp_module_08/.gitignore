@@ -1,0 +1,11 @@
+# general:
+*.swp
+*.d
+*objects
+*a.out
+*test*
+
+# Program name:
+*easyfind
+*span
+*mutant
