@@ -14,15 +14,16 @@
 #define EASYFIND_HPP 
 
 #include <algorithm> 
+#include <vector> 
 #include <iostream> 
 
 template <typename T>
 typename T::iterator	easyfind(T& container, int value_to_find) {
 
-	auto	it = find(container.begin(), container.end(), value_to_find);
+	typename T::iterator	it = find(container.begin(), container.end(), value_to_find);
 	if (it == container.end())
 		throw std::out_of_range("Error: there is no value you're looking for");
-	return *it;
+	return it;
 }
 
 

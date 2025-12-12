@@ -14,9 +14,22 @@
 
 int	main() {
 
-	vector<int>	v = {1, 2, 3, 4, 5, 6, 7};
-
-	try {  easyfind(v, 5);  }
+	std::vector<int>	v;
+	for (int i = 2; i < 10; i++) {
+		v.push_back(i);
+	}
+	
+	std::cout << "Printing the values of vector<int> container:" << std::endl;
+	for (std::vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl << std::endl;
+	try {
+		int value_to_find = 5;
+		std::cout << "Trying to find " << value_to_find << " in the container" <<std::endl;
+		std::vector<int>::iterator it = easyfind(v, value_to_find);
+		std::cout << "Succes: the value is found -> " << *it << " at the position " << distance(v.begin(), it) << std::endl;
+	}
 
 	catch (std::out_of_range& e) {  std::cout << e.what() << std::endl;  }
 
