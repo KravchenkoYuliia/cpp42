@@ -16,10 +16,10 @@ all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp BitcoinExchange.cpp
+FILES = main.cpp BitcoinExchange/BitcoinExchange.cpp
 
 OBJ_DIR = objects
-INC_DIR = BitcoinExchange.hpp
+INC_DIR = -I BitcoinExchange
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))
@@ -27,7 +27,7 @@ O_DIRS = $(sort $(dir $(OBJ)))
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
-	c++ $(FLAGS) -c $< -o $@
+	c++ $(FLAGS) $(INC_DIR) -c $< -o $@
 
 #Dependencies on the header files
 DEPS = $(OBJ:.o=.d)
@@ -35,7 +35,7 @@ DEPS = $(OBJ:.o=.d)
 
 
 $(NAME): $(O_DIRS) $(OBJ)
-	c++ $(FLAGS) $(FILES) -o $(NAME)
+	c++ $(FLAGS) $(INC_DIR) $(FILES) -o $(NAME)
 
 $(O_DIRS):
 	mkdir -p $@

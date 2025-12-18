@@ -81,7 +81,7 @@ void	BitcoinExchange::convertValueInLine(std::map<std::string, double>& rateMap,
 
 void	BitcoinExchange::insertRateToMap(std::map<std::string, double>& rateMap) {
 
-	std::ifstream file("data.csv");
+	std::ifstream file("data/data.csv");
 	if (!file.is_open()) {  throw std::runtime_error("Error: can't open data.csv");  }
 
 	std::string	buffer;
