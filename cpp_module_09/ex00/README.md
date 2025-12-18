@@ -1,8 +1,8 @@
-# ./btc input.txt
+# ./btc data/input.txt
 
 ## You have to create a program which outputs the value of a certain amount of bitcoin on a certain date
 This program must use a database in csv format which will represent bitcoin price
-over time. This database is provided with this subject -> data.csv
+over time. This database is provided with this subject -> data/data.csv
 
  	csv 
 	Comma-separated values (CSV) is a plain text data format for storing tabular data where the fields (values) of a record are separated by a comma and each record is a line (i.e. newline separated).
