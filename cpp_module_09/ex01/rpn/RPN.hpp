@@ -21,19 +21,20 @@ class RPN {
 
 public:
 	RPN();
-	RPN(const RPN& other);
-	RPN&	operator = (const RPN& other);
+	RPN( std::string calculation );
+	RPN( const RPN& other );
+	RPN&	operator = ( const RPN& other );
 
 	~RPN();
 
-	void	calculation(std::string av);
 
 private:
 	std::stack<int>		_numbers;
 	
-	bool	avIsValid(std::string av);
-	bool	charIsValid(char c);
-	void	operation(char type);
+	void	calculation( std::string calculation );
+	bool	calculationIsValid( std::string calculation );
+	bool	charIsValid( char c );
+	void	operation( char type );
 };
 
 #endif

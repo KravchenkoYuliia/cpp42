@@ -14,6 +14,8 @@
 
 RPN::RPN() {}
 
+RPN::RPN( std::string calculation ) {  RPN::calculation(calculation);  }
+
 RPN::RPN(const RPN& other) { *this = other; }
 
 RPN&	RPN::operator=(const RPN& other) {
@@ -26,27 +28,27 @@ RPN::~RPN() {}
 
 
 
-void	RPN::calculation(std::string av) {
+void	RPN::calculation(std::string calculation) {
 
-	if (!RPN::avIsValid(av)) {  throw std::runtime_error("Error: invalid input");  }
+	if (!RPN::calculationIsValid(calculation)) {  throw std::runtime_error("Error: invalid input");  }
 
 	int	sign = 1;
-	for (int i = 0; av[i]; i++) {
+	for (int i = 0; calculation[i]; i++) {
 	
-		if (av[i] == '-' && av[i+1] && std::isdigit(av[i+1])) {  sign *= -1; i++;  }
+		if (calculation[i] == '-' && calculation[i+1] && std::isdigit(calculation[i+1])) {  sign *= -1; i++;  }
 		
-		if (std::isdigit(av[i])) {
+		if (std::isdigit(calculation[i])) {
 
-			if (av[i+1] && std::isdigit(av[i+1])) {  throw std::runtime_error("Error: invalid input");  }
+			if (calculation[i+1] && std::isdigit(calculation[i+1])) {  throw std::runtime_error("Error: invalid input");  }
 
-			_numbers.push(sign * (av[i] - '0'));
+			_numbers.push(sign * (calculation[i] - '0'));
 			sign = 1;
 		}
-		else if (!std::isdigit(av[i]) && av[i] != ' ') {
+		else if (!std::isdigit(calculation[i]) && calculation[i] != ' ') {
 			
-			if (!av[i-1] || av[i-1] != ' ' || (av[i+1] && av[i+1] != ' ')) {  throw std::runtime_error("Error: invalid input");  }
+			if (!calculation[i-1] || calculation[i-1] != ' ' || (calculation[i+1] && calculation[i+1] != ' ')) {  throw std::runtime_error("Error: invalid input");  }
 			
-			RPN::operation(av[i]);
+			RPN::operation(calculation[i]);
 		}
 	}
 
@@ -72,11 +74,11 @@ void	RPN::operation(char type) {
 		_numbers.push(first / second);
 }
 
-bool	RPN::avIsValid(std::string av) {
+bool	RPN::calculationIsValid(std::string calculation) {
 	
-	if (av == "") {  return false;  }
+	if (calculation == "") {  return false;  }
 
-	for (int i = 0; av[i]; i++) {  if (!RPN::charIsValid(av[i])) { return false; }  }
+	for (int i = 0; calculation[i]; i++) {  if (!RPN::charIsValid(calculation[i])) { return false; }  }
 
 	return true;
 }
