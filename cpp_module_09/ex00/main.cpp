@@ -15,9 +15,7 @@ int	main( int ac, char** av ) {
 
 	if (ac != 2) {  std::cout << "Error: put an input file." << std::endl << "./btc file" << std::endl; return 1;  }
 
-	try {
-		BitcoinExchange	btc;
-		btc.convertValue(av[1]); }
+	try {  BitcoinExchange	btc(av[1]);  }
 	catch (std::runtime_error& e) {  std::cout << e.what() << std::endl; return 1;  }
 	
 	return 0;

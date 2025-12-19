@@ -15,6 +15,7 @@
 //constructeurs
 
 BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange( char* toConvert  ) {  BitcoinExchange::convertValue(toConvert);  }
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {  *this = other;  }
 BitcoinExchange::~BitcoinExchange() {}
 
@@ -23,7 +24,7 @@ BitcoinExchange&	BitcoinExchange::operator = (const BitcoinExchange& other) {  i
 
 
 //methods	
-void	BitcoinExchange::convertValue(char* fileName) {
+void	BitcoinExchange::convertValue( char* fileName ) {
 	
 	std::map<std::string, double>	rateMap;
 	BitcoinExchange::insertRateToMap(rateMap);

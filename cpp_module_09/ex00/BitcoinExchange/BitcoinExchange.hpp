@@ -28,34 +28,35 @@ class BitcoinExchange {
 
 public:
 	BitcoinExchange();
+	BitcoinExchange( char* toConvert );
 	BitcoinExchange(const BitcoinExchange& other);
 	~BitcoinExchange();
 
 	BitcoinExchange&	operator = (const BitcoinExchange& other);
 	
-	void	convertValue(char* fileName);
 
 private:
-	void	insertRateToMap(std::map<std::string, double>& rateMap);
+	void	convertValue( char* fileName );
+	void	insertRateToMap( std::map<std::string, double>& rateMap );
 
-	bool		lineIsValid(std::string buffer);
-	bool		dataIsValid(std::string data);
-	bool		dataNumberIsValid(std::string data, int type, std::string month);
-	bool		valueIsValid(std::string value);
+	bool		lineIsValid( std::string buffer );
+	bool		dataIsValid( std::string data );
+	bool		dataNumberIsValid( std::string data, int type, std::string month ); 
+	bool		valueIsValid( std::string value );
 
 	
-	void	convertValueInLine(std::map<std::string, double>& rateMap, std::string lineToConvert);
+	void	convertValueInLine( std::map<std::string, double>& rateMap, std::string lineToConvert );
 
-	template <typename T> bool	outOfLimits(T number);
-	template <typename T> void	stringToNumber(std::string str, T& number);
-	bool				valueIsDigit(std::string str);
-	bool				stringIsDigit(std::string str);
+	template <typename T> bool	outOfLimits( T number );
+	template <typename T> void	stringToNumber( std::string str, T& number );
+	bool				valueIsDigit( std::string str );
+	bool				stringIsDigit( std::string str );
 
-	std::string	copyBeforePipe(std::string s);
-	std::string	copyAfterPipe(std::string s);
+	std::string	copyBeforePipe( std::string s );
+	std::string	copyAfterPipe( std::string s );
 
 
-	void	printMap(std::map<std::string, double>& m);
+	void	printMap( std::map<std::string, double>& m );
 };
 
 
