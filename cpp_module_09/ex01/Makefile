@@ -16,10 +16,10 @@ all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
 FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
-FILES = main.cpp RPN/RPN.cpp
+FILES = main.cpp rpn/RPN.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I RPN
+INC_DIR = -I rpn
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))

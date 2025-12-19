@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/18 18:07:04 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/18 18:07:04 by yukravch         ###   ########.fr       */
+/*   Created: 2025/12/19 15:25:28 by yukravch          #+#    #+#             */
+/*   Updated: 2025/12/19 15:25:28 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RPN.hpp"
+#ifndef RPN_HPP
+#define RPN_HPP
 
-int	main(int ac, char** av) {
+#include <iostream>
+#include <stack>
+#include <cstdlib>
 
-	if (ac != 2) {  std::cerr << "Error" << std::endl << "./RPN \"integers less than 10 and operators +-/*\"" << std::endl; return EXIT_FAILURE;  }
+class RPN {
 
+public:
+	RPN();
+	RPN(const RPN& other);
+	RPN&	operator = (const RPN& other);
 
-	try {
-		RPN	rpn;
-		rpn.calculation(av[1]);
-	}
-	catch (std::runtime_error& e) {  
-		std::cerr << e.what() << std::endl;
-		return EXIT_FAILURE;
-	}
+	~RPN();
 
+	void	calculation(std::string av);
 
-	return EXIT_SUCCESS;
-}
+private:
+	std::stack<int>		_numbers;
+	
+	bool	avIsValid(std::string av);
+	bool	charIsValid(char c);
+	void	operation(char type);
+};
+
+#endif
