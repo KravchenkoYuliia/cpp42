@@ -14,8 +14,13 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include <vector> 
+#include <vector>
+#include <list> 
 #include <cstdlib>
+#include <sstream>
+#include <climits>
+#include <ctime> 
+#include "colors.hpp"
 
 class PmergeMe {
 
@@ -28,7 +33,18 @@ public:
 	~PmergeMe();
 
 private:
-	std::vector<std::string>	_arguments;
+	void	sorting(char** av);
+	void	fillContainers(char** av);
+	void	avIsValid(std::string str);
+
+	void	sortVector();
+	void	sortList();
+	
+	void	printVector();
+	void	printList();
+
+	std::vector<int>	_nbV;
+	std::list<int>		_nbL;
 
 };
 

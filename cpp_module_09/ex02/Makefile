@@ -19,7 +19,7 @@ FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
 FILES = main.cpp pmergeMe/PmergeMe.cpp
 
 OBJ_DIR = objects
-INC_DIR = -I pmergeMe
+INC_DIR = -I . -I pmergeMe
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:.cpp=.o))
 O_DIRS = $(sort $(dir $(OBJ)))
