@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/19 18:16:19 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/12/20 18:58:47 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,33 @@ void	PmergeMe::sorting(char** av) {
 
 void	PmergeMe::sortVector() {
 
-	for (std::vector<int>::size_type i = 0; i < _nbV.size(); i += 2) {
-		if (_nbV[i+1] && _nbV[i+1] < _nbV[i]) {  std::swap(_nbV[i], _nbV[i+1]);  }
+	for (std::vector<int>::size_type i = 0; i + 2 < _nbV.size(); i += 2) {
+		if (_nbV[i+1] < _nbV[i]) {  std::swap(_nbV[i], _nbV[i+1]);  }
 	}
+	
+	while (!PmergeMe::maxValueAreSorted()) {
+
+		for (std::vector<int>::size_type i = 1; i + 4 < _nbV.size(); i += 4) {
+			if (_nbV[i] > _nbV[i+2]) {
+				std::swap(_nbV[i], _nbV[i+2]);
+				std::swap(_nbV[i-1], _nbV[i+1]);
+			}
+		}
+	}
+	
+	std::cout << "After: ";
 	PmergeMe::printVector();
+}
+
+bool	PmergeMe::maxValueAreSorted() {
+
+	
+	for (std::vector<int>::size_type i = 1; i + 2 < _nbV.size(); i += 2) {
+		
+		if (_nbV[i] > _nbV[i+2]) {  return false;  }
+	}
+
+	return true;
 }
 
 void	PmergeMe::fillContainers(char** av) {
@@ -89,7 +112,7 @@ void	PmergeMe::avIsValid(std::string str) {
 
 void	PmergeMe::printVector() {
 	
-	std::cout << VECTORCOLOR << std::endl;
+	std::cout << VECTORCOLOR;
 	for (std::vector<int>::size_type i = 0; i < _nbV.size(); i++) {
 
 		std::cout << " " <<_nbV[i];

@@ -38,6 +38,7 @@ private:
 	void	avIsValid(std::string str);
 
 	void	sortVector();
+	bool	maxValueAreSorted();
 	void	sortList();
 	
 	void	printVector();

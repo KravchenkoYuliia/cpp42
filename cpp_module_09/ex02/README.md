@@ -12,7 +12,7 @@ Using this algorith on:
 
 ## Step 1
 	PAIRS
-	- Split the list into pairs (sublists) 
+	- "Split the list into pairs (sublists)" (imaginary)
 		[8 2] [1 0] [4 3] [7 5] [14 6]
 	- Swap the numbers inside every pair to know every pair's `min` and `max`
 		[2 8] [0 1] [3 4] [5 7] [6 14]
