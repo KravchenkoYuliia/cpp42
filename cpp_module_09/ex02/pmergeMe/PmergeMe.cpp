@@ -46,6 +46,30 @@ void	PmergeMe::sorting(char** av) {
 
 void	PmergeMe::sortVector() {
 
+	PmergeMe::makeAndSortPairs();
+}
+
+void	PmergeMe::makeAndSortPairs() {
+
+	for (std::vector<int>::size_type  i = 0; i+2 < _nbV.size(); i += 2) {
+
+		_pairsV.push_back(std::make_pair(_nbV[i], _nbV[i+1]));
+	}
+
+	if (_nbV.size() % 2 != 0) {  _lastNbWithoutPair = _nbV[_nbV.size()-1];  }
+	else {  _lastNbWithoutPair = NOLAST;  }
+
+	for (std::vector< std::pair<int, int> >::size_type i = 0; i < _pairsV.size(); i++) {
+
+		if (_pairsV[i].first > _pairsV[i].second) {  std::swap(_pairsV[i].first, _pairsV[i].second);  }
+	}
+
+	for (std::vector< std::pair<int, int> >::size_type i = 0; i < _pairsV.size(); i++) {
+
+		std::cout << i << ": " <<_pairsV[i].first << " " <<_pairsV[i].second << std::endl;
+	}
+	std::cout << "last one is " << _lastNbWithoutPair;
+
 }
 
 bool	PmergeMe::maxValueAreSorted() {

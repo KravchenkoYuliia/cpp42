@@ -23,6 +23,8 @@
 #include <ctime> 
 #include "colors.hpp"
 
+#define	NOLAST -1
+
 class PmergeMe {
 
 public:
@@ -39,13 +41,16 @@ private:
 	void	avIsValid(std::string str);
 
 	void	sortVector();
+	void	makeAndSortPairs();
 	bool	maxValueAreSorted();
 	void	sortList();
 	
 	void	printVector();
 	void	printList();
 
-	std::vector<int>	_nbV;
+	std::vector<int>			_nbV;
+	std::vector< std::pair<int, int> >	_pairsV;
+	int					_lastNbWithoutPair;
 	std::list<int>		_nbL;
 
 };
