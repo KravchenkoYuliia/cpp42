@@ -57,9 +57,18 @@ Using this algorith on:
 	has operator []
 
 
+## std::map Vs std::vector<pair<int,int>>
+	
+	Maps: automatically sorted keys, quicker key search
+	Vectors<pair>: just arrays, sorting and searching are manually done by you
+
+
 ## Parsing errors
-	- only digit -> only integers
-	- `+12` or `-12` are accepted. `+++-12`/ `+-12` are not accepted
-	- from INT_MIN to INT_MAX
-	- doubles are possible
+	- only digit -> only integers -> only possitive integers
+		1. more than 10 elements -> error
+		2. can be digit/space or +(but with the conditions: space or nothing before `+`; has a digit after )
+		3. 
+	- `+12` are accepted. `+++12` is not accepted
+	- from 0 to INT_MAX
+	- doubles are not possible
 

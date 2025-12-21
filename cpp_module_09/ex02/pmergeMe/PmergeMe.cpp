@@ -46,22 +46,6 @@ void	PmergeMe::sorting(char** av) {
 
 void	PmergeMe::sortVector() {
 
-	for (std::vector<int>::size_type i = 0; i + 2 < _nbV.size(); i += 2) {
-		if (_nbV[i+1] < _nbV[i]) {  std::swap(_nbV[i], _nbV[i+1]);  }
-	}
-	
-	while (!PmergeMe::maxValueAreSorted()) {
-
-		for (std::vector<int>::size_type i = 1; i + 4 < _nbV.size(); i += 4) {
-			if (_nbV[i] > _nbV[i+2]) {
-				std::swap(_nbV[i], _nbV[i+2]);
-				std::swap(_nbV[i-1], _nbV[i+1]);
-			}
-		}
-	}
-	
-	std::cout << "After: ";
-	PmergeMe::printVector();
 }
 
 bool	PmergeMe::maxValueAreSorted() {
@@ -81,12 +65,13 @@ void	PmergeMe::fillContainers(char** av) {
 		
 		PmergeMe::avIsValid(av[i]);
 
-		long			l = 0;
+		size_t			l = 0;
 		std::stringstream	ss(av[i]);
 		while (ss >> l) {
 			if (ss.fail()) {  throw std::runtime_error("Error: only digit are allowed");  }
-			if (l > INT_MAX || l < INT_MIN) {  throw std::runtime_error("Error: nb is out of int limits");  }
+			if (l > INT_MAX) {  throw std::runtime_error("Error: nb is out of int limits");  }
 			
+			if (std::find(_nbV.begin(), _nbV.end(), l) != _nbV.end()) {  throw std::runtime_error("Error: doubles are not allowed");  }
 			_nbV.push_back(l);
 			_nbL.push_back(l);
 		}
@@ -95,17 +80,30 @@ void	PmergeMe::fillContainers(char** av) {
 
 void	PmergeMe::avIsValid(std::string str) {
 
-	for (int i = 0; str[i]; i++) {
-		if (!std::isdigit(str[i]) && str[i] != ' ') {
-			if (str[i] == '-' || str[i] == '+') {
+	if (str.length() > 10) {  throw std::runtime_error("Error: nb is out of INT limits");  }
 
-				if (!str[i+1] || !std::isdigit(str[i+1]))
+	for (int i = 0; str[i]; i++) {
+		
+		if (!std::isdigit(str[i]) && str[i] != ' ') {
+			if (str[i] == '+') {
+
+				if (!str[i+1] || !std::isdigit(str[i+1])) {
+					std::cerr << "[" << str[i];
+					
+					if (!str[i+1]) { std::cerr << "?"; }
+					else { std::cerr << str[i+1]; }
+					
+					std::cerr << "]" << std::endl; 
 					throw std::runtime_error("Error: invalid input");
-				if (str[i-1] && str[i-1] != ' ') 
-					throw std::runtime_error("Error: invalid input");
+				}
+				if (str[i-1] && str[i-1] != ' ') {
+					std::cerr << "[" << str[i-1] << str[i] << "]" << std::endl;
+					throw std::runtime_error("Error: invalid input"); }
 			}
-			else
+			else {
+				std::cerr << "[" << str[i] << "]" << std::endl;
 				throw std::runtime_error("Error: invalid input");
+			}
 		}
 	}
 }

@@ -14,7 +14,7 @@
 
 int	main( int ac, char** av ) {
 
-	if (ac < 2) {  std::cerr << "./PmergeMe integers..." << std::endl;  }
+	if (ac < 2) {  std::cerr << "./PmergeMe integers..." << std::endl;  return EXIT_FAILURE;  }
 
 	try {  PmergeMe	merge(av);  }
 	catch ( std::runtime_error& e ) {  std::cerr << e.what() << std::endl; return EXIT_FAILURE;  }
