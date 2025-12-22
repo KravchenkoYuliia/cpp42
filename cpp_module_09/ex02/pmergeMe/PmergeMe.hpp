@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/19 18:16:19 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:00:26 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,15 @@ private:
 	void	fillContainers(char** av);
 	void	avIsValid(std::string str);
 
-	void	sortVector();
-	void	makeAndSortPairs();
-	bool	maxValueAreSorted();
-	void	sortList();
+	void			sortVector();
+	std::vector<int>	FJalgorithm( std::vector<int> v );
 	
-	void	printVector();
+	void	printVector( std::vector<int> v );
 	void	printList();
 
 	std::vector<int>			_nbV;
 	std::vector< std::pair<int, int> >	_pairsV;
-	int					_lastNbWithoutPair;
+
 	std::list<int>		_nbL;
 
 };

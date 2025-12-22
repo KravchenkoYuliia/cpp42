@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/20 18:58:47 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/12/22 17:27:48 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,57 +33,71 @@ PmergeMe::~PmergeMe() {}
 //methods
 //
 
-void	PmergeMe::sorting(char** av) {
+void	PmergeMe::sorting( char** av ) {
 
 	PmergeMe::fillContainers(av);
 	std::cout << "Before: ";
-	PmergeMe::printVector();
+	PmergeMe::printVector( _nbV );
 
-	PmergeMe::sortVector();
+	PmergeMe::FJalgorithm( _nbV );
+
 	/*std::time_t	t = std::time(0);
 	std::cout << t << std::endl;*/
 }
 
-void	PmergeMe::sortVector() {
+std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 
-	PmergeMe::makeAndSortPairs();
-}
 
-void	PmergeMe::makeAndSortPairs() {
+	if ( v.size() <= 1 ) {  return v;  }
 
-	for (std::vector<int>::size_type  i = 0; i+2 < _nbV.size(); i += 2) {
+	std::vector<int>	main;
+	std::vector<int>	pend;
+	int			straggler;
 
-		_pairsV.push_back(std::make_pair(_nbV[i], _nbV[i+1]));
-	}
-
-	if (_nbV.size() % 2 != 0) {  _lastNbWithoutPair = _nbV[_nbV.size()-1];  }
-	else {  _lastNbWithoutPair = NOLAST;  }
-
-	for (std::vector< std::pair<int, int> >::size_type i = 0; i < _pairsV.size(); i++) {
-
-		if (_pairsV[i].first > _pairsV[i].second) {  std::swap(_pairsV[i].first, _pairsV[i].second);  }
-	}
-
-	for (std::vector< std::pair<int, int> >::size_type i = 0; i < _pairsV.size(); i++) {
-
-		std::cout << i << ": " <<_pairsV[i].first << " " <<_pairsV[i].second << std::endl;
-	}
-	std::cout << "last one is " << _lastNbWithoutPair;
-
-}
-
-bool	PmergeMe::maxValueAreSorted() {
-
-	
-	for (std::vector<int>::size_type i = 1; i + 2 < _nbV.size(); i += 2) {
+	//
+	//Step 1 : get main, pend and straggler
+	//
 		
-		if (_nbV[i] > _nbV[i+2]) {  return false;  }
-	}
+	if ( v.size() % 2 != 0 ) {  straggler = v[v.size()-1];  }
+	else {  straggler = NOLAST;  }
+	
+	std::vector<int>::size_type  i = 0; 
+	while ( i < v.size() ) {
 
-	return true;
+		int	bigger = 0;
+		int	smaller = 0;
+
+		if ( v[i] > v[i+1] ) {
+			bigger = i;
+			smaller = i + 1;
+		}
+		else {
+			bigger = i + 1;
+			smaller = i;
+		}
+
+		main.push_back( v[bigger] );
+		pend.push_back( v[smaller] );
+
+		if ( i+2 < v.size() ) {  i += 2;  }
+		else {  break;  }
+	}
+	
+	//
+	//Step 2 : sort main
+	//
+	main = PmergeMe::FJalgorithm( main );
+
+	//
+	//Step3 : inserting pend to main
+	//
+	
+	
+
+	return main;
 }
 
-void	PmergeMe::fillContainers(char** av) {
+void	PmergeMe::fillContainers( char** av ) {
 
 	for (int i = 1; av[i]; i++) { 
 		
@@ -132,12 +146,12 @@ void	PmergeMe::avIsValid(std::string str) {
 	}
 }
 
-void	PmergeMe::printVector() {
+void	PmergeMe::printVector( std::vector<int> v) {
 	
 	std::cout << VECTORCOLOR;
-	for (std::vector<int>::size_type i = 0; i < _nbV.size(); i++) {
+	for (std::vector<int>::size_type i = 0; i < v.size(); i++) {
 
-		std::cout << " " <<_nbV[i];
+		std::cout << " " << v[i];
 	}
 	std::cout << RESET << std::endl;
 }
