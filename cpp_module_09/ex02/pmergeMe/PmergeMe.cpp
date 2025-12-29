@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/22 17:27:48 by yukravch         ###   ########.fr       */
+/*   Updated: 2025/12/29 19:00:50 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,17 @@ void	PmergeMe::sorting( char** av ) {
 	PmergeMe::fillContainers(av);
 	std::cout << "Before: ";
 	PmergeMe::printVector( _nbV );
+	std::cout << std::endl;
+	
+	/*std::cout << "Make pairs at the beginning: " << std::endl;
+	PmergeMe::makePairs();
+	PmergeMe::printPairs( _pairsV );
+	std::cout << std::endl;*/
 
-	PmergeMe::FJalgorithm( _nbV );
+	std::vector<int> result = PmergeMe::FJalgorithm( _nbV );
+	std::cout << "After: ";
+	PmergeMe::printVector( result );
+	
 
 	/*std::time_t	t = std::time(0);
 	std::cout << t << std::endl;*/
@@ -47,22 +56,21 @@ void	PmergeMe::sorting( char** av ) {
 
 std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 
-
 	if ( v.size() <= 1 ) {  return v;  }
 
-	std::vector<int>	main;
-	std::vector<int>	pend;
-	int			straggler;
-
+	int						straggler = -1;
+	std::vector<int>			main;
+	std::vector<int>			pend;
+	std::vector< std::pair<int, int> >	pairs;
 	//
 	//Step 1 : get main, pend and straggler
 	//
 		
 	if ( v.size() % 2 != 0 ) {  straggler = v[v.size()-1];  }
-	else {  straggler = NOLAST;  }
+	else {  straggler = NOSTRAGGLER;  }
 	
-	std::vector<int>::size_type  i = 0; 
-	while ( i < v.size() ) {
+	std::vector<int>::size_type  i = 0;
+	while ( i+1 < v.size() ) {
 
 		int	bigger = 0;
 		int	smaller = 0;
@@ -77,24 +85,124 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 		}
 
 		main.push_back( v[bigger] );
+		pairs.push_back(  std::make_pair( v[bigger], v[smaller] )  );
 		pend.push_back( v[smaller] );
 
 		if ( i+2 < v.size() ) {  i += 2;  }
 		else {  break;  }
 	}
-	
 	//
 	//Step 2 : sort main
 	//
 	main = PmergeMe::FJalgorithm( main );
-
 	//
 	//Step3 : inserting pend to main
 	//
-	
+	//insert index 0 of pend
+	main.insert( main.begin(), pend[0] );
+
+		//insert index 1 of pend
 	
 
+	int	index = 1;
+	int	pendSize = pend.size();
+	while ( index < pendSize ) {
+
+		main = PmergeMe::insertNumber( pend[index], main, pairs );
+		index++;
+	}
+
+	if ( straggler != NOSTRAGGLER )
+			main = PmergeMe::insertStraggler( straggler, main );
+	
 	return main;
+}
+
+std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main ) {
+
+	int mainSize = main.size();
+
+	if ( straggler > main[ mainSize/2 ]) {
+		for ( int i = mainSize/2 ; i < mainSize; i++) {
+			
+			if ( straggler < main[i] || i+1 == mainSize ) {
+
+				main.insert( main.begin() + i, straggler);
+				return main;
+			}
+		}
+	}
+	else {
+		for ( int i = mainSize/2 ; i >= 0; i--) {
+
+			if ( straggler > main[i] || i == 0) {
+
+				if (i == 0)
+					main.insert( main.begin() + i, straggler);
+				else
+					main.insert( main.begin() + i + 1, straggler);
+				return main;
+			}
+		}
+	}
+
+	return main;
+}
+
+std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> > pairs) {
+
+	int	pairOfPend = PmergeMe::findPair( insertIt, pairs );
+	if ( pairOfPend == -1) {  throw std::runtime_error("Error: no number you're looking for");  }
+
+
+	int	maxPositionInMain = PmergeMe::findMainPositionForPair( pairOfPend, here );
+	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
+		
+
+	for ( std::vector<int>::size_type i = maxPositionInMain-1; i >= 0; i--) {
+		
+		if ( insertIt > here[i] ) {
+			here.insert( here.begin() + i + 1, insertIt );
+			break ;
+		}
+	}
+
+	return here;
+}
+
+int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> > inHere) {
+
+	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < inHere.size(); i++ ) {
+		if ( inHere[i].second == findIt ) {  return inHere[i].first;  }
+	}
+
+	return -1;
+}
+
+int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int> inHere ) {
+
+	int count = 0;
+	for ( std::vector<int>::size_type i = 0; i < inHere.size(); i++ ) {
+		if ( inHere[i] == findIt ) {  return count;  }
+		count += 1;
+	}
+
+	return -1;
+}
+
+void	PmergeMe::makePairs( void ) {
+	
+	std::vector<int>::size_type i = 0;
+	while ( i+1 < _nbV.size() ) {
+
+		if ( _nbV[i] > _nbV[i+1])
+			_pairsV.push_back(  std::make_pair( _nbV[i+1], _nbV[i] )  );
+		else
+			_pairsV.push_back(  std::make_pair( _nbV[i], _nbV[i+1] )  );
+
+		if ( i+2 < _nbV.size() ) {  i += 2;  }
+		else {  break;  }
+	}
 }
 
 void	PmergeMe::fillContainers( char** av ) {
@@ -148,6 +256,7 @@ void	PmergeMe::avIsValid(std::string str) {
 
 void	PmergeMe::printVector( std::vector<int> v) {
 	
+	if ( v.empty() ) {  std::cout << "empty" << std::endl;  }
 	std::cout << VECTORCOLOR;
 	for (std::vector<int>::size_type i = 0; i < v.size(); i++) {
 
@@ -169,4 +278,13 @@ void	PmergeMe::printList() {
 		it++;
 	}
 	std::cout << RESET << std::endl;
+}
+
+void	PmergeMe::printPairs( std::vector< std::pair<int, int> > p) {
+
+
+	if ( p.empty() ) {  std::cout << "empty" << std::endl;  }
+	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < p.size(); i++) {
+		std::cout << "Pair : " << p[i].first << " + " << p[i].second << std::endl;
+	}
 }

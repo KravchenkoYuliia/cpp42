@@ -45,12 +45,10 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 
 	It will be used on `pend` chain. The sequence is limited by `pend` size
 
-		The last main is : 1 -> 4 -> 7 -> 8 -> 14
-
+		The last earmain` is : 1 -> 4 -> 7 -> 8 -> 14
+		The `pend` chain is : 0, 3, 5, 2, 6
 		The pairs:
 		 [0 1] [3 4] [5 7] [2 8] [6 14] [9]
-
-		The `pend` chain is : 0, 3, 5, 2, 6
 		straggler: 9
 
 		`pend`.size is 5 
