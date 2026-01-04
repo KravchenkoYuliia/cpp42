@@ -14,6 +14,7 @@
 #define PMERGEME_HPP
 
 #include <iostream>
+#include <iomanip> 
 #include <algorithm> 
 #include <vector>
 #include <list> 
@@ -36,9 +37,10 @@ public:
 	~PmergeMe();
 
 private:
-	void	sorting(char** av);
-	void	fillContainers(char** av);
-	void	avIsValid(std::string str);
+	void	sorting( char** av );
+	void	fillContainers( char** av );
+	void	avIsValid( std::string str );
+	void	countTime( std::string container, int containerSize, int beforeTime, int afterTime );
 
 	void			sortVector( void );
 	void			makePairs( void );
@@ -66,7 +68,6 @@ private:
 	void	printList();
 	std::list<int>		_nbL;
 	
-	int	temp;
 };
 
 #endif

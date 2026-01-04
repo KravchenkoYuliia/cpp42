@@ -40,14 +40,34 @@ void	PmergeMe::sorting( char** av ) {
 	PmergeMe::printVector( _nbV );
 	std::cout << std::endl;
 	
-	this->temp = 0;
-	std::vector<int> result = PmergeMe::FJalgorithm( _nbV );
+
+/*
+	const std::clock_t beforeTime = std::clock();
+	std::vector<int> result = PmergeMe::noAlgorithmSort( _nbV );
+	const std::clock_t afterTime = std::clock();
+	PmergeMe::countTime( "vector", _nbV.size(), beforeTime, afterTime );
+	
 	std::cout << "After: ";
 	PmergeMe::printVector( result );
-	
+*/
 
-	/*std::time_t	t = std::time(0);
-	std::cout << t << std::endl;*/
+	const std::clock_t beforeTime = std::clock();
+	std::vector<int> result = PmergeMe::FJalgorithm( _nbV );
+	const std::clock_t afterTime = std::clock();
+	PmergeMe::countTime( "vector", _nbV.size(), beforeTime, afterTime );
+	
+	std::cout << "After: ";
+	PmergeMe::printVector( result );
+
+/*	const std::clock_t beforeTime = std::clock();
+	std::list result = PmergeMe::FJalgorithm( _nbL );
+	const std::clock_t afterTime = std::clock();
+	PmergeMe::countTime( "list", _nbL.size(), beforeTime, afterTime );
+	
+	std::cout << "After: ";
+	PmergeMe::printList( result );
+*/	
+
 }
 
 std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
@@ -158,12 +178,6 @@ std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, st
 
 	int	maxPositionInMain = PmergeMe::findMainPositionForPair( pairOfPend, here );
 	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
-		
-	std::cout << "Need to insert " << insertIt << " to main:  ";
-	PmergeMe::printVector(here);
-	std::cout << "Pairs are : ";
-	PmergeMe::printPairs(pairs);
-
 
 	for ( int i = maxPositionInMain-1; i >= 0; i--) {
 		if ( insertIt > here[i]) {
@@ -263,6 +277,12 @@ void	PmergeMe::avIsValid(std::string str) {
 			}
 		}
 	}
+}
+
+void	PmergeMe::countTime( std::string container, int containerSize,  int beforeTime, int afterTime ) {
+
+	std::cout << "Time to process a range of " << containerSize << " elements with std::" << container << " : " << std::fixed << std::setprecision(2) << 1000.0 * ( afterTime - beforeTime ) / CLOCKS_PER_SEC << "ms" << std::endl;
+
 }
 
 void	PmergeMe::printVector( std::vector<int> v) {

@@ -106,3 +106,12 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 
 
 std::vector<int>::size_type = size_t -> is unsigned
+
+
+
+todo next:
+
+- create a template that will count time and call the right algorithm function for different container.
+- create a function that sort numbers without algorithm to see how much more time it takes comparing to Ford-Johnson
+- apply Jacobsthal sequence to the inserting numbers
+- repeat the same algorithm process with List
