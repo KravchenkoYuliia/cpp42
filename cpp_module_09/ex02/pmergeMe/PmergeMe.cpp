@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/29 19:00:50 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/04 16:21:39 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	PmergeMe::sorting( char** av ) {
 	PmergeMe::printVector( _nbV );
 	std::cout << std::endl;
 	
+	this->temp = 0;
 	std::vector<int> result = PmergeMe::FJalgorithm( _nbV );
 	std::cout << "After: ";
 	PmergeMe::printVector( result );
@@ -95,10 +96,9 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 	//
 	//insert index 0 of pend
 	main.insert( main.begin(), pend[0] );
-
-		//insert index 1 of pend
 	
-
+	//insert index 1 of pend
+	
 	int	index = 1;
 	int	pendSize = pend.size();
 	while ( index < pendSize ) {
@@ -154,14 +154,15 @@ std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, st
 	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
 		
 
-	std::cout << "max pos in main " << maxPositionInMain << std::endl;
 	for ( int i = maxPositionInMain-1; i >= 0; i--) {
+		if ( insertIt > here[i] || i == 0 ) {
 		
-		if ( insertIt > here[i] ) {
+			if ( i == 0 ) {  i = -1; }
 			here.insert( here.begin() + i + 1, insertIt );
 			break ;
 		}
 	}
+
 
 	return here;
 }
@@ -279,7 +280,7 @@ void	PmergeMe::printList() {
 void	PmergeMe::printPairs( std::vector< std::pair<int, int> > p) {
 
 
-	if ( p.empty() ) {  std::cout << "empty" << std::endl;  }
+	if ( p.empty() ) {  std::cout << "pairs are empty" << std::endl;  }
 	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < p.size(); i++) {
 		std::cout << "Pair : " << p[i].first << " + " << p[i].second << std::endl;
 	}

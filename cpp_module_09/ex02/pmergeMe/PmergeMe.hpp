@@ -65,7 +65,8 @@ private:
 
 	void	printList();
 	std::list<int>		_nbL;
-
+	
+	int	temp;
 };
 
 #endif
