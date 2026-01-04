@@ -159,13 +159,20 @@ std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, st
 	int	maxPositionInMain = PmergeMe::findMainPositionForPair( pairOfPend, here );
 	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
 		
+	std::cout << "Need to insert " << insertIt << " to main:  ";
+	PmergeMe::printVector(here);
+	std::cout << "Pairs are : ";
+	PmergeMe::printPairs(pairs);
+
 
 	for ( int i = maxPositionInMain-1; i >= 0; i--) {
-		if ( insertIt > here[i] || i == 0 ) {
+		if ( insertIt > here[i]) {
 		
-			std::
-			if ( i == 0 ) {  i = -1; }
 			here.insert( here.begin() + i + 1, insertIt );
+			break ;
+		}
+		else if ( i == 0 ) {
+			here.insert( here.begin(), insertIt );
 			break ;
 		}
 	}
