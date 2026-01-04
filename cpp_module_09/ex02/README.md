@@ -103,3 +103,6 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 	- from 0 to INT_MAX
 	- doubles are not possible
 
+
+
+std::vector<int>::size_type = size_t -> is unsigned

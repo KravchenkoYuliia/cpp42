@@ -40,11 +40,6 @@ void	PmergeMe::sorting( char** av ) {
 	PmergeMe::printVector( _nbV );
 	std::cout << std::endl;
 	
-	/*std::cout << "Make pairs at the beginning: " << std::endl;
-	PmergeMe::makePairs();
-	PmergeMe::printPairs( _pairsV );
-	std::cout << std::endl;*/
-
 	std::vector<int> result = PmergeMe::FJalgorithm( _nbV );
 	std::cout << "After: ";
 	PmergeMe::printVector( result );
@@ -159,7 +154,8 @@ std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, st
 	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
 		
 
-	for ( std::vector<int>::size_type i = maxPositionInMain-1; i >= 0; i--) {
+	std::cout << "max pos in main " << maxPositionInMain << std::endl;
+	for ( int i = maxPositionInMain-1; i >= 0; i--) {
 		
 		if ( insertIt > here[i] ) {
 			here.insert( here.begin() + i + 1, insertIt );
