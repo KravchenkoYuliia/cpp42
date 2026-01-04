@@ -118,11 +118,17 @@ std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main
 	int mainSize = main.size();
 
 	if ( straggler > main[ mainSize/2 ]) {
+		
 		for ( int i = mainSize/2 ; i < mainSize; i++) {
 			
-			if ( straggler < main[i] || i+1 == mainSize ) {
+			if ( straggler < main[i]) {
 
 				main.insert( main.begin() + i, straggler);
+				return main;
+			}
+			else if ( i+1 == mainSize ) {
+
+				main.insert( main.begin() + i+1, straggler);
 				return main;
 			}
 		}
@@ -157,6 +163,7 @@ std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, st
 	for ( int i = maxPositionInMain-1; i >= 0; i--) {
 		if ( insertIt > here[i] || i == 0 ) {
 		
+			std::
 			if ( i == 0 ) {  i = -1; }
 			here.insert( here.begin() + i + 1, insertIt );
 			break ;
