@@ -6,6 +6,7 @@ void    printTimeCallAlgo( T container, std::string type ) {
 
 	if ( type == "vector" ) {
 	
+		std::cout << "FORD-JOHNSON ALGORITHM" << std::endl;
 		T       result = PmergeMe::FJalgorithm( container );
 		const std::clock_t afterTime = std::clock();
 		PmergeMe::countTime( "vector", container.size(), beforeTime, afterTime );
@@ -23,9 +24,9 @@ void    printTimeCallAlgo( T container, std::string type ) {
 	
 	else if ( type == "vector no Ford-Johnson" ) {
 
+		std::cout << "SIMPLE COMPARISON-BASED SORT (not Ford-Johnson)" << std::endl;
 		T       result = PmergeMe::sortWithoutAlgo( container );
 		const std::clock_t afterTime = std::clock();
-		std::cout << "Sorting without Ford-Johnson algorithm to compare the used time" << std::endl;
 		PmergeMe::countTime( "vector", container.size(), beforeTime, afterTime );
 		
 		std::cout << "After: ";
