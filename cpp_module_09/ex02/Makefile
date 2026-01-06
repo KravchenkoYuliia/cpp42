@@ -15,7 +15,7 @@ NAME = PmergeMe
 all: $(NAME)
 
 HEADER_DEPS = -MMD -MP
-FLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 $(HEADER_DEPS)
+FLAGS = -Wall -Wextra -Werror -std=c++98 $(HEADER_DEPS)
 FILES = main.cpp pmergeMe/PmergeMe.cpp
 
 OBJ_DIR = objects

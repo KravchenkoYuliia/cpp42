@@ -36,21 +36,23 @@ public:
 
 	~PmergeMe();
 
+	static void			countTime( std::string container, int containerSize, int beforeTime, int afterTime );
+	static std::vector<int>		sortWithoutAlgo( std::vector<int> v );
+	static std::vector<int>		FJalgorithm( std::vector<int> v );
+	static void			printVector( std::vector<int> v );
+	static std::vector<int>		insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> >	pairs );
+	static std::vector<int>		insertStraggler( int straggler, std::vector<int> main );
+	static int			findPair( int findIt, std::vector< std::pair<int, int> > inHere );
+	static int			findMainPositionForPair( int findIt, std::vector<int> inHere );
+	static bool			vectorIsSorted( std::vector<int> v );
+
 private:
 	void	sorting( char** av );
 	void	fillContainers( char** av );
 	void	avIsValid( std::string str );
-	void	countTime( std::string container, int containerSize, int beforeTime, int afterTime );
-
-	void			sortVector( void );
-	void			makePairs( void );
-	int			findPair( int findIt, std::vector< std::pair<int, int> > inHere );
-	int			findMainPositionForPair( int findIt, std::vector<int> inHere );
-	std::vector<int>	insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> >	pairs );
-	std::vector<int>	insertStraggler( int straggler, std::vector<int> main );
-	std::vector<int>	FJalgorithm( std::vector<int> v );
+	void	sortVector( void );
+	void	makePairs( void );
 	
-	void	printVector( std::vector<int> v );
 	void	printPairs( std::vector< std::pair<int, int> > p );
 
 	std::vector<int>			_nbV;
@@ -69,5 +71,10 @@ private:
 	std::list<int>		_nbL;
 	
 };
+
+template <typename T>
+void	printTimeCallAlgo();
+
+#include "PmergeMe.tpp" 
 
 #endif

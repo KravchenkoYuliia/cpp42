@@ -51,13 +51,16 @@ void	PmergeMe::sorting( char** av ) {
 	PmergeMe::printVector( result );
 */
 
-	const std::clock_t beforeTime = std::clock();
+
+	::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector no Ford-Johnson" );
+	::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector" );
+	/*const std::clock_t beforeTime = std::clock();
 	std::vector<int> result = PmergeMe::FJalgorithm( _nbV );
 	const std::clock_t afterTime = std::clock();
 	PmergeMe::countTime( "vector", _nbV.size(), beforeTime, afterTime );
 	
 	std::cout << "After: ";
-	PmergeMe::printVector( result );
+	PmergeMe::printVector( result );*/
 
 /*	const std::clock_t beforeTime = std::clock();
 	std::list result = PmergeMe::FJalgorithm( _nbL );
@@ -318,4 +321,29 @@ void	PmergeMe::printPairs( std::vector< std::pair<int, int> > p) {
 	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < p.size(); i++) {
 		std::cout << "Pair : " << p[i].first << " + " << p[i].second << std::endl;
 	}
+}
+
+
+std::vector<int>	PmergeMe::sortWithoutAlgo( std::vector<int> v ) {
+
+
+	PmergeMe::printVector( v );
+	while ( !PmergeMe::vectorIsSorted( v ) ) {
+	
+		for ( std::vector<int>::size_type i = 0; i < v.size(); i++ ) {
+			if ( i+1 < v.size() && v[i] > v[i+1] ) {  std::swap( v[i], v[i+1] );  }
+		}
+	}
+	
+	return v;
+}
+
+bool	PmergeMe::vectorIsSorted( std::vector<int> v ) {
+
+	for ( std::vector<int>::size_type i = 0; i < v.size(); i++ ) {
+
+		if ( i+1 < v.size() && v[i] > v[i+1] ) {  return false;  }
+	}
+	
+	return true;
 }
