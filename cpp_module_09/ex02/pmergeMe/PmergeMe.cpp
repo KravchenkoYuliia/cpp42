@@ -42,7 +42,7 @@ void	PmergeMe::sorting( char** av ) {
 	
 
 
-	::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector no Ford-Johnson" );
+	//::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector no Ford-Johnson" );
 	std::cout << std::endl;
 	::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector" );
 	std::cout << std::endl;
@@ -88,27 +88,54 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 	//
 	//Step 2 : sort main
 	//
+	std::cout << "pend before recursion ";
+	PmergeMe::printVector(pend);
 	main = PmergeMe::FJalgorithm( main );
 	//
 	//Step3 : inserting pend to main
 	//
 	//insert index 0 of pend
 	main.insert( main.begin(), pend[0] );
-	
+	if ( pend.size() == 1 ) {  return main;  }
 	//insert index 1 of pend
 	
 	int	index = 1;
+	int	previousIndex = 1;
+	int	previousOfThePreviousIndex = 1;
+
 	int	pendSize = pend.size();
+
+	std::cout << " New pend " << std::endl;
+	PmergeMe::printVector(pend);
 	while ( index < pendSize ) {
 
-		main = PmergeMe::insertNumber( pend[index], main, pairs );
-		index++;
+			std::cout << "Inserting pend[index] " << pend[index] << " i = " << index << " because i > prevInd " << previousIndex << std::endl; 
+		for ( int i = index; i > previousIndex; i -= 1 ) {
+
+			main = PmergeMe::insertNumber( pend[i], main, pairs );}
+		std::cout << "Index is " << index << "/ previousIndex is " << previousIndex << " previous of prev is " << previousOfThePreviousIndex << std::endl; 
+		PmergeMe::getNextIndexWithJacobsthalSequence( index, previousIndex, previousOfThePreviousIndex );
+	}
+
+
+	std::cout << "i = " << pendSize-1 << " i > previous of prev " << previousOfThePreviousIndex << std::endl;
+	for ( int i = pendSize-1; i > previousOfThePreviousIndex; i -= 1 ) {
+		std::cout << "here" << std::endl;
+		main = PmergeMe::insertNumber( pend[i], main, pairs );
 	}
 
 	if ( straggler != NOSTRAGGLER )
 			main = PmergeMe::insertStraggler( straggler, main );
 	
 	return main;
+}
+
+void	PmergeMe::getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex ) {
+
+	index = previousIndex + 2 * previousOfThePreviousIndex;
+
+	previousOfThePreviousIndex = previousIndex;
+	previousIndex = index;
 }
 
 std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main ) {
@@ -184,6 +211,8 @@ int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> > inHere) {
 
 int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int> inHere ) {
 
+	std::cout << "findIt = " << findIt  << " vector inHere is :";
+	PmergeMe::printVector( inHere );
 	int count = 0;
 	for ( std::vector<int>::size_type i = 0; i < inHere.size(); i++ ) {
 		if ( inHere[i] == findIt ) {  return count;  }
@@ -220,7 +249,7 @@ void	PmergeMe::fillContainers( char** av ) {
 			if (ss.fail()) {  throw std::runtime_error("Error: only digit are allowed");  }
 			if (l > INT_MAX) {  throw std::runtime_error("Error: nb is out of int limits");  }
 			
-			if (std::find(_nbV.begin(), _nbV.end(), l) != _nbV.end()) {  throw std::runtime_error("Error: doubles are not allowed");  }
+			if (std::find(_nbV.begin(), _nbV.end(), l) != _nbV.end()) {  std::cerr << "[" << l << "]"<< std::endl;  throw std::runtime_error("Error: doubles are not allowed");  }
 			_nbV.push_back(l);
 			_nbL.push_back(l);
 		}
