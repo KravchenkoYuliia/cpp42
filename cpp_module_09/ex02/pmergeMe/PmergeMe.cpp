@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2026/01/04 16:21:39 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/12 11:06:27 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,8 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 	//
 	//insert index 0 of pend
 	
-	std::cout << "NEW pend insertion" << std::endl << "pend: ";
-	PmergeMe::printVector(pend);
-	std::cout << "main: ";
-	PmergeMe::printVector(main);
 
-	std::cout << "insert pend[0] " << pend[0] << std::endl;
 	main = PmergeMe::insertNumber( pend[0], main, pairs );
-	//main.insert( main.begin(), pend[0] );
 	if ( pend.size() == 1 && straggler == NOSTRAGGLER ) {  return main;  }
 	
 
@@ -113,7 +107,6 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 
 
 	if ( pend.size() > 1 ) {
-		std::cout << "insert index 1: " << pend[1] << std::endl;
 		main = PmergeMe::insertNumber( pend[index], main, pairs );
 		PmergeMe::getNextIndexWithJacobsthalSequence( index, previousIndex, previousOfThePreviousIndex );
 
@@ -122,7 +115,6 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 
 		for ( int i = index; i > previousOfThePreviousIndex; i -= 1 ) {
 
-			std::cout << "insert index  " << i << " which is " << pend[i] << std::endl;
 			main = PmergeMe::insertNumber( pend[i], main, pairs );
 		}
 		PmergeMe::getNextIndexWithJacobsthalSequence( index, previousIndex, previousOfThePreviousIndex );
@@ -179,10 +171,6 @@ void	PmergeMe::getNextIndexWithJacobsthalSequence( int& index, int& previousInde
 }
 
 std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main ) {
-
-	std::cout << "Insert straggler " << straggler << " in main: ";
-	PmergeMe::printVector( main );
-
 
 	int mainSize = main.size();
 
@@ -260,7 +248,7 @@ void	PmergeMe::makePairs( void ) {
 void	PmergeMe::fillContainers( char** av ) {
 
 	for (int i = 1; av[i]; i++) { 
-		
+	
 		PmergeMe::avIsValid(av[i]);
 
 		size_t			l = 0;
@@ -278,23 +266,25 @@ void	PmergeMe::fillContainers( char** av ) {
 
 void	PmergeMe::avIsValid(std::string str) {
 
-	if (str.length() > 10) {  throw std::runtime_error("Error: nb is out of INT limits");  }
+	
+	if ( str.length() > 10 && str[0] == '-' ) {  throw std::runtime_error("Error: only positive integers are allowed");  }
+	if ( str.length() > 10 ) {  throw std::runtime_error("Error: nb is out of INT limits");  }
 
-	for (int i = 0; str[i]; i++) {
+	for ( int i = 0; str[i]; i++ ) {
 		
-		if (!std::isdigit(str[i]) && str[i] != ' ') {
-			if (str[i] == '+') {
+		if ( !std::isdigit(str[i]) && str[i] != ' ' ) {
+			if ( str[i] == '+' ) {
 
-				if (!str[i+1] || !std::isdigit(str[i+1])) {
+				if ( !str[i+1] || !std::isdigit(str[i+1]) ) {
 					std::cerr << "[" << str[i];
 					
-					if (!str[i+1]) { std::cerr << "?"; }
+					if ( !str[i+1] ) { std::cerr << "?"; }
 					else { std::cerr << str[i+1]; }
 					
 					std::cerr << "]" << std::endl; 
 					throw std::runtime_error("Error: invalid input");
 				}
-				if (str[i-1] && str[i-1] != ' ') {
+				if ( str[i-1] && str[i-1] != ' ' ) {
 					std::cerr << "[" << str[i-1] << str[i] << "]" << std::endl;
 					throw std::runtime_error("Error: invalid input"); }
 			}
