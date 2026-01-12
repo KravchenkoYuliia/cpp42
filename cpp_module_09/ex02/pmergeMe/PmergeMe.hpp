@@ -37,21 +37,8 @@ public:
 	~PmergeMe();
 
 	static void			countTime( std::string container, int containerSize, int beforeTime, int afterTime );
-	static std::vector<int>		sortWithoutAlgo( std::vector<int> v );
-	static std::vector<int>		FJalgorithm( std::vector<int> v );
-	
 
-
-	static void			printVector( std::vector<int>& v );
-	static void			printDeque( std::deque<int>& d );
-
-
-
-	static std::vector<int>		insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> >	pairs );
-	static std::vector<int>		insertStraggler( int straggler, std::vector<int> main );
 	static int			findPair( int findIt, std::vector< std::pair<int, int> >& inHere );
-	static int			findMainPositionForPair( int findIt, std::vector<int>& inHere );
-	static bool			vectorIsSorted( std::vector<int> v );
 	static void			getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex );
 
 private:
@@ -62,7 +49,6 @@ private:
 	void	makePairs( void );
 	
 	void	printPairsV( std::vector< std::pair<int, int> > p );
-	void	printPairsD( std::deque< std::pair<int, int> > p );
 
 	std::vector< std::pair<int, int> >	_pairsV;
 	std::deque< std::pair<int, int> >	_pairsD;
@@ -74,6 +60,28 @@ private:
 
 template <typename T>
 void	printTimeCallAlgo( T& container, std::string type );
+
+template <typename T>
+T	FJalgorithm( T container );
+
+template <typename T>
+void	printContainer( T& container, std::string type );
+
+template <typename T>
+T	sortWithoutAlgo( T v );
+
+template <typename T>
+T	insertNumber( int insertIt, T here, std::vector< std::pair<int, int> >	pairs );
+
+template <typename T>
+T	insertStraggler( int straggler, T main );
+
+template <typename T>
+int	findMainPositionForPair( int findIt, T& inHere );
+
+
+template <typename T>
+bool	vectorIsSorted( T v );
 
 #include "PmergeMe.tpp" 
 
