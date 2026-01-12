@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2026/01/12 11:06:27 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:35:28 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ PmergeMe::PmergeMe(const PmergeMe& other) { *this = other; }
 PmergeMe&	PmergeMe::operator=(const PmergeMe& other) {
 
 	if (this != &other) {
-		this->_nbV = other._nbV;
-		this->_nbL = other._nbL;
+		this->_v = other._v;
+		this->_d = other._d;
 	}
 	return *this;
 }
@@ -37,14 +37,14 @@ void	PmergeMe::sorting( char** av ) {
 
 	PmergeMe::fillContainers(av);
 	std::cout << "Before: ";
-	PmergeMe::printVector( _nbV );
+	PmergeMe::printVector( _v );
 	std::cout << std::endl;
 	
 
-
-	::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector no Ford-Johnson" );
+	::printTimeCallAlgo < std::vector<int> > ( _v, "vector no Ford-Johnson" );
 	std::cout << std::endl;
-	::printTimeCallAlgo < std::vector<int> > ( _nbV, "vector" );
+	::printTimeCallAlgo < std::vector<int> > ( _v, "vector" );
+	std::cout << std::endl;
 	std::cout << std::endl;
 }
 
@@ -233,14 +233,14 @@ int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int>&  inHere ) {
 void	PmergeMe::makePairs( void ) {
 	
 	std::vector<int>::size_type i = 0;
-	while ( i+1 < _nbV.size() ) {
+	while ( i+1 < _v.size() ) {
 
-		if ( _nbV[i] > _nbV[i+1])
-			_pairsV.push_back(  std::make_pair( _nbV[i+1], _nbV[i] )  );
+		if ( _v[i] > _v[i+1])
+			_pairsV.push_back(  std::make_pair( _v[i+1], _v[i] )  );
 		else
-			_pairsV.push_back(  std::make_pair( _nbV[i], _nbV[i+1] )  );
+			_pairsV.push_back(  std::make_pair( _v[i], _v[i+1] )  );
 
-		if ( i+2 < _nbV.size() ) {  i += 2;  }
+		if ( i+2 < _v.size() ) {  i += 2;  }
 		else {  break;  }
 	}
 }
@@ -257,9 +257,9 @@ void	PmergeMe::fillContainers( char** av ) {
 			if (ss.fail()) {  throw std::runtime_error("Error: only digit are allowed");  }
 			if (l > INT_MAX) {  throw std::runtime_error("Error: nb is out of int limits");  }
 			
-			if (std::find(_nbV.begin(), _nbV.end(), l) != _nbV.end()) {  std::cerr << "[" << l << "]"<< std::endl;  throw std::runtime_error("Error: doubles are not allowed");  }
-			_nbV.push_back(l);
-			_nbL.push_back(l);
+			if (std::find(_v.begin(), _v.end(), l) != _v.end()) {  std::cerr << "[" << l << "]"<< std::endl;  throw std::runtime_error("Error: doubles are not allowed");  }
+			_v.push_back( l );
+			_d.push_back( l );
 		}
 	}
 }
@@ -313,22 +313,19 @@ void	PmergeMe::printVector( std::vector<int>& v) {
 	std::cout << RESET << std::endl;
 }
 
-void	PmergeMe::printList() {
 
-	int i = 0;
-	std::list<int>::iterator	it = _nbL.begin();
-	
-	std::cout << LISTCOLOR << std::endl;
-	while (it != _nbL.end()) {
+void	PmergeMe::printDeque( std::deque<int>& d ) {
 
-		std::cout << i << ": " << *it << std::endl;
-		i++;
-		it++;
+	if ( d.empty() ) {  std::cout << "empty" << std::endl;  }
+	std::cout << DEQUECOLOR;
+	for (std::deque<int>::size_type i = 0; i < d.size(); i++) {
+
+		std::cout << " " << d[i];
 	}
 	std::cout << RESET << std::endl;
 }
 
-void	PmergeMe::printPairs( std::vector< std::pair<int, int> > p) {
+void	PmergeMe::printPairsV( std::vector< std::pair<int, int> > p) {
 
 
 	if ( p.empty() ) {  std::cout << "pairs are empty" << std::endl;  }

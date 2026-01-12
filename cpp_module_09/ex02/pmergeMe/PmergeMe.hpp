@@ -17,7 +17,7 @@
 #include <iomanip> 
 #include <algorithm> 
 #include <vector>
-#include <list> 
+#include <deque> 
 #include <cstdlib>
 #include <sstream>
 #include <climits>
@@ -39,7 +39,14 @@ public:
 	static void			countTime( std::string container, int containerSize, int beforeTime, int afterTime );
 	static std::vector<int>		sortWithoutAlgo( std::vector<int> v );
 	static std::vector<int>		FJalgorithm( std::vector<int> v );
+	
+
+
 	static void			printVector( std::vector<int>& v );
+	static void			printDeque( std::deque<int>& d );
+
+
+
 	static std::vector<int>		insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> >	pairs );
 	static std::vector<int>		insertStraggler( int straggler, std::vector<int> main );
 	static int			findPair( int findIt, std::vector< std::pair<int, int> >& inHere );
@@ -54,22 +61,14 @@ private:
 	void	sortVector( void );
 	void	makePairs( void );
 	
-	void	printPairs( std::vector< std::pair<int, int> > p );
+	void	printPairsV( std::vector< std::pair<int, int> > p );
+	void	printPairsD( std::deque< std::pair<int, int> > p );
 
-	std::vector<int>			_nbV;
 	std::vector< std::pair<int, int> >	_pairsV;
+	std::deque< std::pair<int, int> >	_pairsD;
 
-
-
-
-
-
-
-
-
-
-	void	printList();
-	std::list<int>		_nbL;
+	std::vector<int>	_v;
+	std::deque<int>		_d;
 	
 };
 

@@ -116,3 +116,8 @@ todo next:
 - create a function that sort numbers without algorithm to see how much more time it takes comparing to Ford-Johnson
 - apply Jacobsthal sequence to the inserting numbers
 - repeat the same algorithm process with List
+
+
+
+### DEQUE
+It's a sequence container that allows you to add or remove elements from both the front and the back ( like stack and queue )

@@ -6,6 +6,7 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 
 	if ( type == "vector" ) {
 	
+
 		std::cout << "FORD-JOHNSON ALGORITHM" << std::endl;
 		T       result = PmergeMe::FJalgorithm( container );
 		const std::clock_t afterTime = std::clock();
@@ -15,11 +16,15 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 		PmergeMe::printVector( result );
 	}
 
-	else if ( type == "list" ) {
+	else if ( type == "deque" ) {
 
-		//algo for list
+		std::cout << "DEQUE" << std::endl;
+/*
 		const std::clock_t afterTime = std::clock();
-		PmergeMe::countTime( "list", container.size(), beforeTime, afterTime );
+		PmergeMe::countTime( "deque", container.size(), beforeTime, afterTime );
+		
+		std::cout << "After: ";
+		//PmergeMe::printDeque( result );*/
 	}
 	
 	else if ( type == "vector no Ford-Johnson" ) {
