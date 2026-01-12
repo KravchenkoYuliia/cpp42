@@ -39,11 +39,11 @@ public:
 	static void			countTime( std::string container, int containerSize, int beforeTime, int afterTime );
 	static std::vector<int>		sortWithoutAlgo( std::vector<int> v );
 	static std::vector<int>		FJalgorithm( std::vector<int> v );
-	static void			printVector( std::vector<int> v );
+	static void			printVector( std::vector<int>& v );
 	static std::vector<int>		insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> >	pairs );
 	static std::vector<int>		insertStraggler( int straggler, std::vector<int> main );
-	static int			findPair( int findIt, std::vector< std::pair<int, int> > inHere );
-	static int			findMainPositionForPair( int findIt, std::vector<int> inHere );
+	static int			findPair( int findIt, std::vector< std::pair<int, int> >& inHere );
+	static int			findMainPositionForPair( int findIt, std::vector<int>& inHere );
 	static bool			vectorIsSorted( std::vector<int> v );
 	static void			getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex );
 

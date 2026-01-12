@@ -210,7 +210,7 @@ std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main
 }
 
 
-int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> > inHere) {
+int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> >& inHere) {
 
 	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < inHere.size(); i++ ) {
 		if ( inHere[i].second == findIt ) {  return inHere[i].first;  }
@@ -219,7 +219,7 @@ int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> > inHere) {
 	return -1;
 }
 
-int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int>  inHere ) {
+int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int>&  inHere ) {
 
 	int count = 0;
 	for ( std::vector<int>::size_type i = 0; i < inHere.size(); i++ ) {
@@ -302,7 +302,7 @@ void	PmergeMe::countTime( std::string container, int containerSize,  int beforeT
 
 }
 
-void	PmergeMe::printVector( std::vector<int> v) {
+void	PmergeMe::printVector( std::vector<int>& v) {
 	
 	if ( v.empty() ) {  std::cout << "empty" << std::endl;  }
 	std::cout << VECTORCOLOR;
