@@ -45,7 +45,7 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 
 	It will be used on `pend` chain. The sequence is limited by `pend` size
 
-		The last earmain` is : 1 -> 4 -> 7 -> 8 -> 14
+		The last remain` is : 1 -> 4 -> 7 -> 8 -> 14
 		The `pend` chain is : 0, 3, 5, 2, 6
 		The pairs:
 		 [0 1] [3 4] [5 7] [2 8] [6 14] [9]
@@ -63,6 +63,7 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 	- (0,1] insert index 1
 	- (1,3] insert index 3 than 2
 	- (3,5] insert index 5 than 4 (in our exemple there is no index 5 so just insert 4)
+	- (5, 11] insert 11 than 10 9 8 7 6
 	
 
 

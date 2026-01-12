@@ -45,6 +45,7 @@ public:
 	static int			findPair( int findIt, std::vector< std::pair<int, int> > inHere );
 	static int			findMainPositionForPair( int findIt, std::vector<int> inHere );
 	static bool			vectorIsSorted( std::vector<int> v );
+	static void			getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex );
 
 private:
 	void	sorting( char** av );
@@ -73,7 +74,7 @@ private:
 };
 
 template <typename T>
-void	printTimeCallAlgo();
+void	printTimeCallAlgo( T& container, std::string type );
 
 #include "PmergeMe.tpp" 
 

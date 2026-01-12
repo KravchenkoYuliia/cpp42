@@ -59,7 +59,7 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 	//
 	//Step 1 : get main, pend and straggler
 	//
-		
+	
 	if ( v.size() % 2 != 0 ) {  straggler = v[v.size()-1];  }
 	else {  straggler = NOSTRAGGLER;  }
 	
@@ -93,30 +93,100 @@ std::vector<int>	PmergeMe::FJalgorithm( std::vector<int> v ) {
 	//Step3 : inserting pend to main
 	//
 	//insert index 0 of pend
-	main.insert( main.begin(), pend[0] );
 	
-	//insert index 1 of pend
+	std::cout << "NEW pend insertion" << std::endl << "pend: ";
+	PmergeMe::printVector(pend);
+	std::cout << "main: ";
+	PmergeMe::printVector(main);
+
+	std::cout << "insert pend[0] " << pend[0] << std::endl;
+	main = PmergeMe::insertNumber( pend[0], main, pairs );
+	//main.insert( main.begin(), pend[0] );
+	if ( pend.size() == 1 && straggler == NOSTRAGGLER ) {  return main;  }
 	
+
 	int	index = 1;
+	int	previousIndex = 1;
+	int	previousOfThePreviousIndex = 1;
+
 	int	pendSize = pend.size();
+
+
+	if ( pend.size() > 1 ) {
+		std::cout << "insert index 1: " << pend[1] << std::endl;
+		main = PmergeMe::insertNumber( pend[index], main, pairs );
+		PmergeMe::getNextIndexWithJacobsthalSequence( index, previousIndex, previousOfThePreviousIndex );
+
+	}
 	while ( index < pendSize ) {
 
-		main = PmergeMe::insertNumber( pend[index], main, pairs );
-		index++;
+		for ( int i = index; i > previousOfThePreviousIndex; i -= 1 ) {
+
+			std::cout << "insert index  " << i << " which is " << pend[i] << std::endl;
+			main = PmergeMe::insertNumber( pend[i], main, pairs );
+		}
+		PmergeMe::getNextIndexWithJacobsthalSequence( index, previousIndex, previousOfThePreviousIndex );
 	}
 
-	if ( straggler != NOSTRAGGLER )
+
+	for ( int i = pendSize-1; i > previousOfThePreviousIndex; i -= 1 ) {
+
+		main = PmergeMe::insertNumber( pend[i], main, pairs );
+	}
+
+	if ( straggler != NOSTRAGGLER ) {
 			main = PmergeMe::insertStraggler( straggler, main );
+	}
 	
 	return main;
 }
 
+std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> > pairs) {
+
+	int	pairOfPend = PmergeMe::findPair( insertIt, pairs );
+	if ( pairOfPend == -1) {  std::cerr << "find pair for " << insertIt << std::endl; throw std::runtime_error("Error: no number you're looking for");  }
+
+
+	int	maxPositionInMain = PmergeMe::findMainPositionForPair( pairOfPend, here );
+	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
+
+	if ( maxPositionInMain == 0 ) {
+		
+		here.insert( here.begin(), insertIt );
+		return here;
+	}
+	for ( int i = maxPositionInMain-1; i >= 0; i--) {
+		if ( insertIt > here[i]) {
+		
+			here.insert( here.begin() + i + 1, insertIt );
+			break ;
+		}
+		else if ( i == 0 ) {
+			here.insert( here.begin(), insertIt );
+			break ;
+		}
+	}
+
+	return here;
+}
+
+void	PmergeMe::getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex ) {
+
+	index = previousIndex + 2 * previousOfThePreviousIndex;
+
+	previousOfThePreviousIndex = previousIndex;
+	previousIndex = index;
+}
+
 std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main ) {
+
+	std::cout << "Insert straggler " << straggler << " in main: ";
+	PmergeMe::printVector( main );
+
 
 	int mainSize = main.size();
 
 	if ( straggler > main[ mainSize/2 ]) {
-		
 		for ( int i = mainSize/2 ; i < mainSize; i++) {
 			
 			if ( straggler < main[i]) {
@@ -134,44 +204,23 @@ std::vector<int>	PmergeMe::insertStraggler( int straggler, std::vector<int> main
 	else {
 		for ( int i = mainSize/2 ; i >= 0; i--) {
 
-			if ( straggler > main[i] || i == 0) {
+			if ( straggler > main[i]) {
 
-				if (i == 0)
-					main.insert( main.begin() + i, straggler);
-				else
-					main.insert( main.begin() + i + 1, straggler);
+				main.insert( main.begin() + i + 1, straggler);
 				return main;
 			}
+			if ( i == 0 && straggler < main[i] ) {
+
+				main.insert( main.begin(), straggler);
+				return main;
+			}
+
 		}
 	}
 
 	return main;
 }
 
-std::vector<int>	PmergeMe::insertNumber( int insertIt, std::vector<int> here, std::vector< std::pair<int, int> > pairs) {
-
-	int	pairOfPend = PmergeMe::findPair( insertIt, pairs );
-	if ( pairOfPend == -1) {  throw std::runtime_error("Error: no number you're looking for");  }
-
-
-	int	maxPositionInMain = PmergeMe::findMainPositionForPair( pairOfPend, here );
-	if ( maxPositionInMain == -1) {  throw std::runtime_error("Error: no position you're looking for");  }
-
-	for ( int i = maxPositionInMain-1; i >= 0; i--) {
-		if ( insertIt > here[i]) {
-		
-			here.insert( here.begin() + i + 1, insertIt );
-			break ;
-		}
-		else if ( i == 0 ) {
-			here.insert( here.begin(), insertIt );
-			break ;
-		}
-	}
-
-
-	return here;
-}
 
 int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> > inHere) {
 
@@ -182,7 +231,7 @@ int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> > inHere) {
 	return -1;
 }
 
-int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int> inHere ) {
+int	PmergeMe::findMainPositionForPair( int findIt, std::vector<int>  inHere ) {
 
 	int count = 0;
 	for ( std::vector<int>::size_type i = 0; i < inHere.size(); i++ ) {
@@ -220,7 +269,7 @@ void	PmergeMe::fillContainers( char** av ) {
 			if (ss.fail()) {  throw std::runtime_error("Error: only digit are allowed");  }
 			if (l > INT_MAX) {  throw std::runtime_error("Error: nb is out of int limits");  }
 			
-			if (std::find(_nbV.begin(), _nbV.end(), l) != _nbV.end()) {  throw std::runtime_error("Error: doubles are not allowed");  }
+			if (std::find(_nbV.begin(), _nbV.end(), l) != _nbV.end()) {  std::cerr << "[" << l << "]"<< std::endl;  throw std::runtime_error("Error: doubles are not allowed");  }
 			_nbV.push_back(l);
 			_nbL.push_back(l);
 		}

@@ -1,5 +1,5 @@
 template <typename T>
-void    printTimeCallAlgo( T container, std::string type ) {
+void    printTimeCallAlgo( T& container, std::string type ) {
 
 
 	const std::clock_t beforeTime = std::clock();
@@ -31,6 +31,7 @@ void    printTimeCallAlgo( T container, std::string type ) {
 		
 		std::cout << "After: ";
 		PmergeMe::printVector( result );
+		std::cout << std::endl << std::endl;
 	}
 
 }
