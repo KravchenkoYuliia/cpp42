@@ -20,7 +20,9 @@ RPN::RPN(const RPN& other) { *this = other; }
 
 RPN&	RPN::operator=(const RPN& other) {
 
-	if (this != &other) {}
+	if (this != &other) {
+		this->_numbers = other._numbers;
+	}
 	return *this;
 }
 
@@ -70,8 +72,11 @@ void	RPN::operation(char type) {
 		_numbers.push(first - second);
 	else if (type == '*')
 		_numbers.push(first * second);
-	else if (type == '/')
+	else if (type == '/') {
+		
+		if ( second == 0 ) {  throw std::runtime_error( "Can't divide by 0" );  }
 		_numbers.push(first / second);
+	}
 }
 
 bool	RPN::calculationIsValid(std::string calculation) {
