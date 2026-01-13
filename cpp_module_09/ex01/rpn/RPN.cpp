@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:25:28 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/19 16:18:50 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/13 14:56:01 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,41 @@ void	RPN::operation(char type) {
 
 	if (_numbers.size() < 2) {  throw std::runtime_error("Error: not enough numbers for the operation");  }
 	
-	int	second = _numbers.top();
+	long long	second = _numbers.top();
 	_numbers.pop();
-	int	first = _numbers.top();
+	long long	first = _numbers.top();
 	_numbers.pop();
 	
-	if (type == '+')
+	long long result = 0;
+
+	if (type == '+') {
+
+		result = first + second;
+		if ( result < INT_MIN || result > INT_MAX )
+			throw std::runtime_error( "overflow" );
 		_numbers.push(first + second);
-	else if (type == '-')
+	}
+	else if (type == '-') {
+		
+		result = first - second;
+		if ( result < INT_MIN || result > INT_MAX )
+			throw std::runtime_error( "overflow" );
 		_numbers.push(first - second);
-	else if (type == '*')
+	}
+	else if (type == '*') {
+
+		result = first * second;
+		if ( result < INT_MIN || result > INT_MAX )
+			throw std::runtime_error( "overflow" );
 		_numbers.push(first * second);
+	}
 	else if (type == '/') {
 		
 		if ( second == 0 ) {  throw std::runtime_error( "Can't divide by 0" );  }
+		
+		result = first / second;
+		if ( result < INT_MIN || result > INT_MAX )
+			throw std::runtime_error( "overflow" );
 		_numbers.push(first / second);
 	}
 }
