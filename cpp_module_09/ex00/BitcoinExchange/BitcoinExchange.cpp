@@ -58,12 +58,37 @@ void	BitcoinExchange::convertValueInLine(std::map<std::string, double>& rateMap,
 
 	std::map<std::string, double>::const_iterator	it = rateMap.begin();
 	while (it != rateMap.end()) {
+		
+		int	year = 0;
+		BitcoinExchange::stringToNumber(data.substr(0, 4), year);
+		if ( year > 2022 ) {  
 
+			it = rateMap.end();
+			if ( !rateMap.empty() ) {  --it;  }
+			break ;
+		} 
 		if (data.substr(0, 4) == it->first.substr(0, 4)) {
+				
+			int	month = 0;
+			BitcoinExchange::stringToNumber(data.substr(5, 2), month);
+			if ( month > 3) {  
+				it = rateMap.end();  
+				if ( !rateMap.empty() ) {  --it;  }
+				break;
+			}
 
 			if (data.substr(5, 2) == it->first.substr(5, 2)) {
 
-				if (data.substr(8, 2) == it->first.substr(8, 2)) {  break ;  }
+				int day = 0;
+				BitcoinExchange::stringToNumber( data.substr( 8, 2 ), day );
+
+				if ( year == 2022 && month == 3 && day > 29 ) {
+
+					it = rateMap.end();
+					if ( !rateMap.empty() ) {  --it;  }
+					break;
+				}
+							if (data.substr(8, 2) == it->first.substr(8, 2)) {  break ;  }
 				else {
 					int	inputDay = 0;
 					int	mapDay = 0;
@@ -153,7 +178,7 @@ bool	BitcoinExchange::dataNumberIsValid(std::string data, int type, std::string 
 	long	l = 0;
 	BitcoinExchange::stringToNumber(data, l);
 
-	if (type == YEAR && (l < 2009 || l > 2022)) {  std::cerr << "Error: invalid year => " << l << ", only 2009-2022" << std::endl; return false;  }
+	if (type == YEAR && (l < 2009)) {  std::cerr << "Error: invalid year => " << l << ", from 2009 only" << std::endl; return false;  }
 	else if (type == MONTH && (l < 01 || l > 12)) {  std::cerr << "Error: invalid month => " << l << ", only 01-12"  << std::endl; return false;  }
 	else if (type == DAY) {
 
