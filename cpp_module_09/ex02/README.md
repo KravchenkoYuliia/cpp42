@@ -121,3 +121,9 @@ todo next:
 
 ### DEQUE
 It's a sequence container that allows you to add or remove elements from both the front and the back ( like stack and queue )
+Blocks that stock the memory of elements. Array of arrays.
+
+
+### cmd to generate a lot of numbers
+./PmergeMe $(shuf -i <min-max> -n <how many numbers>)
+
