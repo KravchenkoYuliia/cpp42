@@ -84,9 +84,22 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 
 ### Binary search
 	faster
-	random access, compare only a part so can access the list, for exemple, in the middle by index
-	std::vector
-	has operator []
+	possible only on a sorted sequence
+
+	instead of checking all the numbers - check only the half and repeate till it's only 1 number left
+	exemple: 
+		looking for 1
+		 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+	step 1 
+		 [1 2 3 4 5 6 7 | 8 9 10 11 12 13 14] - is 14 > 8 or 14 < 8
+	step 2
+		[8 9 10 | 11 12 13 14] is 14 > 11 or 14 < 11
+	step 3
+		[11 12 | 13 14] is 14 > 13 or 14 < 13
+	step 4
+		[13 | 14] 14 is found on index 13 with 4 steps instead of checking every index from 0 to 13 
+
+		
 
 
 ## std::map Vs std::vector<pair<int,int>>
@@ -108,14 +121,6 @@ Exemple of the original list : [8 2 1 0 4 3 7 5 14 6 9]
 
 std::vector<int>::size_type = size_t -> is unsigned
 
-
-
-todo next:
-
-- create a template that will count time and call the right algorithm function for different container.
-- create a function that sort numbers without algorithm to see how much more time it takes comparing to Ford-Johnson
-- apply Jacobsthal sequence to the inserting numbers
-- repeat the same algorithm process with List
 
 
 
