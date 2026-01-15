@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:53:59 by yukravch          #+#    #+#             */
-/*   Updated: 2026/01/15 13:08:38 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:23:47 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ void	BitcoinExchange::stringToNumber(std::string str, T& number) {
 	std::istringstream	myStream(str);
 
 	myStream >> number;
-	if (myStream.fail()) {  throw std::runtime_error("Error: istringstream failed");  myStream.clear();  }
+	if (myStream.fail()) {  throw std::runtime_error("Error: istringstream failed: overflow");  myStream.clear();  }
 	
 	myStream.clear();
 };
