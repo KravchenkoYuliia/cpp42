@@ -18,6 +18,7 @@
 #include <sstream> 
 #include <map>
 #include <string>
+#include <algorithm> 
 
 #define YEAR 2025
 #define MONTH 12
@@ -57,6 +58,10 @@ private:
 
 
 	void	printMap( std::map<std::string, double>& m );
+
+	int	_firstYear;
+	int	_firstMonth;
+	int	_firstDay;
 };
 
 

@@ -55,52 +55,25 @@ void	BitcoinExchange::convertValueInLine(std::map<std::string, double>& rateMap,
 	
 	double	valueDouble = 0.0;
 	BitcoinExchange::stringToNumber(valueStr, valueDouble);
-
+	
 	std::map<std::string, double>::const_iterator	it = rateMap.begin();
-	while (it != rateMap.end()) {
-		
-		int	year = 0;
-		BitcoinExchange::stringToNumber(data.substr(0, 4), year);
-		if ( year > 2022 ) {  
 
-			it = rateMap.end();
-			if ( !rateMap.empty() ) {  --it;  }
-			break ;
-		} 
-		if (data.substr(0, 4) == it->first.substr(0, 4)) {
-				
-			int	month = 0;
-			BitcoinExchange::stringToNumber(data.substr(5, 2), month);
-			if ( month > 3) {  
-				it = rateMap.end();  
-				if ( !rateMap.empty() ) {  --it;  }
-				break;
-			}
+	it = rateMap.lower_bound(data);
 
-			if (data.substr(5, 2) == it->first.substr(5, 2)) {
+	if ( it != rateMap.end() ) {
 
-				int day = 0;
-				BitcoinExchange::stringToNumber( data.substr( 8, 2 ), day );
+		if ( data != it->first ) {
 
-				if ( year == 2022 && month == 3 && day > 29 ) {
-
-					it = rateMap.end();
-					if ( !rateMap.empty() ) {  --it;  }
-					break;
-				}
-							if (data.substr(8, 2) == it->first.substr(8, 2)) {  break ;  }
-				else {
-					int	inputDay = 0;
-					int	mapDay = 0;
-					
-					BitcoinExchange::stringToNumber(data.substr(8, 2), inputDay);
-					BitcoinExchange::stringToNumber(it->first.substr(8, 2), mapDay);
-					if (mapDay > inputDay) {  it--; break;  }
-				}
-			}
+			if ( it != rateMap.begin() ) 
+				--it;
 		}
-		it++;
 	}
+	else { 
+		it = rateMap.end();
+		if ( !rateMap.empty() )
+			--it;
+	}
+
 	std::cout << data << " => " << valueStr << " = " << it->second*valueDouble << std::endl;
 
 }
@@ -114,6 +87,7 @@ void	BitcoinExchange::insertRateToMap(std::map<std::string, double>& rateMap) {
 	if (std::getline(file, buffer)) {
 		if (buffer != "date,exchange_rate") {  throw std::runtime_error("Error: wrong format of the header \ndate,exchange_rate");  }
 	}
+	bool	firstData = true; 
 	while (std::getline(file, buffer)) {
 
 		std::string	data = buffer.substr(0, 10);
@@ -122,6 +96,17 @@ void	BitcoinExchange::insertRateToMap(std::map<std::string, double>& rateMap) {
 		double	d = 0.0;
 		BitcoinExchange::stringToNumber(rate, d);
 		rateMap.insert( std::pair<std::string, double>(data, d));
+		if ( firstData == true ) {
+
+			BitcoinExchange::stringToNumber(data.substr(0, 4), d);
+			_firstYear = d;
+			BitcoinExchange::stringToNumber(data.substr(5, 2), d);
+			_firstMonth = d;
+			BitcoinExchange::stringToNumber(data.substr(8, 2), d);
+			_firstDay = d;
+
+			firstData = false;
+		}
 	}
 	file.close();
 }
@@ -148,6 +133,18 @@ bool	BitcoinExchange::dataIsValid(std::string data) {
 	std::string	month = data.substr(5, 2);
 	if (month == "" || !BitcoinExchange::dataNumberIsValid(month, MONTH, "")) {  return false;  }
 	std::string	day = data.substr(8, 2);
+	
+	int	yearN = 0;
+	int	monthN = 0;
+	int	dayN = 0;
+	BitcoinExchange::stringToNumber( year, yearN );
+	BitcoinExchange::stringToNumber( month, monthN );
+	BitcoinExchange::stringToNumber( day, dayN );
+	if ( yearN == _firstYear && monthN == _firstMonth && dayN  < _firstDay ) {
+
+		std::cerr << "Error: invalid data => from " << _firstYear << "-" << _firstMonth << "-" << _firstDay << " only" << std::endl;
+		return false;
+	}
 	if (day == "" || !BitcoinExchange::dataNumberIsValid(day, DAY, month)) {  return false;  }
 	
 
@@ -178,7 +175,7 @@ bool	BitcoinExchange::dataNumberIsValid(std::string data, int type, std::string 
 	long	l = 0;
 	BitcoinExchange::stringToNumber(data, l);
 
-	if (type == YEAR && (l < 2009)) {  std::cerr << "Error: invalid year => " << l << ", from 2009 only" << std::endl; return false;  }
+	if (type == YEAR && (l < _firstYear)) {  std::cerr << "Error: invalid year => " << l << ", from " << _firstYear << " only" << std::endl; return false;  }
 	else if (type == MONTH && (l < 01 || l > 12)) {  std::cerr << "Error: invalid month => " << l << ", only 01-12"  << std::endl; return false;  }
 	else if (type == DAY) {
 
