@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 17:53:59 by yukravch          #+#    #+#             */
-/*   Updated: 2025/12/18 16:59:03 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/15 13:08:38 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	BitcoinExchange::convertValue( char* fileName ) {
 	std::string	buffer;
 
 	if (std::getline(file, buffer)) {
-		if (buffer != "date | value") {  throw std::runtime_error("Error: wrong format of the header \ndate | value");  }
+		if (buffer.substr(0, 4) != "date") {  throw std::runtime_error("Error: wrong format of the header \ndate | value");  }
 	}
 
 	while (std::getline(file, buffer)) {
@@ -95,7 +95,7 @@ void	BitcoinExchange::insertRateToMap(std::map<std::string, double>& rateMap) {
 		
 		double	d = 0.0;
 		BitcoinExchange::stringToNumber(rate, d);
-		rateMap.insert( std::pair<std::string, double>(data, d));
+		rateMap[data] = d;
 		if ( firstData == true ) {
 
 			BitcoinExchange::stringToNumber(data.substr(0, 4), d);
