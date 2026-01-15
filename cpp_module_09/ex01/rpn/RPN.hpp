@@ -35,6 +35,7 @@ private:
 	bool	calculationIsValid( std::string calculation );
 	bool	charIsValid( char c );
 	void	operation( char type );
+	bool	hasOnlyOneDigit( std::string calculation );
 };
 
 #endif

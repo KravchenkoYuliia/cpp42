@@ -32,6 +32,11 @@ RPN::~RPN() {}
 
 void	RPN::calculation(std::string calculation) {
 
+	if ( calculation.length() < 3 )
+		throw std::runtime_error( "Error: not enough components for the calculation" );
+	if ( RPN::hasOnlyOneDigit( calculation ) )
+		throw std::runtime_error( "Error: not enough components for the calculation" );
+
 	if (!RPN::calculationIsValid(calculation)) {  throw std::runtime_error("Error: invalid input");  }
 
 	int	sign = 1;
@@ -53,7 +58,8 @@ void	RPN::calculation(std::string calculation) {
 			RPN::operation(calculation[i]);
 		}
 	}
-
+	if ( _numbers.size() != 1 )
+		throw std::runtime_error( "Error: not enough operators for all the numbers" );
 	std::cout << "Result: " << _numbers.top() << std::endl;
 }
 
@@ -72,21 +78,21 @@ void	RPN::operation(char type) {
 
 		result = first + second;
 		if ( result < INT_MIN || result > INT_MAX )
-			throw std::runtime_error( "overflow" );
+			throw std::runtime_error( "Error: the result of this operation overflows" );
 		_numbers.push(first + second);
 	}
 	else if (type == '-') {
 		
 		result = first - second;
 		if ( result < INT_MIN || result > INT_MAX )
-			throw std::runtime_error( "overflow" );
+			throw std::runtime_error( "Error: the result of this operation overflows" );
 		_numbers.push(first - second);
 	}
 	else if (type == '*') {
 
 		result = first * second;
 		if ( result < INT_MIN || result > INT_MAX )
-			throw std::runtime_error( "overflow" );
+			throw std::runtime_error( "Error: the result of this operation overflows" );
 		_numbers.push(first * second);
 	}
 	else if (type == '/') {
@@ -95,7 +101,7 @@ void	RPN::operation(char type) {
 		
 		result = first / second;
 		if ( result < INT_MIN || result > INT_MAX )
-			throw std::runtime_error( "overflow" );
+			throw std::runtime_error( "Error: the result of this operation overflows" );
 		_numbers.push(first / second);
 	}
 }
@@ -120,5 +126,20 @@ bool	RPN::charIsValid(char c) {
 		if (c == validChars[i]) {  return true;  }
 	}
 
+	return false;
+}
+
+
+bool	RPN::hasOnlyOneDigit( std::string calculation ) {
+
+	int	digit = 0;
+
+	for ( int i = 0; calculation[i]; i++ ) {
+
+		if ( std::isdigit(calculation[i]) )
+			digit++;
+	}
+	if ( digit < 2 )
+		return true;
 	return false;
 }
