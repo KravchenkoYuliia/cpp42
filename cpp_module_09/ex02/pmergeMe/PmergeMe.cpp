@@ -6,7 +6,7 @@
 /*   By: yukravch <yukravch@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:16:19 by yukravch          #+#    #+#             */
-/*   Updated: 2026/01/12 13:35:28 by yukravch         ###   ########.fr       */
+/*   Updated: 2026/01/16 12:11:55 by yukravch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	PmergeMe::sorting( char** av ) {
 
 	PmergeMe::fillContainers(av);
 	std::cout << "Before: ";
-	::printContainer( _v, "vector" );
+	//::printContainer( _v, "vector" );
 	std::cout << std::endl;
 	
 
@@ -48,6 +48,7 @@ void	PmergeMe::sorting( char** av ) {
 	::printTimeCallAlgo < std::deque<int> > ( _d, "deque" );
 	std::cout << std::endl;
 }
+
 void	PmergeMe::getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex ) {
 
 	index = previousIndex + 2 * previousOfThePreviousIndex;
@@ -59,7 +60,7 @@ void	PmergeMe::getNextIndexWithJacobsthalSequence( int& index, int& previousInde
 
 int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> >& inHere) {
 
-	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < inHere.size(); i++ ) {
+	for ( std::vector< std::pair< int, int > >::size_type i = 0; i < inHere.size(); i++ ) {
 		if ( inHere[i].second == findIt ) {  return inHere[i].first;  }
 	}
 
@@ -139,19 +140,6 @@ void	PmergeMe::countTime( std::string container, int containerSize,  int beforeT
 
 }
 
-
-/*
-void	PmergeMe::printDeque( std::deque<int>& d ) {
-
-	if ( d.empty() ) {  std::cout << "empty" << std::endl;  }
-	std::cout << DEQUECOLOR;
-	for (std::deque<int>::size_type i = 0; i < d.size(); i++) {
-
-		std::cout << " " << d[i];
-	}
-	std::cout << RESET << std::endl;
-}
-*/
 void	PmergeMe::printPairsV( std::vector< std::pair<int, int> > p) {
 
 

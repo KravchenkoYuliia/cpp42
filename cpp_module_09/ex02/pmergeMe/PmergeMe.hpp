@@ -40,6 +40,7 @@ public:
 
 	static int			findPair( int findIt, std::vector< std::pair<int, int> >& inHere );
 	static void			getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex );
+	static void			printPairsV( std::vector< std::pair<int, int> > p );
 
 private:
 	void	sorting( char** av );
@@ -48,7 +49,6 @@ private:
 	void	sortVector( void );
 	void	makePairs( void );
 	
-	void	printPairsV( std::vector< std::pair<int, int> > p );
 
 	std::vector< std::pair<int, int> >	_pairsV;
 	std::deque< std::pair<int, int> >	_pairsD;

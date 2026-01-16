@@ -13,7 +13,7 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 		PmergeMe::countTime( "vector", container.size(), beforeTime, afterTime );
 		
 		std::cout << "After: ";
-		::printContainer( result, type );
+		//::printContainer( result, type );
 	}
 
 	else if ( type == "deque" ) {
@@ -23,7 +23,7 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 		PmergeMe::countTime( "deque", container.size(), beforeTime, afterTime );
 		
 		std::cout << "After: ";
-		::printContainer( result, type );
+		//::printContainer( result, type );
 	}
 	
 	else if ( type == "vector no Ford-Johnson" ) {
@@ -34,7 +34,7 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 		PmergeMe::countTime( "vector", container.size(), beforeTime, afterTime );
 		
 		std::cout << "After: ";
-		::printContainer( result, type );
+		//::printContainer( result, type );
 		std::cout << std::endl << std::endl;
 	}
 
@@ -55,16 +55,16 @@ T	FJalgorithm( T container ) {
 	//Step 1 : get main, pend and straggler
 	//
 	
-	if (container.size() % 2 != 0 ) {  straggler =container[container.size()-1];  }
+	if ( container.size() % 2 != 0 ) {  straggler =container[container.size()-1];  }
 	else {  straggler = NOSTRAGGLER;  }
 	
 	typename T::size_type  i = 0;
-	while ( i+1 <container.size() ) {
+	while ( i+1 < container.size() ) {
 
 		int	bigger = 0;
 		int	smaller = 0;
 
-		if (container[i] >container[i+1] ) {
+		if (container[i] > container[i+1] ) {
 			bigger = i;
 			smaller = i + 1;
 		}
@@ -73,11 +73,11 @@ T	FJalgorithm( T container ) {
 			smaller = i;
 		}
 
-		main.push_back(container[bigger] );
-		pairs.push_back(  std::make_pair(container[bigger],container[smaller] )  );
-		pend.push_back(container[smaller] );
+		main.push_back( container[bigger] );
+		pairs.push_back(  std::make_pair(container[bigger], container[smaller] )  );
+		pend.push_back( container[smaller] );
 
-		if ( i+2 <container.size() ) {  i += 2;  }
+		if ( i+2 < container.size() ) {  i += 2;  }
 		else {  break;  }
 	}
 	//
@@ -133,7 +133,7 @@ template <typename T>
 T	insertNumber( int insertIt, T here, std::vector< std::pair<int, int> > pairs) {
 
 	int	pairOfPend = PmergeMe::findPair( insertIt, pairs );
-	if ( pairOfPend == -1) {  std::cerr << "find pair for " << insertIt << std::endl; throw std::runtime_error("Error: no number you're looking for");  }
+	if ( pairOfPend == -1) {  std::cerr << "Error: can't find pair for " << insertIt << std::endl; throw std::runtime_error("Error: no number you're looking for");  }
 
 
 	int	maxPositionInMain = ::findMainPositionForPair( pairOfPend, here );
@@ -236,12 +236,37 @@ T	insertStraggler( int straggler, T main ) {
 template <typename T>
 int	findMainPositionForPair( int findIt, T&  inHere ) {
 
+	int	min = 0;
+	int	max = inHere.size() - 1;
+	int	middle;// = min + (max - min)/2;
+
+
+	while ( max >= min ) {
+
+		middle = min + (max - min)/2;
+		if ( inHere[middle] == findIt ) {
+
+			return middle;
+		}
+		
+		if ( inHere[middle] < findIt ) {
+
+			min = middle + 1;
+		}
+		else if ( inHere[middle] > findIt ) {
+
+			max = middle - 1;
+		}
+
+	
+	}
+/*
 	int count = 0;
 	for ( typename T::size_type i = 0; i < inHere.size(); i++ ) {
 		if ( inHere[i] == findIt ) {  return count;  }
 		count += 1;
 	}
-
+*/
 	return -1;
 }
 
