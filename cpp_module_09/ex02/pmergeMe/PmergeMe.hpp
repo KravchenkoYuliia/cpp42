@@ -40,7 +40,6 @@ public:
 
 	static int			findPair( int findIt, std::vector< std::pair<int, int> >& inHere );
 	static void			getNextIndexWithJacobsthalSequence( int& index, int& previousIndex, int& previousOfThePreviousIndex );
-	static void			printPairsV( std::vector< std::pair<int, int> > p );
 
 private:
 	void	sorting( char** av );
@@ -51,7 +50,6 @@ private:
 	
 
 	std::vector< std::pair<int, int> >	_pairsV;
-	std::deque< std::pair<int, int> >	_pairsD;
 
 	std::vector<int>	_v;
 	std::deque<int>		_d;
@@ -68,9 +66,6 @@ template <typename T>
 void	printContainer( T& container, std::string type );
 
 template <typename T>
-T	sortWithoutAlgo( T v );
-
-template <typename T>
 T	insertNumber( int insertIt, T here, std::vector< std::pair<int, int> >	pairs );
 
 template <typename T>
@@ -79,9 +74,6 @@ T	insertStraggler( int straggler, T main );
 template <typename T>
 int	findMainPositionForPair( int findIt, T& inHere );
 
-
-template <typename T>
-bool	vectorIsSorted( T v );
 
 #include "PmergeMe.tpp" 
 

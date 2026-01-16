@@ -37,12 +37,10 @@ void	PmergeMe::sorting( char** av ) {
 
 	PmergeMe::fillContainers(av);
 	std::cout << "Before: ";
-	//::printContainer( _v, "vector" );
+	::printContainer( _v, "vector" );
 	std::cout << std::endl;
 	
 
-	::printTimeCallAlgo < std::vector<int> > ( _v, "vector no Ford-Johnson" );
-	std::cout << std::endl;
 	::printTimeCallAlgo < std::vector<int> > ( _v, "vector" );
 	std::cout << std::endl;
 	::printTimeCallAlgo < std::deque<int> > ( _d, "deque" );
@@ -70,15 +68,17 @@ int	PmergeMe::findPair( int findIt, std::vector< std::pair<int, int> >& inHere) 
 
 void	PmergeMe::makePairs( void ) {
 	
-	std::vector<int>::size_type i = 0;
-	while ( i+1 < _v.size() ) {
+	std::vector<int>::size_type 	size = _v.size();
+	std::vector<int>::size_type 	i = 0;
+
+	while ( i+1 < size ) {
 
 		if ( _v[i] > _v[i+1])
 			_pairsV.push_back(  std::make_pair( _v[i+1], _v[i] )  );
 		else
 			_pairsV.push_back(  std::make_pair( _v[i], _v[i+1] )  );
 
-		if ( i+2 < _v.size() ) {  i += 2;  }
+		if ( i+2 < size ) {  i += 2;  }
 		else {  break;  }
 	}
 }
@@ -139,13 +139,3 @@ void	PmergeMe::countTime( std::string container, int containerSize,  int beforeT
 	std::cout << "Time to process a range of " << containerSize << " elements with std::" << container << " : " << std::fixed << std::setprecision(2) << 1000.0 * ( afterTime - beforeTime ) / CLOCKS_PER_SEC << "ms" << std::endl;
 
 }
-
-void	PmergeMe::printPairsV( std::vector< std::pair<int, int> > p) {
-
-
-	if ( p.empty() ) {  std::cout << "pairs are empty" << std::endl;  }
-	for ( std::vector< std::pair<int, int> >::size_type i = 0; i < p.size(); i++) {
-		std::cout << "Pair : " << p[i].first << " + " << p[i].second << std::endl;
-	}
-}
-

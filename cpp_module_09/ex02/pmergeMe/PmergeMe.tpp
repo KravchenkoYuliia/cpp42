@@ -13,7 +13,7 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 		PmergeMe::countTime( "vector", container.size(), beforeTime, afterTime );
 		
 		std::cout << "After: ";
-		//::printContainer( result, type );
+		::printContainer( result, type );
 	}
 
 	else if ( type == "deque" ) {
@@ -23,21 +23,8 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 		PmergeMe::countTime( "deque", container.size(), beforeTime, afterTime );
 		
 		std::cout << "After: ";
-		//::printContainer( result, type );
-	}
-	
-	else if ( type == "vector no Ford-Johnson" ) {
-
-		std::cout << "SIMPLE COMPARISON-BASED SORT (not Ford-Johnson)" << std::endl;
-		T       result = ::sortWithoutAlgo( container );
-		const std::clock_t afterTime = std::clock();
-		PmergeMe::countTime( "vector", container.size(), beforeTime, afterTime );
-		
-		std::cout << "After: ";
-		//::printContainer( result, type );
-		std::cout << std::endl << std::endl;
-	}
-
+		::printContainer( result, type );
+	}	
 }
 
 
@@ -45,17 +32,20 @@ void    printTimeCallAlgo( T& container, std::string type ) {
 template <typename T>
 T	FJalgorithm( T container ) {
 	
-	if ( container.size() <= 1 ) {  return container;  }
+
+	std::vector<int>::size_type	size = container.size();
+
+	if ( size <= 1 ) {  return container;  }
 
 	int						straggler = -1;
-	T			main;
-	T			pend;
+	T					main;
+	T					pend;
 	std::vector< std::pair<int, int> >	pairs;
 	//
 	//Step 1 : get main, pend and straggler
 	//
 	
-	if ( container.size() % 2 != 0 ) {  straggler =container[container.size()-1];  }
+	if ( size % 2 != 0 ) {  straggler = container[ size - 1];  }
 	else {  straggler = NOSTRAGGLER;  }
 	
 	typename T::size_type  i = 0;
@@ -77,7 +67,7 @@ T	FJalgorithm( T container ) {
 		pairs.push_back(  std::make_pair(container[bigger], container[smaller] )  );
 		pend.push_back( container[smaller] );
 
-		if ( i+2 < container.size() ) {  i += 2;  }
+		if ( i+2 < size ) {  i += 2;  }
 		else {  break;  }
 	}
 	//
@@ -87,21 +77,18 @@ T	FJalgorithm( T container ) {
 	//
 	//Step3 : inserting pend to main
 	//
-	//insert index 0 of pend
 	
+	long	pendSize = pend.size();
 
 	main = ::insertNumber<T>( pend[0], main, pairs );
-	if ( pend.size() == 1 && straggler == NOSTRAGGLER ) {  return main;  }
+	if ( pendSize == 1 && straggler == NOSTRAGGLER ) {  return main;  }
 	
 
 	int	index = 1;
 	int	previousIndex = 1;
 	int	previousOfThePreviousIndex = 1;
 
-	int	pendSize = pend.size();
-
-
-	if ( pend.size() > 1 ) {
+	if ( pendSize > 1 ) {
 		main = ::insertNumber<T>( pend[index], main, pairs );
 		PmergeMe::getNextIndexWithJacobsthalSequence( index, previousIndex, previousOfThePreviousIndex );
 
@@ -177,22 +164,6 @@ void	printContainer( T& container, std::string type ) {
 	std::cout << RESET << std::endl;
 }
 
-
-template <typename T>
-T	sortWithoutAlgo( T container ) {
-
-
-	T sorted = container;
-	while ( !::vectorIsSorted( sorted ) ) {
-	
-		for ( typename T::size_type i = 0; i < sorted.size(); i++ ) {
-			if ( i+1 < sorted.size() && sorted[i] > sorted[i+1] ) {  std::swap( sorted[i], sorted[i+1] );  }
-		}
-	}
-	
-	return sorted;
-}
-
 template <typename T>
 T	insertStraggler( int straggler, T main ) {
 
@@ -238,7 +209,7 @@ int	findMainPositionForPair( int findIt, T&  inHere ) {
 
 	int	min = 0;
 	int	max = inHere.size() - 1;
-	int	middle;// = min + (max - min)/2;
+	int	middle;
 
 
 	while ( max >= min ) {
@@ -260,23 +231,6 @@ int	findMainPositionForPair( int findIt, T&  inHere ) {
 
 	
 	}
-/*
-	int count = 0;
-	for ( typename T::size_type i = 0; i < inHere.size(); i++ ) {
-		if ( inHere[i] == findIt ) {  return count;  }
-		count += 1;
-	}
-*/
+
 	return -1;
-}
-
-template <typename T>
-bool	vectorIsSorted( T v ) {
-
-	for ( typename T::size_type i = 0; i < v.size(); i++ ) {
-
-		if ( i+1 < v.size() && v[i] > v[i+1] ) {  return false;  }
-	}
-	
-	return true;
 }
